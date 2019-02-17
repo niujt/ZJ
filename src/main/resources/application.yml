@@ -6,3 +6,14 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     username: njt123
     password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+  thymeleaf:
+    prefix: classpath:/views/
+    suffix: .html
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    cache: false
+    mode: HTML5
+  mvc:
+    static-path-pattern: /**

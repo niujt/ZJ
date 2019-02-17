@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" th:href="@{~/css/base.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{~/css/bootstrap.css}">
+    <script type="text/javascript" th:src="@{~/js/jquery-3.3.1.min.js}"></script>
+</head>
+<body>
+<head>
+    <meta charset="utf-8" />
+    <title>智能组卷系统登录页面</title>
+    <link rel="stylesheet" type="text/css" href="/css/base.css"/>
+</head>
+<body>
+<div class="header Cgreen">
+    <div class="wrapper clearfix">
+        <h1>智能组卷系统</h1>
+    </div>
+</div>
+<div class="content">
+    <div class="wrapper">
+        <img class="bg1" src="/img/bg1.png"/>
+        <div class="loginBox">
+            <div class="logo">
+            </div>
+            <div class="formDiv">
+                <form action="/jz/login" method="post" onSubmit="return check()">
+                    <label class="user">
+                        <input id="username" name="username" type="text" placeholder="请输入用户名"/>
+                        <i class="iconfont">&#xe614;</i>
+                    </label>
+                    <label class="pwd">
+                        <input id="password" name="password" type="password" placeholder="请输入密码"/>
+                        <i class="iconfont">&#xe615;</i>
+                    </label><br>
+
+                    <button type="submit" class="btn btn-info">登 录</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-dark" type="button">注册</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="wrapper">
+        <span>Copyright © 2019</span>
+    </div>
+</div>
+</body>
+<script>
+    window.onload = function() {
+        setContentHeight();
+        window.onresize = setContentHeight;
+        function setContentHeight () {
+            var windowHeight = document.documentElement.clientHeight;
+            document.getElementsByClassName('content')[0].style.height = windowHeight - 102 - 138 + 'px';
+        }
+    }
+    function check(){
+        //console.log($("#username").val());
+        //console.log($("#password").val());
+        if($("#username").val()=="" || $("#password").val()==""){
+            return false;
+        }
+        else{
+            console.log("有")
+            return true;
+        }
+    }
+</script>
+
+</body>
+</html>
