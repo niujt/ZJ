@@ -8,12 +8,18 @@ spring:
     password: 123456
     type: com.alibaba.druid.pool.DruidDataSource
   thymeleaf:
-    prefix: classpath:/views/
+    prefix: classpath:/templates/
     suffix: .html
     encoding: UTF-8
-    servlet:
-      content-type: text/html
     cache: false
     mode: HTML5
+    servlet:
+      content-type: text/html
   mvc:
+    view:
+      prefix: classpath:/views/
+      suffix: .html
     static-path-pattern: /**
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  type-aliases-package: com.wxthxy.zj.entity
