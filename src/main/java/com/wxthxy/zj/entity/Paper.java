@@ -16,7 +16,7 @@ public class Paper {
     /**考试时间*/
     private String time;
     /**老师id*/
-    private Integer teacherid;
+    private Integer userId;
     /**选择题*/
     private String cq;
     /**填空题*/

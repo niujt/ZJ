@@ -1,10 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>注册</title>
+    <link rel="stylesheet" type="text/css" th:href="@{~/css/bootstrap.css}">
+    <script type="text/javascript" th:src="@{~/js/jquery-3.3.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/sweetalert.min.js}"></script>
 </head>
 <body>
-111
+<form>
+    <div class="form-group">
+        <label for="name">姓名:
+        <input type="text" class="form-control" id="name">
+        </label>
+    </div>
+    <div class="form-group">
+        <label for="username">账号:
+        <input type="text" class="form-control" id="username">
+        </label>
+    </div>
+    <div class="form-group">
+        <label for="password">密码:
+        <input type="password" class="form-control" id="password">
+        </label>
+    </div>
+    <div class="radio">
+        <label><input type="radio" name="identity">老师</label>
+        <label><input type="radio" name="identity">学生</label>
+        <label><input type="radio" name="identity">管理员</label>
+    </div>
+    <div id="teacher">
+
+    </div>
+    <div id="student">
+
+    </div>
+    <div id="admin">
+
+    </div>
+    <button type="submit" class="btn btn-primary">注册</button>
+    <button type="submit" class="btn btn-primary">返回</button>
+</form>
 </body>
 </html>

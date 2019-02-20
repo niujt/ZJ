@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{~/css/base.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{~/css/bootstrap.css}">
+    <script type="text/javascript" th:src="@{~/js/jquery-3.3.1.min.js}"></script>
+    <title>老师管理页面</title>
+</head>
+<body>
+<div class="container">
+    <h2>老师管理</h2>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>编号</th>
+            <th>姓名</th>
+            <th>是否拥有权限</th>
+            <th>专业</th>
+            <th>操作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button>新增</button></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="teacher,teacherStat:${teachers}">
+            <td th:text="${teacherStat.count}"></td>
+            <td th:text="${teacher.name}"></td>
+            <td th:text="${(teacher.roleid==0)?'否':'是'}"></td>
+            <td th:text="${(teacher.majorid==1)?'数据结构':'其他专业'}"></td>
+            <td>
+                <button>修改</button>
+                <button>删除</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

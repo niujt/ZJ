@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * 试卷
+ * 题库
  */
 //@Controller
 //@RequestMapping("zj")
