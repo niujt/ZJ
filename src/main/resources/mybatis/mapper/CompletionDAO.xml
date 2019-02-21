@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wxthxy.zj.dao.CompletionDAO" >
+    <select id="getCount" resultType="Integer">
+        select count(1) from completion;
+    </select>
+    <select id="getAllCompletions" resultType="com.wxthxy.zj.entity.Completion">
+        select qt.type as type,qt.level as level,c.* from Completion c left join questiontype qt
+        on c.questiontypeid=qt.id;
+    </select>
+</mapper>

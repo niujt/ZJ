@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{~/css/bootstrap.css}">
+    <script type="text/javascript" th:src="@{~/js/jquery-3.3.1.min.js}"></script>
+    <meta charset="UTF-8">
+    <title>题目详情</title>
+    <style>
+        th {
+            white-space: nowrap;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>编号</th>
+            <th>难度</th>
+            <th>题目</th>
+            <th>选项</th>
+            <th>答案</th>
+            <th width="100px" colspan="2">操作 <button class="btn btn-info">新增</button></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="question,questionStat:${questions}">
+            <td th:text="${questionStat.count}"></td>
+            <td th:text="${question.level}"></td>
+            <td th:text="${question.text}"></td>
+            <td>
+                <ul class="list-group">
+                    <li class="list-group-item" th:text="${question.option1}"></li>
+                    <li class="list-group-item"  th:text="${question.option2}"></li>
+                    <li class="list-group-item" th:text="${question.option3}"></li>
+                    <li class="list-group-item" th:text="${(question.option4)==null?'无':(question.option4)}"></li>
+                    <li class="list-group-item" th:text="${question.option5==null?'无':(question.option5)}"></li>
+                </ul>
+            </td>
+            <td th:text="${question.answer}"></td>
+            <td colspan="2">
+                <button class="btn btn-info">修改</button>
+                <button class="btn btn-info">删除</button>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+</body>
+</html>

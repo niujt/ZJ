@@ -2,19 +2,26 @@ package com.wxthxy.zj.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * 题库
  */
 @Getter
 @Setter
+@ToString
 public abstract class Question {
     /**主键*/
-    private Integer id;
+    public Integer id;
     /**题目类型*/
-    private Integer questiontypeid;
+    public Integer questiontypeid;
     /**题目*/
-    private String text;
+    public String text;
     /**答案*/
-    private String answer;
+    public String answer;
+    /**以下为虚字段*/
+    /**题目类型*/
+    public String type;
+    /**题目难度*/
+    public String level;
 }
