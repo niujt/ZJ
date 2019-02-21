@@ -6,4 +6,7 @@ import java.util.List;
 
 public interface StudentService {
     List<Student> findAllStudents();
+    String addStudent(Student student);
+    String delStu(Integer id);
+    String updateStu(Student student);
 }

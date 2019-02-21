@@ -1,12 +1,14 @@
 package com.wxthxy.zj.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.wxthxy.zj.entity.Student;
 import com.wxthxy.zj.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("zj")
@@ -17,5 +19,19 @@ public class StudentController {
     public String stulist(HttpServletRequest request){
         request.setAttribute("students",service.findAllStudents());
         return "/admin/StudentManagement";
+    }
+    @RequestMapping(value ="/student",method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject addStu(Student student){
+        JSONObject json=new JSONObject();
+        json.put("message",service.addStudent(student));
+        return json;
+    }
+    @RequestMapping(value ="/student/{id}",method = RequestMethod.DELETE)
+    @ResponseBody
+    public JSONObject delstu(@PathVariable Integer id){
+        JSONObject json=new JSONObject();
+        json.put("message",service.delStu(id));
+        return json;
     }
 }

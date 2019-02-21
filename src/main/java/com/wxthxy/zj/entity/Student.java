@@ -19,5 +19,5 @@ public class Student {
     /**班级*/
     private String classname;
     /**学号*/
-    private Integer stuid;
+    private String stuid;
 }

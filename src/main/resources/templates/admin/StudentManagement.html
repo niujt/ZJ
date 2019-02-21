@@ -5,6 +5,9 @@
     <link rel="stylesheet" type="text/css" th:href="@{~/css/base.css}">
     <link rel="stylesheet" type="text/css" th:href="@{~/css/bootstrap.css}">
     <script type="text/javascript" th:src="@{~/js/jquery-3.3.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/jquery.form.js}"></script>
+    <script type="text/javascript" th:src="@{~/app/student.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/bootstrap.js}"></script>
     <title>学生管理页面</title>
 </head>
 <body>
@@ -18,7 +21,7 @@
             <th>专业</th>
             <th>班级</th>
             <th>学号</th>
-            <th>操作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button>新增</button></th>
+            <th colspan="2">操作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-info" data-toggle="modal" data-target="#addModal">新增</button></th>
         </tr>
         </thead>
         <tbody>
@@ -28,13 +31,66 @@
             <td th:text="${(stu.majorid==1)?'数据结构':'其他专业'}"></td>
             <td th:text="${stu.classname}"></td>
             <td th:text="${stu.stuid}"></td>
-            <td>
-                <button>详情</button>
-                <button>删除</button>
+            <td colspan="2">
+                <button class="btn btn-info" th:onclick="'javascript:delStu(\''+${stu.id}+'\');'">删除</button>
             </td>
         </tr>
         </tbody>
     </table>
 </div>
+
+<!-- 新增模态框 -->
+<form id="addStu" method="post" action="/zj/student" onSubmit="return addStu();">
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="addModalLabel">
+                    新增学生&nbsp;&nbsp;&nbsp;&nbsp;<span id="message" style="color: red;"></span>
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <table class="table table-bordered ">
+                    </tr>
+                    <tr>
+                        <td>姓名</td>
+                        <td>   <input  name="name" class="form-control" type="text" placeholder="请输入姓名" /></td>
+                    </tr>
+                    <tr>
+                        <td>专业</td>
+                        <td>
+                            <select class="form-control" name="majorid">
+                                <option value="1">软件工程</option>
+                                <option value="2">通信</option>
+                                <option value="3">计科</option>
+                                <option value="4">物联网</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>班级</td>
+                        <td>   <input  name="classname" class="form-control" type="text" placeholder="请输入班级"/></td>
+                    </tr>
+                    <tr>
+                        <td>学号</td>
+                        <td>   <input  name="stuid" class="form-control" type="number" placeholder="请输入学号"/></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="submit" class="btn btn-primary">
+                    添加(学号存在时则更新)
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
 </body>
 </html>
