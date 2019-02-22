@@ -29,8 +29,8 @@ public class QuestionServiceImpl implements QuestionService {
         counts.put("选择题",choicequestionDAO.getCount());
         counts.put("填空题",completionDAO.getCount());
         counts.put("判断题",judgementquestionDAO.getCount());
-        counts.put("应用题",designproblemDAO.getCount());
-        counts.put("简答题",10);
+        counts.put("应用题",applicationQuestionDAO.getCount());
+        counts.put("简答题",designproblemDAO.getCount());
         return counts;
     }
 
@@ -50,8 +50,7 @@ public class QuestionServiceImpl implements QuestionService {
             questions=designproblemDAO.getAllDesignproblems();
         }
         else if(type.equals("应用题")){
-            //未开发
-            questions=null;
+            questions=applicationQuestionDAO.getAllApplicationQuestion();
         }
         return questions;
 
@@ -78,5 +77,37 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public String updateChoiceQuestion(Choicequestion choicequestion) {
         return choicequestionDAO.updateChoiceQuestion(choicequestion)>0?ServiceMessage.Common_message_04.getText():ServiceMessage.Common_message_05.getText();
+    }
+
+    @Override
+    public String addQuestion(Question question) {
+        int index=0;
+        switch (question.getType()){
+            case "填空题" :
+                index=completionDAO.addCompletion(question);
+                break;
+            case "判断题":
+                index=judgementquestionDAO.addJudgementQuestion(question);
+                break;
+            case "简答题":
+                index=designproblemDAO.addDesignProblem(question);
+                break;
+        }
+            return index>0?ServiceMessage.Common_message_01.getText():ServiceMessage.Common_message_06.getText();
+    }
+
+    @Override
+    public String updateQuestion(Question question) {
+        return completionDAO.updateCompletionByid(question)>0?ServiceMessage.Common_message_04.getText():ServiceMessage.Common_message_05.getText();
+    }
+
+    @Override
+    public Question findQuestionByid(Integer id) {
+        return completionDAO.findCompletionByid(id);
+    }
+
+    @Override
+    public String delQuestion(Integer id) {
+        return completionDAO.deleteCompletionByid(id)>0?ServiceMessage.Common_message_02.getText():ServiceMessage.Common_message_03.getText();
     }
 }

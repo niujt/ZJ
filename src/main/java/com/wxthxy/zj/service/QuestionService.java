@@ -1,6 +1,8 @@
 package com.wxthxy.zj.service;
 
 import com.wxthxy.zj.entity.Choicequestion;
+import com.wxthxy.zj.entity.Completion;
+import com.wxthxy.zj.entity.Question;
 
 import java.util.List;
 import java.util.Map;
@@ -46,4 +48,32 @@ public interface QuestionService {
      * @return
      */
     String updateChoiceQuestion(Choicequestion choicequestion);
+/**出选择题以外，其他使用Question数据模型*/
+    /**
+     * 添加
+     * @param question
+     * @return
+     */
+    String addQuestion(Question question);
+
+    /**
+     * 更新
+     * @param question
+     * @return
+     */
+    String updateQuestion(Question question);
+
+    /**
+     * 详情
+     * @param id
+     * @return
+     */
+    Question findQuestionByid(Integer id);
+
+    /**
+     * 删除
+     * @param id
+     * @return
+     */
+    String delQuestion(Integer id);
 }

@@ -4,6 +4,8 @@
     <link rel="stylesheet" type="text/css" th:href="@{~/css/bootstrap.css}">
     <script type="text/javascript" th:src="@{~/js/jquery-3.3.1.min.js}"></script>
     <script type="text/javascript" th:src="@{~/app/question.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/jquery.form.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/bootstrap.js}"></script>
     <meta charset="UTF-8">
     <title>题目详情</title>
     <style>
@@ -19,20 +21,22 @@
         <thead>
         <tr>
             <th>编号</th>
+            <th>类型</th>
             <th>难度</th>
             <th>题目</th>
             <th>答案</th>
-            <th width="100px" colspan="2">操作&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-info">新增</button></th>
+            <th width="100px" colspan="2">操作&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-info" data-toggle="modal" data-target="#addModal">新增</button></th>
         </tr>
         </thead>
 
         <tbody>
         <tr th:each="question,questionStat:${questions}">
             <td th:text="${questionStat.count}"></td>
+            <td id="td1" width="100px" th:text="${question.type}"></td>
             <td th:text="${question.level}"></td>
             <td th:text="${question.text}"></td>
             <td th:text="${question.answer}"></td>
-            <td  colspan="2">
+            <td  colspan="2" width="300px">
                 <button class="btn btn-info">修改</button>
                 <button class="btn btn-info">删除</button>
             </td>
@@ -40,5 +44,77 @@
 
         </tbody>
     </table>
+</div>
+<!--新增模态框-->
+<form id="addQuestion" method="post" action="/zj/addOthers" onSubmit="return addOthers();">
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width: 800px;">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="addModalLabel">
+                        新增&nbsp;&nbsp;&nbsp;&nbsp;<span id="message" style="color: red;"></span>
+                        <input type="hidden" name="type" id="type" th:value="${type}">
+                    </h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <table class="table table-bordered ">
+                        <tr>
+                            <td>难度类型</td>
+                            <td>
+                                <div th:style="${type=='判断题'?'':'display: none'}">
+                                <select class="form-control" name="questiontypeid">
+                                    <option value="0">--请选择题目难度--</option>
+                                    <option value="4">简单</option>
+                                    <option value="5">一般</option>
+                                    <option value="6">苦难</option>
+                                </select>
+                                </div>
+                                <div th:style="${type=='简答题'?'':'display: none'}">
+                                    <select class="form-control" name="questiontypeid">
+                                        <option value="0">--请选择题目难度--</option>
+                                        <option value="7">简单</option>
+                                        <option value="8">一般</option>
+                                        <option value="9">苦难</option>
+                                    </select>
+                                </div>
+                                <div th:style="${type=='填空题'?'':'display: none'}">
+                                    <select class="form-control" name="questiontypeid">
+                                        <option value="0">--请选择题目难度--</option>
+                                        <option value="10">简单</option>
+                                        <option value="11">一般</option>
+                                        <option value="12">苦难</option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>题目</td>
+                            <td>
+                                <textarea class="form-control" rows="5" name="text" placeholder="请输入题目"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>答案</td>
+                            <td>
+                                <textarea class="form-control" rows="5" name="answer" placeholder="请输入答案"></textarea>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        添加
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 </body>
 </html>

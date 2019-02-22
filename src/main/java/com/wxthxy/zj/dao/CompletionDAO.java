@@ -1,11 +1,15 @@
 package com.wxthxy.zj.dao;
 
-import com.wxthxy.zj.entity.Completion;
+import com.wxthxy.zj.entity.Question;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface CompletionDAO {
     Integer getCount();
-    List<Completion> getAllCompletions();
-    int addCompletion(Completion completion);
+    List<Question> getAllCompletions();
+    int addCompletion(Question question);
+    Question findCompletionByid(@Param("id") Integer id);
+    int updateCompletionByid(Question question);
+    int deleteCompletionByid(@Param("id") Integer id);
 }

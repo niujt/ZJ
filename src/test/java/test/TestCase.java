@@ -31,4 +31,13 @@ public class TestCase {
         q.setAnswer("1111");
        System.out.println(service.updateChoiceQuestion(q));
     }
+    @Test
+    public void test3(){
+        Question q=new Question();
+        q.setAnswer("fsdfsdfsdfsdfsd");
+        q.setText("sdfsdfsd");
+       // q.setType("简答题");
+        q.setType("判断题");
+        System.out.println(service.addQuestion(q));
+    }
 }
