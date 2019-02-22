@@ -22,4 +22,14 @@
     <delete id="deleteCompletionByid" parameterType="Integer">
         delete from Completion where id=#{id}
     </delete>
+    <select id="findCompletion4Paper" resultType="com.wxthxy.zj.entity.Question">
+        select qt.type as type,qt.level as level,c.* from Completion c left join questiontype qt
+        on c.questiontypeid=qt.id
+        <where>
+            c.id in
+            <foreach close=")" collection="cpids" item="listItem" open="(" separator=",">
+                #{listItem}
+            </foreach>
+        </where>
+    </select>
 </mapper>

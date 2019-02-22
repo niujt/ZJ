@@ -1,9 +1,13 @@
 /**
  * 试卷详情
  */
-function paperInfo(){
-    alert("试卷详情页")
+function paperInfo(id){
+    location.href="/zj/paperInfo/"+id;
 }
+function back(){
+    location.href="/zj/paper";
+}
+
 
 /**
  *

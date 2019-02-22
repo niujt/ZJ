@@ -12,4 +12,14 @@
         insert into Designproblem(questiontypeid,text,answer)
         values(#{questiontypeid},#{text},#{answer})
     </insert>
+    <select id="findDesignProblem4Paper" resultType="com.wxthxy.zj.entity.Question">
+        select qt.type as type,qt.level as level,dp.* from Designproblem dp left join questiontype qt
+        on dp.questiontypeid=qt.id
+        <where>
+            dp.id in
+            <foreach close=")" collection="dpids" item="listItem" open="(" separator=",">
+                #{listItem}
+            </foreach>
+        </where>
+    </select>
 </mapper>

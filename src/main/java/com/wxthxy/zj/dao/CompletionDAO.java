@@ -12,4 +12,5 @@ public interface CompletionDAO {
     Question findCompletionByid(@Param("id") Integer id);
     int updateCompletionByid(Question question);
     int deleteCompletionByid(@Param("id") Integer id);
+    List<Question> findCompletion4Paper(@Param("cpids")List<Integer> cpids);
 }

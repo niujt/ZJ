@@ -2,6 +2,7 @@ package com.wxthxy.zj.utils;
 
 import com.wxthxy.zj.entity.Paper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PaperUtils {
@@ -18,5 +19,14 @@ public class PaperUtils {
             paper.setJqCount(paper.getJq().split(",").length);
 
         }
+    }
+    public static List<Integer> getQuestionIds(String str){
+        String[] ids=str.split(",");
+        List<Integer> _ids=new ArrayList<>();
+        for(String id:ids){
+            Integer _id=Integer.parseInt(id);
+            _ids.add(_id);
+        }
+        return _ids;
     }
 }

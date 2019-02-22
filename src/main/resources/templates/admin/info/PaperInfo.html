@@ -12,27 +12,58 @@
 <body>
 <div class="container">
 <div class="panel panel-default">
-        <header style="text-align: center">试卷名称：测试001</header>
+    <header style="text-align: center">
+        <button type="button" class="btn btn btn-outline-dark" style="float: left;" onclick="back()">返回</button>
+        <!--<button type="button" class="btn btn-outline-secondary">&lt;&#45;&#45;</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+        试卷名称：<span th:text="${paperInfo.name}"></span>
+        <button type="button" class="btn btn-outline-dark" style="float: right;">修改</button>
+    </header>
+    <hr>
         <div class="panel-heading">
                 <h5 class="panel-title">
                        一、选择题
                 </h5>
         </div>
         <div class="panel-body">
-
+            <div class="card" th:each="cq,cqStat:${paperInfo.choicequestions}">
+                <div class="card-header" ><span th:text="${cqStat.count}"></span>.<span th:text="${cq.text}"></span></div>
+                <div class="card-body">
+                    <input type="radio" ><span th:text="${cq.option1}"></span><br>
+                    <input type="radio" ><span th:text="${cq.option2}"></span><br>
+                    <input type="radio" ><span th:text="${cq.option3}"></span><br>
+                    <div th:style="${(cq.option4)==''?'display: none':''}"><input type="radio" name="answer"><span th:text="${cq.option4}"></span></div>
+                    <div th:style="${(cq.option5)==''?'display: none':''}"><input type="radio" name="answer"><span th:text="${cq.option5}"></span></div>
+                </div>
+            </div>
         </div>
         <div class="panel-heading">
                 <h5 class="panel-title">
                         二、填空题
                 </h5>
         </div>
+        <div class="panel-body">
+            <div class="card" th:each="cp,jqStat:${paperInfo.completions}">
+                <div class="card-body" >
+                    <span th:text="${jqStat.count}"></span>.
+                    <span th:text="${cp.text}"></span>
+                    <span>&nbsp;&nbsp;(答案从左往后依次，英文分号隔开;)</span>
+                    <textarea class="form-control" rows="1" style="width: 400px;"></textarea>
+                </div>
+            </div>
+         </div>
         <div class="panel-heading">
                 <h5 class="panel-title">
                        三、判断题
                 </h5>
         </div>
         <div class="panel-body">
-
+            <div class="card" th:each="jq,jqStat:${paperInfo.judgementQuestions}">
+                <div class="card-header" ><span th:text="${jqStat.count}"></span>.<span th:text="${jq.text}"></span></div>
+                <div class="card-body">
+                    <input type="radio" value="T"><span>是</span><br>
+                    <input type="radio" value="F"><span>否</span>
+                </div>
+            </div>
         </div>
         <div class="panel-heading">
                 <h5 class="panel-title">
@@ -40,7 +71,15 @@
                 </h5>
         </div>
         <div class="panel-body">
-
+            <div class="card" th:each="dp,jqStat:${paperInfo.designproblems}">
+                <div class="card-header" >
+                    <span th:text="${jqStat.count}"></span>.
+                    <span th:text="${dp.text}"></span>
+                </div>
+                <div class="card-body">
+                    <textarea class="form-control" rows="5" style="width: 600px;"></textarea>
+                </div>
+            </div>
         </div>
         <div class="panel-heading">
                 <h5 class="panel-title">
@@ -48,7 +87,7 @@
                 </h5>
         </div>
         <div class="panel-body">
-                尚未开发
+            <div class="card-header" >尚未开发</div>
         </div>
 </div>
 </div>

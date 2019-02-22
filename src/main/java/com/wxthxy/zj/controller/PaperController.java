@@ -5,6 +5,7 @@ import com.wxthxy.zj.service.PaperService;
 import com.wxthxy.zj.utils.PaperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -35,8 +36,10 @@ public class PaperController {
      * @param request
      * @return
      */
-    @RequestMapping(value = "/paperInfo",method = RequestMethod.GET)
-    public String paperInfo(HttpServletRequest request){
+    @RequestMapping(value = "/paperInfo/{id}",method = RequestMethod.GET)
+    public String paperInfo(HttpServletRequest request, @PathVariable Integer id){
+        request.setAttribute("paperInfo",service.getPaperById(id));
+        //System.out.println(service.getPaperById(id));
         return "/admin/info/PaperInfo";
     }
 }

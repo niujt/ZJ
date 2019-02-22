@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface PaperDAO {
     List<Paper> findAllPapers();
-    Paper findPaperByid(@Param("id") Integer id);
+    Paper findPaperById(@Param("id") Integer id);
 }

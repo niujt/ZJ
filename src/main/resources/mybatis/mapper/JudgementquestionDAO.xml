@@ -4,12 +4,22 @@
     <select id="getCount" resultType="Integer">
         select count(1) from Judgementquestion;
     </select>
-    <select id="getAllJudgementquestions" resultType="com.wxthxy.zj.entity.Judgementquestion">
+    <select id="getAllJudgementquestions" resultType="com.wxthxy.zj.entity.Question">
         select qt.type as type,qt.level as level,jq.* from Judgementquestion jq left join questiontype qt
         on jq.questiontypeid=qt.id;
     </select>
-    <insert id="addJudgementQuestion" parameterType="com.wxthxy.zj.entity.Judgementquestion">
+    <insert id="addJudgementQuestion" parameterType="com.wxthxy.zj.entity.Question">
         insert into Judgementquestion(questiontypeid,text,answer)
         values(#{questiontypeid},#{text},#{answer})
     </insert>
+    <select id="findJudgementQuestion4Paper" resultType="com.wxthxy.zj.entity.Question">
+        select qt.type as type,qt.level as level,jq.* from Judgementquestion jq left join questiontype qt
+        on jq.questiontypeid=qt.id
+        <where>
+            jq.id in
+            <foreach close=")" collection="jqids" item="listItem" open="(" separator=",">
+                #{listItem}
+            </foreach>
+        </where>
+    </select>
 </mapper>
