@@ -4,4 +4,7 @@
     <select id="findLoginByUsername" resultType="com.wxthxy.zj.entity.Login">
         select * from login where username=#{username};
     </select>
+    <insert id="addLogin" parameterType="com.wxthxy.zj.entity.Login">
+        insert into login(username,password) values(#{username},#{password});
+    </insert>
 </mapper>

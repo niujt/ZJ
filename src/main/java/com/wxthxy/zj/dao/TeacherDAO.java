@@ -11,4 +11,5 @@ public interface TeacherDAO {
     Teacher findTeacherByTeaid(@Param("teaid")String stuid);
     int deleteTeacherById(@Param("id") Integer id);
     int updateTeacherByTeaId(Teacher student);
+    int updateLoginId(Teacher student);
 }

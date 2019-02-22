@@ -20,6 +20,12 @@ public class PaperUtils {
 
         }
     }
+
+    /**
+     * 获取题号
+     * @param str
+     * @return
+     */
     public static List<Integer> getQuestionIds(String str){
         String[] ids=str.split(",");
         List<Integer> _ids=new ArrayList<>();

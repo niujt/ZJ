@@ -16,4 +16,7 @@
     <update id="updateStudentByStuId" parameterType="com.wxthxy.zj.entity.Student">
         update student set name=#{name},majorid=#{majorid},classname=#{classname} where stuid=#{stuid}
     </update>
+    <update id="updateLoginId" parameterType="com.wxthxy.zj.entity.Student">
+        update student set loginid=#{loginid} where stuid=#{stuid}
+    </update>
 </mapper>

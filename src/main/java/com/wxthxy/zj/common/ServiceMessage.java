@@ -8,6 +8,10 @@ public enum ServiceMessage {
     login_message_01(1,"账号不存在"),
     login_message_02(2,"密码错误"),
     login_message_03(3,"登录成功"),
+    /**注册*/
+    regist_message_01(1,"账号已存在"),
+    regist_message_02(2,"注册成功"),
+    regist_message_03(3,"注册失败,不存在该学生或老师"),
     /**学生*/
     //Student_message_01(1,"该学生已存在"),
     /**通用增删查改*/

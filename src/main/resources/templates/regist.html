@@ -1,45 +1,44 @@
-<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>注册</title>
     <link rel="stylesheet" type="text/css" th:href="@{~/css/bootstrap.css}">
     <script type="text/javascript" th:src="@{~/js/jquery-3.3.1.min.js}"></script>
-    <script type="text/javascript" th:src="@{~/js/sweetalert.min.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/jquery.form.js}"></script>
+    <script type="text/javascript" th:src="@{~/app/regist.js}"></script>
 </head>
 <body>
-<form>
-    <div class="form-group">
-        <label for="name">姓名:
-        <input type="text" class="form-control" id="name">
-        </label>
-    </div>
-    <div class="form-group">
-        <label for="username">账号:
-        <input type="text" class="form-control" id="username">
-        </label>
-    </div>
-    <div class="form-group">
-        <label for="password">密码:
-        <input type="password" class="form-control" id="password">
-        </label>
-    </div>
-    <div class="radio">
-        <label><input type="radio" name="identity">老师</label>
-        <label><input type="radio" name="identity">学生</label>
-        <label><input type="radio" name="identity">管理员</label>
-    </div>
-    <div id="teacher">
-
-    </div>
-    <div id="student">
-
-    </div>
-    <div id="admin">
-
-    </div>
-    <button type="submit" class="btn btn-primary">注册</button>
-    <button type="submit" class="btn btn-primary">返回</button>
+<div class="container">
+    <h2>注册<span id="message" style="color: red;font-size: 15px"></span></h2>
+<form action="/zj/regist" id="regist" method="post" onSubmit="return doRegist()">
+    <table class="table table-striped" style="width: 700px;">
+        <tr>
+            <td >工号或者学号:</td>
+            <td ><input type="text" class="form-control" id="userid" name="userid"></td>
+        </tr>
+        <tr>
+            <td>账号:</td>
+            <td><input type="text" class="form-control" id="username" name="username"></td>
+        </tr>
+        <tr>
+            <td>密码:</td>
+            <td>  <input type="password" class="form-control" id="password" name="password"></td>
+        </tr>
+        <tr>
+            <td>类型</td>
+            <td> <div class="radio">
+                <label><input type="radio" name="identity" value="teacher">老师</label>
+                <label><input type="radio" name="identity" value="student">学生</label>
+            </div></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center">
+                <button type="submit" class="btn btn-primary">注册</button>
+                <button type="button" class="btn btn-primary" onclick="back()">返回</button>
+            </td>
+        </tr>
+    </table>
 </form>
+</div>
 </body>
 </html>

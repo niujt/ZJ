@@ -16,4 +16,7 @@
     <update id="updateTeacherByTeaId" parameterType="com.wxthxy.zj.entity.Teacher">
         update teacher set roleid=#{roleid},majorid=#{majorid},name=#{name} where teaid=#{teaid}
     </update>
+    <update id="updateLoginId" parameterType="com.wxthxy.zj.entity.Teacher">
+        update teacher set loginid=#{loginid} where teaid=#{teaid}
+    </update>
 </mapper>
