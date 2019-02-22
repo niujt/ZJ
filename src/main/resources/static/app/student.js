@@ -23,8 +23,7 @@ function delStu(id){
                 console.log(data);
             }
         });
-        location.reload();
     }
-
+    location.reload();
 }
 

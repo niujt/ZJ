@@ -6,4 +6,7 @@ import java.util.List;
 
 public interface TeacherService {
     List<Teacher>  getAllTeacher();
+    String addTea(Teacher teacher);
+    String delTea(Integer id);
+    String updateTea(Teacher teacher);
 }

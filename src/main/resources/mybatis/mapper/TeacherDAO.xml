@@ -4,4 +4,16 @@
     <select id="findAllTeacher" resultType="com.wxthxy.zj.entity.Teacher">
         select * from teacher;
     </select>
+    <insert id="addTeacher" parameterType="com.wxthxy.zj.entity.Teacher">
+        insert into teacher(teaid,majorid,name,roleid) values(#{teaid},#{majorid},#{name},#{roleid});
+    </insert>
+    <select id="findTeacherByTeaid" resultType="com.wxthxy.zj.entity.Teacher" parameterType="String">
+        select * from teacher where teaid=#{teaid};
+    </select>
+    <delete id="deleteTeacherById" parameterType="Integer">
+        delete from teacher where id=#{id}
+    </delete>
+    <update id="updateTeacherByTeaId" parameterType="com.wxthxy.zj.entity.Teacher">
+        update teacher set roleid=#{roleid},majorid=#{majorid},name=#{name} where teaid=#{teaid}
+    </update>
 </mapper>

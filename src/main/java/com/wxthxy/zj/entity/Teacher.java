@@ -14,6 +14,8 @@ public class Teacher {
     private Integer majorid;
     /**姓名*/
     private String name;
+    /**工号*/
+    private String teaid;
     /**权限*/
     private Integer roleid;
     /**登录id*/
