@@ -8,4 +8,8 @@
         select qt.type as type,qt.level as level,dp.* from Designproblem dp left join questiontype qt
                                                                                  on dp.questiontypeid=qt.id;
     </select>
+    <insert id="addDesignProblem" parameterType="com.wxthxy.zj.entity.Designproblem">
+        insert into Designproblem(questiontypeid,text,answer)
+        values(#{questiontypeid},#{text},#{answer})
+    </insert>
 </mapper>

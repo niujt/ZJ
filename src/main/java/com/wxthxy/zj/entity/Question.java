@@ -10,7 +10,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public abstract class Question {
+public  class Question {
     /**主键*/
     public Integer id;
     /**题目类型*/

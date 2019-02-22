@@ -7,4 +7,5 @@ import java.util.List;
 public interface DesignproblemDAO {
     Integer getCount();
     List<Designproblem> getAllDesignproblems();
+    int addDesignProblem(Designproblem designproblem);
 }

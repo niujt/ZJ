@@ -8,4 +8,8 @@
         select qt.type as type,qt.level as level,c.* from Completion c left join questiontype qt
         on c.questiontypeid=qt.id;
     </select>
+    <insert id="addCompletion" parameterType="com.wxthxy.zj.entity.Completion">
+        insert into Completion(questiontypeid,text,answer)
+        values(#{questiontypeid},#{text},#{answer})
+    </insert>
 </mapper>

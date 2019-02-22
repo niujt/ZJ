@@ -2,6 +2,9 @@
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{~/css/bootstrap.css}">
     <script type="text/javascript" th:src="@{~/js/jquery-3.3.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/jquery.form.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/bootstrap.js}"></script>
+    <script type="text/javascript" th:src="@{~/app/question.js}"></script>
     <meta charset="UTF-8">
     <title>题库管理页面</title>
 </head>
@@ -14,7 +17,7 @@
         <th>编号</th>
         <th>类型</th>
         <th>题目数量</th>
-        <th>操作 <button class="btn btn-info">新增</button></th>
+        <th>操作</th>
     </tr>
     </thead>
 
@@ -24,7 +27,7 @@
         <td th:text="${question.key}"></td>
         <td th:text="${question.value}"></td>
         <td>
-            <button class="btn btn-info">详情</button>
+            <button class="btn btn-info" th:onclick="'javascript:queInfo(\''+${question.key}+'\');'">详情</button>
         </td>
     </tr>
 

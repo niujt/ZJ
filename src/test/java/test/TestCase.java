@@ -24,4 +24,11 @@ public class TestCase {
             System.out.println( cq.getText());
         }
     }
+    @Test
+    public void test2(){
+        Choicequestion q=new Choicequestion();
+        q.setId(10);
+        q.setAnswer("1111");
+       System.out.println(service.updateChoiceQuestion(q));
+    }
 }

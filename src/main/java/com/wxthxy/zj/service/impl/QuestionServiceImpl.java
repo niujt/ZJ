@@ -1,9 +1,8 @@
 package com.wxthxy.zj.service.impl;
 
-import com.wxthxy.zj.dao.ChoicequestionDAO;
-import com.wxthxy.zj.dao.CompletionDAO;
-import com.wxthxy.zj.dao.DesignproblemDAO;
-import com.wxthxy.zj.dao.JudgementquestionDAO;
+import com.wxthxy.zj.common.ServiceMessage;
+import com.wxthxy.zj.dao.*;
+import com.wxthxy.zj.entity.*;
 import com.wxthxy.zj.service.QuestionService;
 import com.wxthxy.zj.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +21,8 @@ public class QuestionServiceImpl implements QuestionService {
     DesignproblemDAO designproblemDAO;
     @Autowired
     JudgementquestionDAO judgementquestionDAO;
+    @Autowired
+    ApplicationQuestionDAO applicationQuestionDAO;
     @Override
     public Map<String, Integer> getQuestionCounts() {
         Map<String,Integer> counts=new HashMap<String,Integer>();
@@ -54,5 +55,28 @@ public class QuestionServiceImpl implements QuestionService {
         }
         return questions;
 
+    }
+
+    @Override
+    public String addChoiceQuestion(Choicequestion question) {
+      return choicequestionDAO
+              .addChoicequestion((Choicequestion) question)>0? ServiceMessage.Common_message_01.getText():ServiceMessage.Common_message_06.getText();
+
+    }
+
+    @Override
+    public String delChoiceQuestion(Integer id) {
+        return choicequestionDAO
+                .delChoicequestion(id)>0?ServiceMessage.Common_message_02.getText():ServiceMessage.Common_message_03.getText();
+    }
+
+    @Override
+    public Choicequestion getChoicequestion(Integer id) {
+        return choicequestionDAO.getChoiceQuestionByid(id);
+    }
+
+    @Override
+    public String updateChoiceQuestion(Choicequestion choicequestion) {
+        return choicequestionDAO.updateChoiceQuestion(choicequestion)>0?ServiceMessage.Common_message_04.getText():ServiceMessage.Common_message_05.getText();
     }
 }
