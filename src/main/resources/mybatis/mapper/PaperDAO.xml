@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wxthxy.zj.dao.PaperDAO" >
+    <select id="findAllPapers" resultType="com.wxthxy.zj.entity.Paper">
+        select * from paper
+    </select>
+    <select id="findPaperByid" resultType="com.wxthxy.zj.entity.Paper" parameterType="Integer">
+        select * from paper where id=#{id}
+    </select>
+</mapper>

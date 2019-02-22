@@ -1,9 +1,12 @@
 package test;
 
 import com.wxthxy.zj.ZjApp;
+import com.wxthxy.zj.dao.PaperDAO;
 import com.wxthxy.zj.entity.Choicequestion;
+import com.wxthxy.zj.entity.Paper;
 import com.wxthxy.zj.entity.Question;
 import com.wxthxy.zj.service.QuestionService;
+import com.wxthxy.zj.utils.PaperUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,8 @@ import java.util.List;
 public class TestCase {
     @Autowired
     QuestionService service;
+    @Autowired
+    PaperDAO paperDAO;
     @Test
     public void test1(){
         List<Choicequestion> list=service.findAllQuestions("选择题");
@@ -39,5 +44,11 @@ public class TestCase {
        // q.setType("简答题");
         q.setType("判断题");
         System.out.println(service.addQuestion(q));
+    }
+    @Test
+    public void test4(){
+        List<Paper> papers=paperDAO.findAllPapers();
+        PaperUtils.doPaper(papers);
+        papers.forEach(System.out::println);
     }
 }

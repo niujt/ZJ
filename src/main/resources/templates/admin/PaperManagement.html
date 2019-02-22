@@ -1,50 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>试题管理页面</title>
+    <title>考卷管理页面</title>
+        <link rel="stylesheet" type="text/css" th:href="@{~/css/bootstrap.css}">
+        <script type="text/javascript" th:src="@{~/js/jquery-3.3.1.min.js}"></script>
+        <script type="text/javascript" th:src="@{~/js/jquery.form.js}"></script>
+        <script type="text/javascript" th:src="@{~/js/bootstrap.js}"></script>
+        <script type="text/javascript" th:src="@{~/app/paper.js}"></script>
 </head>
 <body>
 <div class="container">
-<div class="panel panel-default">
-        <div class="panel-heading">
-                <h3 class="panel-title">
-                       一、选择题
-                </h3>
-        </div>
-        <div class="panel-body">
+        <h2>考卷管理</h2>
+        <table class="table table-hover">
+                <thead>
+                <tr>
+                        <th>编号</th>
+                        <th>考卷名字</th>
+                        <th>选择题数量</th>
+                        <th>填空题数量</th>
+                        <th>判断题数量</th>
+                        <th>应用题数量</th>
+                        <th>简答题数量</th>
+                        <th>考试时间</th>
+                        <th>分数</th>
+                        <th>操作</th>
+                </tr>
+                </thead>
 
-        </div>
-        <div class="panel-heading">
-                <h3 class="panel-title">
-                        二、填空题
-                </h3>
-        </div>
-        <div class="panel-heading">
-                <h3 class="panel-title">
-                       三、判断题
-                </h3>
-        </div>
-        <div class="panel-body">
+                <tbody>
+                <tr th:each="paper,paperStat:${papers}">
+                        <td th:text="${paperStat.count}"></td>
+                        <td th:text="${paper.name}"></td>
+                        <td th:text="${paper.cqCount}"></td>
+                        <td th:text="${paper.cpCount}"></td>
+                        <td th:text="${paper.jqCount}"></td>
+                        <td th:text="${paper.aqCount}"></td>
+                        <td th:text="${paper.dpCount}"></td>
+                        <td th:text="${paper.time}"></td>
+                        <td th:text="${paper.score}"></td>
+                        <td>
+                                <button class="btn btn-info" th:onclick="'javascript:paperInfo(\''+${paper.id}+'\');'">详情</button>
+                                <button class="btn btn-info" onclick="showAnswer()">查看答案</button>
+                        </td>
+                </tr>
 
-        </div>
-        <div class="panel-heading">
-                <h3 class="panel-title">
-                        四、简答题
-                </h3>
-        </div>
-        <div class="panel-body">
-
-        </div>
-        <div class="panel-heading">
-                <h3 class="panel-title">
-                        五、应用题
-                </h3>
-        </div>
-        <div class="panel-body">
-                尚未开发
-        </div>
-</div>
+                </tbody>
+        </table>
 </div>
 </body>
 </html>
