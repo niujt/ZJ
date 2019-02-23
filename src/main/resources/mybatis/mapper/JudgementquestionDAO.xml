@@ -22,4 +22,7 @@
             </foreach>
         </where>
     </select>
+    <delete id="deleteJudgementQuestionById" parameterType="Integer">
+        delete from Judgementquestion where id=#{id}
+    </delete>
 </mapper>

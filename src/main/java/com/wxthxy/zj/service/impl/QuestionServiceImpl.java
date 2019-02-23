@@ -106,7 +106,19 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public String delQuestion(Integer id) {
-        return completionDAO.deleteCompletionByid(id)>0?ServiceMessage.Common_message_02.getText():ServiceMessage.Common_message_03.getText();
+    public String delQuestion(Integer id,String type) {
+        int index=0;
+        switch (type){
+            case "填空题" :
+                index=completionDAO.deleteCompletionByid(id);
+                break;
+            case "判断题":
+                index=judgementquestionDAO.deleteJudgementQuestionById(id);
+                break;
+            case "简答题":
+                index=designproblemDAO.deleteDesignProblemById(id);
+                break;
+        }
+        return index>0?ServiceMessage.Common_message_02.getText():ServiceMessage.Common_message_03.getText();
     }
 }

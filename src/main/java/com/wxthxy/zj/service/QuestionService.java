@@ -74,5 +74,5 @@ public interface QuestionService {
      * @param id
      * @return
      */
-    String delQuestion(Integer id);
+    String delQuestion(Integer id,String type);
 }

@@ -10,4 +10,5 @@ public interface DesignproblemDAO {
     List<Question> getAllDesignproblems();
     int addDesignProblem(Question question);
     List<Question> findDesignProblem4Paper(@Param("dpids") List<Integer> dpids);
+    int deleteDesignProblemById(@Param("id") Integer id);
 }

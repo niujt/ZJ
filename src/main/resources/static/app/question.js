@@ -82,3 +82,19 @@ function addOthers(){
     return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
 
 }
+/**
+ * 填空，简答，判断题通用删除方法
+ */
+function delOther(type,id){
+    console.log(type+id);
+    if(confirm("确认要删除么")){
+        $.ajax({
+            url: "/zj/delOthers?id="+id+"&type="+type,
+            type:"DELETE",
+            success:function(data){
+                console.log(data);
+            }
+        });
+    }
+    location.reload();
+}

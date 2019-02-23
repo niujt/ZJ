@@ -3,7 +3,6 @@ package test;
 import com.wxthxy.zj.ZjApp;
 import com.wxthxy.zj.dao.*;
 import com.wxthxy.zj.entity.Choicequestion;
-import com.wxthxy.zj.entity.Completion;
 import com.wxthxy.zj.entity.Paper;
 import com.wxthxy.zj.entity.Question;
 import com.wxthxy.zj.service.PaperService;

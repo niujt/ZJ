@@ -9,4 +9,5 @@ public interface JudgementquestionDAO {
     List<Question> getAllJudgementquestions();
     int addJudgementQuestion(Question question);
     List<Question> findJudgementQuestion4Paper(@Param("jqids") List<Integer> jqids);
+    int deleteJudgementQuestionById(@Param("id") Integer id);
 }

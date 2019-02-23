@@ -40,7 +40,7 @@
             <td th:text="${question.score}"></td>
             <td  colspan="2" width="300px">
                 <button class="btn btn-info">修改</button>
-                <button class="btn btn-info">删除</button>
+                <button class="btn btn-info" th:onclick="|javascript:delOther('${question.type}','${question.id}')|">删除</button>
             </td>
         </tr>
 

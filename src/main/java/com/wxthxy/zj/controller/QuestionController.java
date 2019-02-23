@@ -6,10 +6,7 @@ import com.wxthxy.zj.entity.Question;
 import com.wxthxy.zj.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -117,6 +114,18 @@ public class QuestionController {
     public JSONObject addCompletion(Question question){
         JSONObject json=new JSONObject();
         json.put("message",service.addQuestion(question));
+        return json;
+    }
+    /**
+     * 添加填空，判断，简答题
+     * @param
+     * @return
+     */
+    @RequestMapping(value = "/delOthers",method = RequestMethod.DELETE)
+    @ResponseBody
+    public JSONObject delOthers(@RequestParam("type") String type,@RequestParam("id") Integer id){
+        JSONObject json=new JSONObject();
+        json.put("message",service.delQuestion(id, type));
         return json;
     }
 }
