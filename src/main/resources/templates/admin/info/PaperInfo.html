@@ -90,9 +90,17 @@
                         五、应用题
                 </h5>
         </div>
-        <div class="panel-body">
-            <div class="card-header" >尚未开发</div>
+    <div class="panel-body">
+        <div class="card" th:each="aq,aqStat:${paperInfo.applicationquestions}">
+            <div class="card-header" >
+                <span th:text="${aqStat.count}"></span>.
+                <span th:text="${aq.text}"></span>&nbsp;&nbsp;&nbsp;（<span th:text="${aq.score}"></span>）分
+            </div>
+            <div class="card-body">
+                <textarea class="form-control" rows="5" style="width: 600px;"></textarea>
+            </div>
         </div>
+    </div>
 </div>
 </div>
 </body>

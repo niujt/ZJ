@@ -22,7 +22,7 @@ public class Answer {
     /***判断题答案*/
     private List<String> jqanwsers;
     /***应用题答案*/
-    private List<String> apanwsers;
+    private List<String> aqanswers;
 
 
 }

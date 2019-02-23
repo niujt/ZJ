@@ -79,7 +79,13 @@
     </h5>
 </div>
     <div class="panel-body">
-        尚未开发！！！！
+        <div class="card" th:each="answer:${answers}">
+            <div class="card-body">
+                <div th:each="aqanwser:${answer.aqanswers}">
+                    <span th:text="${aqanwser}"></span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>

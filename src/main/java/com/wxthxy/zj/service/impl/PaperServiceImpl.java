@@ -1,10 +1,7 @@
 package com.wxthxy.zj.service.impl;
 
 import com.wxthxy.zj.dao.*;
-import com.wxthxy.zj.entity.Answer;
-import com.wxthxy.zj.entity.Choicequestion;
-import com.wxthxy.zj.entity.Paper;
-import com.wxthxy.zj.entity.Question;
+import com.wxthxy.zj.entity.*;
 import com.wxthxy.zj.service.PaperService;
 import com.wxthxy.zj.utils.PaperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,8 +55,18 @@ public class PaperServiceImpl  implements PaperService {
             cqindex++;
         }
         map.put("choicequestions",cqs);
-        //应用题暂未开发
-        //List<Integer> aqids= PaperUtils.getQuestionIds(paper.getAq());
+        //获取应用题id
+        List<Integer> aqids= PaperUtils.getQuestionIds(paper.getAq());
+        //获取应用题列表
+        List<ApplicationQuestion> aqs=applicationQuestionDAO.findApplicationQuestion4Paper(aqids);
+        List<String> aqanswers=new ArrayList<>();
+        for(ApplicationQuestion aq:aqs){
+            //添加应用题答案
+            aqanswers.add(aqindex+"."+aq.getAnswer());
+            answer.setAqanswers(aqanswers);
+            aqindex++;
+        }
+        map.put("applicationquestions",aqs);
         //获取填空题id
         List<Integer> cpids= PaperUtils.getQuestionIds(paper.getCp());
         //获取填空题列表
@@ -71,7 +78,6 @@ public class PaperServiceImpl  implements PaperService {
             cpanswers.add(cpindex+"."+q.getAnswer());
             answer.setCpanwsers(cpanswers);
             cpindex++;
-
         }
         map.put("completions",cps);
         //获取简答题id

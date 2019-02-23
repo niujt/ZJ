@@ -13,4 +13,14 @@
         insert into ApplicationQuestion(questiontypeid,text,answer)
         values(#{questiontypeid},#{text},#{answer})
     </insert>
+    <select id="findApplicationQuestion4Paper" resultType="com.wxthxy.zj.entity.ApplicationQuestion">
+        select qt.type as type,qt.level as level,qt.score as score,aq.* from ApplicationQuestion aq left join questiontype qt
+        on aq.questiontypeid=qt.id
+        <where>
+            aq.id in
+            <foreach close=")" collection="aqids" item="listItem" open="(" separator=",">
+                #{listItem}
+            </foreach>
+        </where>
+    </select>
 </mapper>
