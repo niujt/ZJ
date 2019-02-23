@@ -11,5 +11,6 @@ import lombok.ToString;
 @Setter
 @ToString
 public class ApplicationQuestion extends Question{
-
+    /**答案贴图*/
+    private String imgurl;
 }

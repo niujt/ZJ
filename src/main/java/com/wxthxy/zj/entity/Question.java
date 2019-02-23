@@ -5,7 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * 题库(出选择之外)
+ * 其他题型(除选择题，应用题之外)
  */
 @Getter
 @Setter

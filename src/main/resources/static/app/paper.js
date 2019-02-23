@@ -10,8 +10,8 @@ function back(){
 
 
 /**
- *
+ * 获得试卷答案
  */
-function showAnswer(){
-    alert("答案！！！")
+function showAnswer(id){
+   location.href="/zj/answer/"+id;
 }

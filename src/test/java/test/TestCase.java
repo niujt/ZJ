@@ -6,6 +6,7 @@ import com.wxthxy.zj.entity.Choicequestion;
 import com.wxthxy.zj.entity.Completion;
 import com.wxthxy.zj.entity.Paper;
 import com.wxthxy.zj.entity.Question;
+import com.wxthxy.zj.service.PaperService;
 import com.wxthxy.zj.service.QuestionService;
 import com.wxthxy.zj.utils.PaperUtils;
 import org.junit.Test;
@@ -32,6 +33,8 @@ public class TestCase {
     JudgementquestionDAO judgementquestionDAO;
     @Autowired
     DesignproblemDAO designproblemDAO;
+    @Autowired
+    PaperService paperService;
     @Test
     public void test1(){
         List<Choicequestion> list=service.findAllQuestions("选择题");
@@ -63,13 +66,14 @@ public class TestCase {
     }
     @Test
     public void test5(){
-        List<Integer> ids=new ArrayList<>();
-        ids.add(1);
-        ids.add(2);
-        ids.add(3);
+        //List<Integer> ids=new ArrayList<>();
+        //ids.add(1);
+        //ids.add(2);
+        //ids.add(3);
         //choicequestionDAO.findChoicequestion4Paper(ids).forEach(System.out::println);
         //completionDAO.findCompletion4Paper(ids).forEach(System.out::println);
         //judgementquestionDAO.findJudgementQuestion4Paper(ids).forEach(System.out::println);
-        designproblemDAO.findDesignProblem4Paper(ids).forEach(System.out::println);
+        //designproblemDAO.findDesignProblem4Paper(ids).forEach(System.out::println);
+        System.out.println(paperService.getPaperById(1).get("answers"));
     }
 }

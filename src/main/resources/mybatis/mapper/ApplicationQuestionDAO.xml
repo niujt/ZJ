@@ -4,12 +4,12 @@
     <select id="getCount" resultType="Integer">
         select count(1) from ApplicationQuestion;
     </select>
-    <select id="getAllApplicationQuestion" resultType="com.wxthxy.zj.entity.Question">
+    <select id="getAllApplicationQuestion" resultType="com.wxthxy.zj.entity.ApplicationQuestion">
         select qt.type as type,qt.level as level,aq.*
         from ApplicationQuestion aq left join questiontype qt
         on aq.questiontypeid=qt.id;
     </select>
-    <insert id="addApplicationQuestion" parameterType="com.wxthxy.zj.entity.Question">
+    <insert id="addApplicationQuestion" parameterType="com.wxthxy.zj.entity.ApplicationQuestion">
         insert into ApplicationQuestion(questiontypeid,text,answer)
         values(#{questiontypeid},#{text},#{answer})
     </insert>

@@ -1,10 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>答案</title>
+    <link rel="stylesheet" type="text/css" th:href="@{~/css/bootstrap.css}">
+    <script type="text/javascript" th:src="@{~/js/jquery-3.3.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/jquery.form.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/bootstrap.js}"></script>
+    <script type="text/javascript">
+        /*** 返回*/
+        function back(){
+            history.go(-1);
+        }
+    </script>
 </head>
 <body>
-
+<div class="container">
+    <h5>答案<button class="button btn-dark" style="float: right;" onclick="back()">X</button></h5>
+<div class="panel-heading">
+    <h5 class="panel-title">
+        一、选择题
+    </h5>
+</div>
+<div class="panel-body">
+    <div class="card" th:each="answer:${answers}">
+        <div class="card-body">
+            <span th:each="cqanswer:${answer.cqanwsers}">
+                 <span th:text="${cqanswer}"></span>
+            </span>
+        </div>
+    </div>
+</div>
+<div class="panel-heading">
+    <h5 class="panel-title">
+        二、填空题
+    </h5>
+</div>
+<div class="panel-body">
+    <div class="card" th:each="answer:${answers}">
+        <div class="card-body">
+            <div th:each="cpanswer:${answer.cpanwsers}">
+                 <span th:text="${cpanswer}"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel-heading">
+    <h5 class="panel-title">
+        三、判断题
+    </h5>
+</div>
+    <div class="panel-body">
+        <div class="card" th:each="answer:${answers}">
+            <div class="card-body">
+            <span th:each="jqanswer:${answer.jqanwsers}">
+                 <span th:text="${jqanswer}"></span>
+            </span>
+            </div>
+        </div>
+    </div>
+<div class="panel-heading">
+    <h5 class="panel-title">
+        四、简答题
+    </h5>
+</div>
+    <div class="panel-body">
+        <div class="card" th:each="answer:${answers}">
+            <div class="card-body">
+            <div th:each="dpanwser:${answer.dpanwsers}">
+                 <span th:text="${dpanwser}"></span>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-heading">
+    <h5 class="panel-title">
+        五、应用题
+    </h5>
+</div>
+    <div class="panel-body">
+        尚未开发！！！！
+    </div>
+</div>
 </body>
 </html>

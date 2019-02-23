@@ -41,7 +41,7 @@
                         <td th:text="${paper.score}"></td>
                         <td>
                                 <button class="btn btn-info" th:onclick="'javascript:paperInfo(\''+${paper.id}+'\');'">详情</button>
-                                <button class="btn btn-info" onclick="showAnswer()">查看答案</button>
+                                <button class="btn btn-info" th:onclick="'javascript:showAnswer(\''+${paper.id}+'\');'">查看答案</button>
                         </td>
                 </tr>
 
