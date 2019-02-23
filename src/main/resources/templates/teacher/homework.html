@@ -1,10 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>学生作业列表</title>
+    <link rel="stylesheet" type="text/css" th:href="@{~/css/bootstrap.css}">
+    <script type="text/javascript" th:src="@{~/js/jquery-3.3.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/jquery.form.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/bootstrap.js}"></script>
+    <style>
+        th,td {
+            white-space: nowrap;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    学生作业列表
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <th>编号</th>
+            <th>学生姓名</th>
+            <th>班级</th>
+            <th>学号</th>
+            <th>状态</th>
+            <th>操作</th>
+        </thead>
+        <tbody>
+        <tr th:each="homework,homeworkStat:${homeworks}">
+            <td th:text="${homeworkStat.count}"></td>
+            <td th:text="${homework.studentname}"></td>
+            <td th:text="${homework.classname}"></td>
+            <td th:text="${homework.stuid}"></td>
+            <td th:text="${(homework.state)==0?'未批改':'已批完'}"></td>
+            <td>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary" onclick="">批改</button>
+                    <button type="button"  class="btn btn-primary" onclick="">评价和建议</button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
