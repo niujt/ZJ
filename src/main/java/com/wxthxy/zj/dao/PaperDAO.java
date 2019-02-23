@@ -8,4 +8,5 @@ import java.util.List;
 public interface PaperDAO {
     List<Paper> findAllPapers();
     Paper findPaperById(@Param("id") Integer id);
+    int addPaper(Paper paper);
 }

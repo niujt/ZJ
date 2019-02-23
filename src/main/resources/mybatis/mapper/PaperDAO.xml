@@ -7,4 +7,7 @@
     <select id="findPaperById" resultType="com.wxthxy.zj.entity.Paper" parameterType="Integer">
         select * from paper where id=#{id}
     </select>
+    <insert id="addPaper" parameterType="com.wxthxy.zj.entity.Paper">
+      insert into paper(name,cq,cp,jq,dp,aq) values(#{name},#{cq},#{cp},#{jq},#{dp},#{aq})
+    </insert>
 </mapper>

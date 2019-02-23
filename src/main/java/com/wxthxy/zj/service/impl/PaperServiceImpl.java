@@ -1,5 +1,6 @@
 package com.wxthxy.zj.service.impl;
 
+import com.wxthxy.zj.common.ServiceMessage;
 import com.wxthxy.zj.dao.*;
 import com.wxthxy.zj.entity.*;
 import com.wxthxy.zj.service.PaperService;
@@ -7,6 +8,7 @@ import com.wxthxy.zj.utils.PaperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.processing.Completion;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -108,5 +110,61 @@ public class PaperServiceImpl  implements PaperService {
         map.put("judgementQuestions",jqs);
         map.put("answers",answer);
         return map;
+    }
+
+    @Override
+    public String getPaperByAuto(AutoPaper paper) {
+        //该map用于存放随机的各类型题号
+        Map map=new HashMap();
+        //获取随机选择题id的集合
+        List<Integer> cqids=new ArrayList<>();
+        for(Choicequestion choicequestion:choicequestionDAO.findAllChoicequestion()){
+            cqids.add(choicequestion.getId());
+        }
+        map.put("cqids",getIds(cqids,paper.getChoiceQueNumber()));
+        //获取随机应用id的集合
+        List<Integer> aqids=new ArrayList<>();
+        for(ApplicationQuestion applicationQuestion:applicationQuestionDAO.getAllApplicationQuestion()){
+            aqids.add(applicationQuestion.getId());
+        }
+        map.put("aqids",getIds(aqids,paper.getAppQueNumber()));
+        //获取随机填空题id的集合
+        List<Integer> cpids=new ArrayList<>();
+        for(Question question:completionDAO.getAllCompletions()){
+            cpids.add(question.getId());
+        }
+        map.put("cpids",getIds(cpids,paper.getCompQueNumber()));
+        //获取随机判断题id的集合
+        List<Integer> jqids=new ArrayList<>();
+        for(Question question:judgementquestionDAO.getAllJudgementquestions()){
+            jqids.add(question.getId());
+        }
+        map.put("jqids",getIds(jqids,paper.getJudgeQueNumber()));
+        //获取随机简答题id的集合
+        List<Integer> dpids=new ArrayList<>();
+        for(Question question:designproblemDAO.getAllDesignproblems()){
+            dpids.add(question.getId());
+        }
+        map.put("dpids",getIds(jqids,paper.getDesignQueNumber()));
+        //添加考题
+        Paper paper1=new Paper();
+        paper1.setJq((String)map.get("jqids"));
+        paper1.setAq((String)map.get("aqids"));
+        paper1.setCq((String)map.get("cqids"));
+        paper1.setDp((String)map.get("dpids"));
+        paper1.setCp((String)map.get("cpids"));
+        paper1.setName(paper.getName());
+        return paperDAO.addPaper(paper1)>0? ServiceMessage.Common_message_01.getText():ServiceMessage.Common_message_06.getText();
+    }
+
+    /**
+     * 从题库中id集合抽取随机id集合
+     * @param oldids
+     * @param number
+     * @return
+     */
+    public String getIds(List<Integer> oldids,int number){
+        return PaperUtils.autoQustionId(oldids,number);
+
     }
 }

@@ -3,8 +3,7 @@ package com.wxthxy.zj.utils;
 import com.wxthxy.zj.entity.Choicequestion;
 import com.wxthxy.zj.entity.Paper;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class PaperUtils {
     /**
@@ -35,5 +34,26 @@ public class PaperUtils {
             _ids.add(_id);
         }
         return _ids;
+    }
+
+    /**
+     * 获取随机试题题号
+     * @param ids 数据库获取的题号字符串
+     * @param number 题数
+     * @return  随机试题集合
+     */
+    public static String autoQustionId(List<Integer> ids,Integer number){
+        Map map = new HashMap();
+        String str="";
+       // List listNew = new ArrayList();
+            while (map.size() < number) {
+                int random = (int) (Math.random() * ids.size());
+                if (!map.containsKey(random)) {
+                    map.put(random, "");
+                    str+=ids.get(random)+",";
+                }
+            }
+            str=str.substring(0,str.length()-1);
+            return str;
     }
 }

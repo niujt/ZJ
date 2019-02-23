@@ -8,6 +8,12 @@
         <script type="text/javascript" th:src="@{~/js/jquery.form.js}"></script>
         <script type="text/javascript" th:src="@{~/js/bootstrap.js}"></script>
         <script type="text/javascript" th:src="@{~/app/paper.js}"></script>
+        <style>
+                th,td {
+                        white-space: nowrap;
+                        text-align: center;
+                }
+        </style>
 </head>
 <body>
 <div class="container">
@@ -16,14 +22,14 @@
                 <thead>
                 <tr>
                         <th>编号</th>
-                        <th>考卷名字</th>
+                        <th>试卷名称</th>
                         <th>选择题数量</th>
                         <th>填空题数量</th>
                         <th>判断题数量</th>
                         <th>应用题数量</th>
                         <th>简答题数量</th>
                         <th>分数</th>
-                        <th>操作&nbsp;&nbsp;&nbsp;<button class="btn btn-info" >新增</button></th>
+                        <th>操作&nbsp;&nbsp;&nbsp;<button class="btn btn-info" data-toggle="modal" data-target="#addModal">新增</button></th>
                 </tr>
                 </thead>
 
@@ -42,9 +48,89 @@
                                 <button class="btn btn-info" th:onclick="'javascript:showAnswer(\''+${paper.id}+'\');'">查看答案</button>
                         </td>
                 </tr>
-
                 </tbody>
         </table>
 </div>
+
+<!-- 新增模态框 -->
+        <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                        <div class="modal-content" style="width: 800px;">
+                                <div class="modal-header">
+                                        <h4 class="modal-title" id="addModalLabel">
+                                                新增试卷&nbsp;&nbsp;&nbsp;&nbsp;<span id="message" style="color: red;"></span>
+                                        </h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                &times;
+                                        </button>
+                                </div>
+                                <div class="modal-body">
+                                        <div class="radio">
+                                                <label><input type="radio" onchange="changeType(this)" name="selectType" value="manual">人工选题</label>
+                                                <label><input type="radio" onchange="changeType(this)" name="selectType" value="auto">自动组卷</label>
+                                        </div>
+                                        <!--人工选题-->
+                                        <div style="display: none;" id="manual">
+                                                <ul class="list-group">
+                                                        <li class="list-group-item">题目类型&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button style="float: right" type="submit" class="btn btn-primary" onclick="alert(222)">添加</button></li>
+                                                        <li class="list-group-item">选择题&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" onclick="alert(111)">详情</button></li>
+                                                        <li class="list-group-item">填空题&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" onclick="alert(111)">详情</button></li>
+                                                        <li class="list-group-item">判断题&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" onclick="alert(111)">详情</button></li>
+                                                        <li class="list-group-item">简答题&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" onclick="alert(111)">详情</button></li>
+                                                        <li class="list-group-item">应用题&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" onclick="alert(111)">详情</button></li>
+                                                </ul>
+                                        </div>
+                                        <!--自动组卷-->
+                                        <div id="auto" style="display: none;">
+                                                <form id="autoPaper" action="/zj/paper/autoPaper" method="post" onsubmit="return autoPaper()">
+                                                <table class="table table-responsive-sm">
+                                                        <thead>
+                                                                <th>题目类型</th>
+                                                                <th colspan="2">题数  <button type="submit" class="btn btn-primary" style="float: right">添加</button></th>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                                <td>试题名称 :</td>
+                                                                <td>
+                                                                       <input style="width: 400px;" name="name" class="form-control" type="text" >
+                                                                </td>
+                                                        </tr>
+                                                        <tr>
+                                                                <td>选择题:</td>
+                                                                <td><input style="width: 100px;" name="ChoiceQueNumber" class="form-control" type="number" min="1" max="10"></td>
+                                                                <td>题</td>
+                                                        </tr>
+                                                        <tr>
+                                                                <td>填空题</td>
+                                                                <td><input style="width: 100px;" class="form-control" name="CompQueNumber" type="number" min="1" max="10"></td>
+                                                                <td>题</td>
+                                                        </tr>
+                                                        <tr>
+                                                                <td>判断题</td>
+                                                                <td><input style="width: 100px;" class="form-control" name="JudgeQueNumber" type="number" min="1" max="10"></td>
+                                                                <td>题</td>
+                                                        </tr>
+                                                        <tr>
+                                                                <td>简答题</td>
+                                                                <td><input style="width: 100px;" class="form-control" name="DesignQueNumber" type="number" min="1" max="10"></td>
+                                                                <td>题</td>
+                                                        </tr>
+                                                        <tr>
+                                                                <td>应用题</td>
+                                                                <td><input style="width: 100px;" class="form-control" name="AppQueNumber" type="number" min="1" max="10"></td>
+                                                                <td>题</td>
+                                                        </tr>
+                                                        </tbody>
+                                                </table>
+                                                </form>
+                                        </div>
+                                </div>
+                                <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                                        </button>
+                                </div>
+                        </div>
+                </div>
+        </div>
 </body>
 </html>

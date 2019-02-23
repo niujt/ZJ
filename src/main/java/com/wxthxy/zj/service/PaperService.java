@@ -1,5 +1,6 @@
 package com.wxthxy.zj.service;
 
+import com.wxthxy.zj.entity.AutoPaper;
 import com.wxthxy.zj.entity.Paper;
 
 import java.util.List;
@@ -18,4 +19,11 @@ public interface PaperService {
      * @return
      */
     Map getPaperById(Integer id);
+
+    /**
+     * 自动组卷
+     * @param paper
+     * @return
+     */
+    String getPaperByAuto(AutoPaper paper);
 }
