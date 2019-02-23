@@ -2,6 +2,7 @@ package com.wxthxy.zj.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.wxthxy.zj.entity.Student;
+import com.wxthxy.zj.service.HomeworkService;
 import com.wxthxy.zj.service.PaperService;
 import com.wxthxy.zj.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ public class StudentController {
     StudentService service;
     @Autowired
     PaperService paperService;
+    @Autowired
+    HomeworkService homeworkService;
 
     /**
      * 学生列表
@@ -61,6 +64,16 @@ public class StudentController {
     @RequestMapping(value ="/student/homework/{id}",method = RequestMethod.GET)
     public String doHomework(HttpServletRequest request,@PathVariable Integer id){
         request.setAttribute("paperInfo",paperService.getPaperById(id));
+        return "/student/HomeworkInfo";
+    }
+    /**
+     * 学生作业列表
+     * @param request
+     * @return
+     */
+    @RequestMapping(value ="/student/homework",method = RequestMethod.GET)
+    public String doHomework(HttpServletRequest request){
+        request.setAttribute("homeworks",homeworkService.getAll());
         return "/student/homework";
     }
 }

@@ -31,10 +31,9 @@
             <td th:text="${homework.studentname}"></td>
             <td th:text="${homework.classname}"></td>
             <td th:text="${homework.stuid}"></td>
-            <td th:text="${(homework.state)==0?'未批改':'已批完'}"></td>
+            <td th:text="${(homework.state)==0?'批改中':'已批完'}"></td>
             <td>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-primary" th:onclick="'javascript:correction(\''+${homework.id}+'\');'">批改</button>
                     <button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#addModal">评价和建议</button>
                 </div>
             </td>
@@ -44,7 +43,6 @@
 </div>
 
 <!-- 新增模态框 -->
-<form id="evaluate" method="post" action="" onSubmit="return evaluate();">
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content" style="width: 800px;">
@@ -61,26 +59,19 @@
                         </tr>
                         <tr>
                             <td>评<br>价<br>:</td>
-                            <td>   <textarea  name="evaluate" class="form-control" type="text" rows="5"></textarea></td>
+                            <td>   <textarea  name="evaluate" class="form-control" type="text" rows="5">asdasdada</textarea></td>
                         </tr>
                         <tr>
                             <td>建<br>议<br>:</td>
                             <td>
-                                <textarea  name="proposal" class="form-control" type="text" rows="5"></textarea>
+                                <textarea  name="proposal" class="form-control" type="text" rows="5">asdadas</textarea>
                             </td>
                         </tr>
                     </table>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                    </button>
-                    <button type="submit" class="btn btn-primary">
-                       上传
-                    </button>
-                </div>
             </div>
         </div>
     </div>
-</form>
+
 </body>
 </html>
