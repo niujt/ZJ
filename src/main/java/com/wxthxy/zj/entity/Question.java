@@ -24,4 +24,6 @@ public  class Question {
     public String type;
     /**题目难度*/
     public String level;
+    /**分数*/
+    public String score;
 }

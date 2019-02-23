@@ -5,7 +5,7 @@
         select count(1) from Designproblem;
     </select>
     <select id="getAllDesignproblems" resultType="com.wxthxy.zj.entity.Question">
-        select qt.type as type,qt.level as level,dp.* from Designproblem dp left join questiontype qt
+        select qt.type as type,qt.level as level,qt.score as score,dp.* from Designproblem dp left join questiontype qt
                                                                                  on dp.questiontypeid=qt.id;
     </select>
     <insert id="addDesignProblem" parameterType="com.wxthxy.zj.entity.Question">
@@ -13,7 +13,7 @@
         values(#{questiontypeid},#{text},#{answer})
     </insert>
     <select id="findDesignProblem4Paper" resultType="com.wxthxy.zj.entity.Question">
-        select qt.type as type,qt.level as level,dp.* from Designproblem dp left join questiontype qt
+        select qt.type as type,qt.level as level,qt.score as score,dp.* from Designproblem dp left join questiontype qt
         on dp.questiontypeid=qt.id
         <where>
             dp.id in

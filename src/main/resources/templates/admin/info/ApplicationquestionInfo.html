@@ -7,7 +7,7 @@
     <script type="text/javascript" th:src="@{~/js/bootstrap.js}"></script>
     <script type="text/javascript" th:src="@{~/app/question.js}"></script>
     <meta charset="UTF-8">
-    <title>题目详情</title>
+    <title>应用题详情</title>
     <style>
         th {
             white-space: nowrap;
@@ -22,10 +22,11 @@
         <tr>
             <th>编号</th>
             <th>难度</th>
+            <th width="100px">类型</th>
             <th>题目</th>
-            <th>选项</th>
             <th>答案</th>
-            <th width="100px" colspan="2">操作 <button class="btn btn-info" data-toggle="modal" data-target="#addModal">新增</button></th>
+            <th>分数</th>
+            <th colspan="2">操作 <button class="btn btn-info" data-toggle="modal" data-target="#addModal">新增</button></th>
         </tr>
         </thead>
 
@@ -33,19 +34,12 @@
         <tr th:each="question,questionStat:${questions}">
             <td th:text="${questionStat.count}"></td>
             <td th:text="${question.level}"></td>
+            <td th:text="${question.type}"></td>
             <td th:text="${question.text}"></td>
-            <td>
-                <ul class="list-group">
-                    <li class="list-group-item" th:text="${question.option1}"></li>
-                    <li class="list-group-item"  th:text="${question.option2}"></li>
-                    <li class="list-group-item" th:text="${question.option3}"></li>
-                    <li class="list-group-item" th:text="${question.option4}"  th:style="${(question.option4)==''?'display: none':''}"></li>
-                    <li class="list-group-item" th:text="${question.option5}" th:style="${(question.option5)==''?'display: none':''}"></li>
-                </ul>
-            </td>
             <td th:text="${question.answer}"></td>
+            <td th:text="${question.score}"></td>
             <td colspan="2">
-                <button class="btn btn-info" data-toggle="modal" data-target="#upModal" >修改</button>
+                <button class="btn btn-info" data-toggle="modal" data-target="#upModal" >详情</button>
                 <button class="btn btn-info" >删除</button>
             </td>
         </tr>
@@ -55,13 +49,13 @@
 </div>
 
 <!-- 更新模态框 -->
-<form id="" method="post" action="" onSubmit="">
+<form  method="post" action="" onSubmit="">
     <div class="modal fade" id="upModal" tabindex="-1" role="dialog" aria-labelledby="upModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content" style="width: 800px;">
                 <div class="modal-header">
                     <h6 class="modal-title" id="upModalLabel">
-                        更新选择题&nbsp;&nbsp;&nbsp;&nbsp;<span id="message2" style="color: red;"></span>
+                        更新应用题·&nbsp;&nbsp;&nbsp;&nbsp;<span id="message2" style="color: red;"></span>
                         <input id="id" name="id" class="form-control" type="hidden" />
                     </h6>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -76,9 +70,9 @@
                             <td>
                                 <select class="form-control" id="questiontypeid" name="questiontypeid">
                                     <option value="0">--请选择题目难度--</option>
-                                    <option value="1">简单</option>
-                                    <option value="2">一般</option>
-                                    <option value="3">苦难</option>
+                                    <option value="13">简单</option>
+                                    <option value="14">一般</option>
+                                    <option value="15">苦难</option>
                                 </select>
                             </td>
                         </tr>
@@ -89,36 +83,14 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>A</td>
-                            <td>   <input  name="option1" class="form-control" id="option1" type="text" placeholder="格式为A.开头加上答案内容"/></td>
-                        </tr>
-                        <tr>
-                            <td>B</td>
-                            <td>   <input  name="option2" class="form-control" id="option2" type="text" placeholder="格式为B.开头加上答案内容"/></td>
-                        </tr>
-                        <tr>
-                            <td>C</td>
-                            <td>   <input  name="option3" class="form-control" id="option3" type="text" placeholder="格式为C.开头加上答案内容"/></td>
-                        </tr>
-                        <tr>
-                            <td>D</td>
-                            <td>   <input  name="option4" class="form-control" id="option4" type="text" placeholder="格式为D.开头加上答案内容"/></td>
-                        </tr>
-                        <tr>
-                            <td>E</td>
-                            <td>   <input  name="option5" class="form-control" id="option5" type="text" placeholder="格式为E.开头加上答案内容"/></td>
-                        </tr>
-                        <tr>
                             <td>答案</td>
                             <td>
-                                <select class="form-control" name="answer" id="answer">
-                                    <option value="A">A</option>
-                                    <option value="B">B</option>
-                                    <option value="C">C</option>
-                                    <option value="D">D</option>
-                                    <option value="D">E</option>
-                                </select>
+                                <textarea class="form-control" rows="5" id="answer" name="answer" placeholder="请输入答案"></textarea>
                             </td>
+                        </tr>
+                        <tr>
+                            <td>上传答案贴图:</td>
+                            <td><input name="imgurl" type="file"></td>
                         </tr>
                     </table>
                 </div>
@@ -134,13 +106,13 @@
     </div>
 </form>
 <!--新增模态框-->
-<form id="addChoiceQue" method="post" action="/zj/choiceQuestion" onSubmit="return addChoiceQue();">
+<form   method="post" action="" onSubmit="">
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content" style="width: 800px;">
                 <div class="modal-header">
                     <h6 class="modal-title" id="addModalLabel">
-                        新增选择题&nbsp;&nbsp;&nbsp;&nbsp;<span id="message" style="color: red;"></span>
+                        新增应用题&nbsp;&nbsp;&nbsp;&nbsp;<span id="message" style="color: red;"></span>
                     </h6>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         &times;
@@ -154,9 +126,9 @@
                             <td>
                                 <select class="form-control" name="questiontypeid">
                                     <option value="0">--请选择题目类型--</option>
-                                    <option value="1">简单</option>
-                                    <option value="2">一般</option>
-                                    <option value="3">苦难</option>
+                                    <option value="13">简单</option>
+                                    <option value="14">一般</option>
+                                    <option value="15">苦难</option>
                                 </select>
                             </td>
                         </tr>
@@ -167,36 +139,14 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>A</td>
-                            <td>   <input  name="option1" class="form-control" type="text" placeholder="格式为A.开头加上答案内容"/></td>
-                        </tr>
-                        <tr>
-                            <td>B</td>
-                            <td>   <input  name="option2" class="form-control" type="text" placeholder="格式为B.开头加上答案内容"/></td>
-                        </tr>
-                        <tr>
-                            <td>C</td>
-                            <td>   <input  name="option3" class="form-control" type="text" placeholder="格式为C.开头加上答案内容"/></td>
-                        </tr>
-                        <tr>
-                            <td>D</td>
-                            <td>   <input  name="option4" class="form-control" type="text" placeholder="格式为D.开头加上答案内容"/></td>
-                        </tr>
-                        <tr>
-                            <td>E</td>
-                            <td>   <input  name="option5" class="form-control" type="text" placeholder="格式为E.开头加上答案内容"/></td>
-                        </tr>
-                        <tr>
                             <td>答案</td>
                             <td>
-                                <select class="form-control" name="answer">
-                                    <option value="A">A</option>
-                                    <option value="B">B</option>
-                                    <option value="C">C</option>
-                                    <option value="D">D</option>
-                                    <option value="D">E</option>
-                                </select>
+                                <textarea class="form-control" rows="5" name="answer" placeholder="请输入题目"></textarea>
                             </td>
+                        </tr>
+                        <tr>
+                            <td>上传答案贴图:</td>
+                            <td><input name="imgurl" type="file"></td>
                         </tr>
                     </table>
                 </div>

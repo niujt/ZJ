@@ -2,7 +2,6 @@ package com.wxthxy.zj.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.wxthxy.zj.entity.Choicequestion;
-import com.wxthxy.zj.entity.Completion;
 import com.wxthxy.zj.entity.Question;
 import com.wxthxy.zj.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +45,9 @@ public class QuestionController {
         request.setAttribute("type",type);
         if(type.equals("选择题")){
             return "/admin/info/ChoicequestionInfo";
+        }
+        else if(type.equals("应用题")){
+            return "/admin/info/ApplicationquestionInfo";
         }
       else{
             return "/admin/info/OtherInfo";

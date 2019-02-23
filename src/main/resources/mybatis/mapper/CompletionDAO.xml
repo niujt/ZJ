@@ -5,7 +5,7 @@
         select count(1) from completion;
     </select>
     <select id="getAllCompletions" resultType="com.wxthxy.zj.entity.Question">
-        select qt.type as type,qt.level as level,c.* from Completion c left join questiontype qt
+        select qt.type as type,qt.level as level,qt.score as score,c.* from Completion c left join questiontype qt
         on c.questiontypeid=qt.id;
     </select>
     <insert id="addCompletion" parameterType="com.wxthxy.zj.entity.Question">
@@ -13,7 +13,7 @@
         values(#{questiontypeid},#{text},#{answer})
     </insert>
     <select id="findCompletionByid" parameterType="Integer" resultType="com.wxthxy.zj.entity.Question">
-        select qt.type as type,qt.level as level,c.* from Completion c left join questiontype qt
+        select qt.type as type,qt.level as level,qt.score as score,c.* from Completion c left join questiontype qt
         on c.questiontypeid=qt.id where c.id=#{id};
     </select>
     <update id="updateCompletionByid" parameterType="com.wxthxy.zj.entity.Question">
@@ -23,7 +23,7 @@
         delete from Completion where id=#{id}
     </delete>
     <select id="findCompletion4Paper" resultType="com.wxthxy.zj.entity.Question">
-        select qt.type as type,qt.level as level,c.* from Completion c left join questiontype qt
+        select qt.type as type,qt.level as level,qt.score as score,c.* from Completion c left join questiontype qt
         on c.questiontypeid=qt.id
         <where>
             c.id in

@@ -41,6 +41,7 @@ public class PaperServiceImpl  implements PaperService {
         Map map=new HashMap();
         Paper paper=paperDAO.findPaperById(id);
         map.put("name",paper.getName());
+        map.put("score",paper.getScore());
         //获取所有选择题id
         List<Integer> cqids= PaperUtils.getQuestionIds(paper.getCq());
         //获取选择题列表

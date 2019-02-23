@@ -25,6 +25,7 @@
             <th>题目</th>
             <th>选项</th>
             <th>答案</th>
+            <th>分数</th>
             <th width="100px" colspan="2">操作 <button class="btn btn-info" data-toggle="modal" data-target="#addModal">新增</button></th>
         </tr>
         </thead>
@@ -44,6 +45,7 @@
                 </ul>
             </td>
             <td th:text="${question.answer}"></td>
+            <td th:text="${question.score}"></td>
             <td colspan="2">
                 <button class="btn btn-info" data-toggle="modal" data-target="#upModal" th:onclick="'javascript:loadChoiceQue(\''+${question.id}+'\');'">修改</button>
                 <button class="btn btn-info" th:onclick="'javascript:delChoiceQue(\''+${question.id}+'\');'">删除</button>
