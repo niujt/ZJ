@@ -5,6 +5,9 @@ import com.wxthxy.zj.entity.Paper;
 
 import java.util.*;
 
+/**
+ * 试卷工具类
+ */
 public class PaperUtils {
     /**
      * 计算每种题型一共有多少，并赋值

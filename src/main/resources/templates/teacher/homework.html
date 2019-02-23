@@ -6,6 +6,7 @@
     <script type="text/javascript" th:src="@{~/js/jquery-3.3.1.min.js}"></script>
     <script type="text/javascript" th:src="@{~/js/jquery.form.js}"></script>
     <script type="text/javascript" th:src="@{~/js/bootstrap.js}"></script>
+    <script type="text/javascript" th:src="@{~/app/homework.js}"></script>
     <style>
         th,td {
             white-space: nowrap;
@@ -33,7 +34,7 @@
             <td th:text="${(homework.state)==0?'未批改':'已批完'}"></td>
             <td>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-primary" onclick="">批改</button>
+                    <button type="button" class="btn btn-primary" th:onclick="'javascript:correction(\''+${homework.id}+'\');'">批改</button>
                     <button type="button"  class="btn btn-primary" onclick="">评价和建议</button>
                 </div>
             </td>

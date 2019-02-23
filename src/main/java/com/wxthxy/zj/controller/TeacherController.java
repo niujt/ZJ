@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 @Controller
 @RequestMapping("zj")
@@ -62,6 +63,16 @@ public class TeacherController {
     public String homework(HttpServletRequest request){
         request.setAttribute("homeworks",homeworkService.getAll());
         return "/teacher/homework";
+    }
+    @RequestMapping(value ="/teacher/homework/{id}",method = RequestMethod.GET)
+    public String homework(@PathVariable Integer id,HttpServletRequest request){
+        Map map=homeworkService.getHomeworkAnswer(id);
+        request.setAttribute("cpanswers", map.get("cpanswers"));
+        request.setAttribute("cqanswers",map.get("cqanswers"));
+        request.setAttribute("jqanswers",map.get("jqanswers"));
+        request.setAttribute("dpanswers",map.get("dpanswers"));
+        request.setAttribute("aqanswers",map.get("aqanswers"));
+        return "/teacher/homeworkinfo";
     }
 
 }

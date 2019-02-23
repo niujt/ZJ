@@ -4,4 +4,7 @@
     <select id="findAll" resultType="com.wxthxy.zj.entity.HomeWork">
         select * from homework;
     </select>
+    <select id="findHomeworkById" resultType="com.wxthxy.zj.entity.HomeWork" parameterType="Integer">
+        select * from homework where id=#{id};
+    </select>
 </mapper>

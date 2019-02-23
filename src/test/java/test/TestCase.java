@@ -5,6 +5,7 @@ import com.wxthxy.zj.dao.*;
 import com.wxthxy.zj.entity.Choicequestion;
 import com.wxthxy.zj.entity.Paper;
 import com.wxthxy.zj.entity.Question;
+import com.wxthxy.zj.service.HomeworkService;
 import com.wxthxy.zj.service.PaperService;
 import com.wxthxy.zj.service.QuestionService;
 import com.wxthxy.zj.utils.PaperUtils;
@@ -34,6 +35,8 @@ public class TestCase {
     DesignproblemDAO designproblemDAO;
     @Autowired
     PaperService paperService;
+    @Autowired
+    HomeworkService homeworkService;
     @Test
     public void test1(){
         List<Choicequestion> list=service.findAllQuestions("选择题");
@@ -74,5 +77,9 @@ public class TestCase {
         //judgementquestionDAO.findJudgementQuestion4Paper(ids).forEach(System.out::println);
         //designproblemDAO.findDesignProblem4Paper(ids).forEach(System.out::println);
         System.out.println(paperService.getPaperById(1).get("answers"));
+    }
+    @Test
+    public void test6(){
+    System.out.println(homeworkService.getHomeworkAnswer(2));
     }
 }

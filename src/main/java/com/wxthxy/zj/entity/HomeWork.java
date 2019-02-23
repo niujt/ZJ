@@ -26,6 +26,8 @@ public class HomeWork {
     private String dpanswer;
     /**判断题答案*/
     private String jqanswer;
+    /**应用题答案*/
+    private String apanswer;
     /**状态*/
     private Integer state;
     /**评价*/
