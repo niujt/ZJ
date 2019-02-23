@@ -117,7 +117,7 @@ public class QuestionController {
         return json;
     }
     /**
-     * 添加填空，判断，简答题
+     * 删除填空，判断，简答题
      * @param
      * @return
      */
@@ -126,6 +126,32 @@ public class QuestionController {
     public JSONObject delOthers(@RequestParam("type") String type,@RequestParam("id") Integer id){
         JSONObject json=new JSONObject();
         json.put("message",service.delQuestion(id, type));
+        return json;
+    }
+    /**
+     * 更新填空，判断，简答题
+     * @param
+     * @return
+     */
+    @RequestMapping(value = "/updateOthers",method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject updateOthers(Question question){
+        System.out.println(question);
+        System.out.println(question.getType());
+        JSONObject json=new JSONObject();
+        json.put("message",service.updateQuestion(question));
+        return json;
+    }
+    /**
+     * 根据id查找填空，判断，简答题
+     * @param
+     * @return
+     */
+    @RequestMapping(value = "/findOther",method = RequestMethod.GET)
+    @ResponseBody
+    public JSONObject updateOthers(@RequestParam("type") String type,@RequestParam("id") Integer id){
+        JSONObject json=new JSONObject();
+        json.put("otherQue",service.findQuestionByid(id, type));
         return json;
     }
 }

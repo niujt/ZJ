@@ -67,7 +67,7 @@ public interface QuestionService {
      * @param id
      * @return
      */
-    Question findQuestionByid(Integer id);
+    Question findQuestionByid(Integer id,String type);
 
     /**
      * 删除

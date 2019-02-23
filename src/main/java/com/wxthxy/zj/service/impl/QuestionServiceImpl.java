@@ -82,27 +82,51 @@ public class QuestionServiceImpl implements QuestionService {
     public String addQuestion(Question question) {
         int index=0;
         switch (question.getType()){
-            case "填空题" :
-                index=completionDAO.addCompletion(question);
-                break;
-            case "判断题":
-                index=judgementquestionDAO.addJudgementQuestion(question);
-                break;
-            case "简答题":
-                index=designproblemDAO.addDesignProblem(question);
-                break;
-        }
-            return index>0?ServiceMessage.Common_message_01.getText():ServiceMessage.Common_message_06.getText();
+        case "填空题" :
+            index=completionDAO.addCompletion(question);
+            break;
+        case "判断题":
+            index=judgementquestionDAO.addJudgementQuestion(question);
+            break;
+        case "简答题":
+            index=designproblemDAO.addDesignProblem(question);
+            break;
     }
+            return index>0?ServiceMessage.Common_message_01.getText():ServiceMessage.Common_message_06.getText();
+}
 
     @Override
     public String updateQuestion(Question question) {
-        return completionDAO.updateCompletionByid(question)>0?ServiceMessage.Common_message_04.getText():ServiceMessage.Common_message_05.getText();
+        int index=0;
+        switch (question.getType()){
+            case "填空题" :
+                index=completionDAO.updateCompletionById(question);
+                break;
+            case "判断题":
+                index=judgementquestionDAO.updateJudgementQuestionById(question);
+                break;
+            case "简答题":
+                index=designproblemDAO.updateDesignProblemById(question);
+                break;
+        }
+        return index>0?ServiceMessage.Common_message_04.getText():ServiceMessage.Common_message_05.getText();
     }
 
     @Override
-    public Question findQuestionByid(Integer id) {
-        return completionDAO.findCompletionByid(id);
+    public Question findQuestionByid(Integer id,String type) {
+        Question question=null;
+       switch (type){
+           case "填空题" :
+               question=completionDAO.findCompletionByid(id);
+               break;
+           case "判断题":
+               question=judgementquestionDAO.findJudgementquestionsById(id);
+               break;
+           case "简答题":
+               question=designproblemDAO.findDesignproblemByid(id);
+               break;
+       }
+       return question;
     }
 
     @Override

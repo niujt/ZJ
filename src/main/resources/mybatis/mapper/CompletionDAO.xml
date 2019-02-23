@@ -16,7 +16,7 @@
         select qt.type as type,qt.level as level,qt.score as score,c.* from Completion c left join questiontype qt
         on c.questiontypeid=qt.id where c.id=#{id};
     </select>
-    <update id="updateCompletionByid" parameterType="com.wxthxy.zj.entity.Question">
+    <update id="updateCompletionById" parameterType="com.wxthxy.zj.entity.Question">
         update Completion set questiontypeid=#{questiontypeid},text=#{text},answer=#{answer} where id=#{id}
     </update>
     <delete id="deleteCompletionByid" parameterType="Integer">

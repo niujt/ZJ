@@ -98,3 +98,30 @@ function delOther(type,id){
     }
     location.reload();
 }
+
+/**
+ * 填空，简答，判断题通用加载方法
+ */
+function loadOtherQue(type,id){
+    $.ajax({
+        url: "/zj/findOther?id="+id+"&type="+type,
+        type:"GET",
+        success:function(data){
+            console.log(data);
+            $("#text").val(data.otherQue.text);
+            $("#id").val(data.otherQue.id);
+            $("#answer").val(data.otherQue.answer);
+        }
+    });
+}
+/**
+ * 填空，简答，判断题通用更新方法
+ */
+function upOthers(){
+    $("#upQuestion").ajaxSubmit(function(message) {
+        console.log(message);
+        $("#message2").html(message.message);
+    });
+    parent.location.reload();
+    return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
+}

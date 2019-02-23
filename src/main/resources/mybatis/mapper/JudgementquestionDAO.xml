@@ -25,4 +25,12 @@
     <delete id="deleteJudgementQuestionById" parameterType="Integer">
         delete from Judgementquestion where id=#{id}
     </delete>
+    <update id="updateJudgementQuestionById" parameterType="com.wxthxy.zj.entity.Question">
+        update judgementquestion set questiontypeid=#{questiontypeid},text=#{text},answer=#{answer} where id=#{id}
+    </update>
+    <select id="findJudgementquestionsById" resultType="com.wxthxy.zj.entity.Question" parameterType="Integer">
+        select qt.type as type,qt.level as level,qt.score as score,jq.* from Judgementquestion jq left join questiontype qt
+        on jq.questiontypeid=qt.id
+        where jq.id=#{id}
+    </select>
 </mapper>
