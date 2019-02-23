@@ -98,7 +98,6 @@ public class QuestionController {
     @RequestMapping(value = "/upchoiceQuestion",method = RequestMethod.POST)
     @ResponseBody
     public JSONObject upChoiceQuestion(Choicequestion choicequestion){
-        System.out.println("============="+choicequestion);
         JSONObject json=new JSONObject();
         json.put("message",service.updateChoiceQuestion(choicequestion));
         return json;
@@ -136,8 +135,6 @@ public class QuestionController {
     @RequestMapping(value = "/updateOthers",method = RequestMethod.POST)
     @ResponseBody
     public JSONObject updateOthers(Question question){
-        System.out.println(question);
-        System.out.println(question.getType());
         JSONObject json=new JSONObject();
         json.put("message",service.updateQuestion(question));
         return json;

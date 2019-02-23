@@ -31,10 +31,6 @@ public class RegistController {
     @ResponseBody
     public JSONObject doRegist(@RequestParam("username")String username,@RequestParam("password")String password,
     @RequestParam("userid")String userid,@RequestParam("identity")String identity){
-        System.out.println(username);
-        System.out.println(password);
-        System.out.println(userid);
-        System.out.println(identity);
         JSONObject json=new JSONObject();
         json.put("message",service.doRegist(username,password,userid,identity));
         return json;
