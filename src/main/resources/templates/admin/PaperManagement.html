@@ -22,7 +22,6 @@
                         <th>判断题数量</th>
                         <th>应用题数量</th>
                         <th>简答题数量</th>
-                        <th>考试时间</th>
                         <th>分数</th>
                         <th>操作&nbsp;&nbsp;&nbsp;<button class="btn btn-info" >新增</button></th>
                 </tr>
@@ -37,7 +36,6 @@
                         <td th:text="${paper.jqCount}"></td>
                         <td th:text="${paper.aqCount}"></td>
                         <td th:text="${paper.dpCount}"></td>
-                        <td th:text="${paper.time}"></td>
                         <td th:text="${paper.score}"></td>
                         <td>
                                 <button class="btn btn-info" th:onclick="'javascript:paperInfo(\''+${paper.id}+'\');'">详情</button>

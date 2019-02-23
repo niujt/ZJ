@@ -13,8 +13,6 @@ import lombok.ToString;
 public class Paper {
     /**主键*/
     private Integer id;
-    /**考试时间*/
-    private String time;
     /**试卷名称*/
     private String name;
     /**选择题*/
