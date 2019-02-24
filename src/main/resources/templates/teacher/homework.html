@@ -36,7 +36,7 @@
             <td>
                 <div class="btn-group">
                     <button type="button" class="btn btn-primary" th:onclick="'javascript:correction(\''+${homework.id}+'\');'">批改</button>
-                    <button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#addModal">评价和建议</button>
+                    <button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#addModal" th:onclick="'javascript:upd(\''+${homework.id}+'\');'">评价和建议</button>
                 </div>
             </td>
         </tr>
@@ -45,7 +45,7 @@
 </div>
 
 <!-- 新增模态框 -->
-<form id="evaluate" method="post" action="" onSubmit="return evaluate();">
+<form id="evaluate" method="post" action="/zj/teacher/evaHomework">
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content" style="width: 800px;">
@@ -56,6 +56,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         &times;
                     </button>
+                    <input type="hidden" id="id" name="id">
                 </div>
                 <div class="modal-body">
                     <table class="table table-bordered">

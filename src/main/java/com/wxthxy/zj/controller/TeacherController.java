@@ -1,6 +1,7 @@
 package com.wxthxy.zj.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.wxthxy.zj.entity.HomeWork;
 import com.wxthxy.zj.entity.Teacher;
 import com.wxthxy.zj.entity.TeacherCorrection;
 import com.wxthxy.zj.service.HomeworkService;
@@ -109,6 +110,16 @@ public class TeacherController {
     @RequestMapping(value ="/teacher/subhomework",method = RequestMethod.POST)
     public String homework2(TeacherCorrection teacherCorrection){
         homeworkService.score(teacherCorrection);
+        return "redirect:/zj/teacher/homework";
+    }
+    /**
+     * 评价和建议
+     * @param homeWork
+     * @return
+     */
+    @RequestMapping(value ="/teacher/evaHomework",method = RequestMethod.POST)
+    public String homework3(HomeWork homeWork){
+        homeworkService.eva(homeWork);
         return "redirect:/zj/teacher/homework";
     }
 }

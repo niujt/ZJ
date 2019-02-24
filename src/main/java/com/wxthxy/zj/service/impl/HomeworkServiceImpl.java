@@ -54,4 +54,9 @@ public class HomeworkServiceImpl implements HomeworkService {
         homeWork.setScore(totalScore+"");
         return dao.updateScoreById(homeWork)>0? ServiceMessage.Common_message_04.getText():ServiceMessage.Common_message_05.getText();
     }
+
+    @Override
+    public String eva(HomeWork homeWork) {
+        return dao.updateOtherById(homeWork)>0? ServiceMessage.Common_message_04.getText():ServiceMessage.Common_message_05.getText();
+    }
 }

@@ -10,4 +10,7 @@
     <update id="updateScoreById" parameterType="com.wxthxy.zj.entity.HomeWork">
         update homework set score=#{score},state=1 where id=#{id}
     </update>
+    <update id="updateOtherById" parameterType="com.wxthxy.zj.entity.HomeWork">
+        update homework set evaluate=#{evaluate},proposal=#{proposal} where id=#{id}
+    </update>
 </mapper>

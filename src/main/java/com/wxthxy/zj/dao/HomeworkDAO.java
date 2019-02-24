@@ -25,4 +25,11 @@ public interface HomeworkDAO {
      * @return
      */
     int updateScoreById(HomeWork homeWork);
+
+    /**
+     * 更新评价和建议
+     * @param homeWork
+     * @return
+     */
+    int updateOtherById(HomeWork homeWork);
 }

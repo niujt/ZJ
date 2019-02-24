@@ -10,4 +10,5 @@ public interface HomeworkService {
     List<HomeWork> getAll();
     Map getHomeworkAnswer(Integer id);
     String score(TeacherCorrection teacherCorrection);
+    String eva(HomeWork homeWork);
 }

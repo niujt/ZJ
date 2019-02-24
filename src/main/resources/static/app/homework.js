@@ -12,3 +12,19 @@ function correction(id){
 function doHomework(){
     location.href="/zj/paper";
 }
+
+/**
+ *
+ * @param id
+ */
+function upd(id){
+    $("#id").val(id);
+}
+
+/**
+ * 学生查看评价和建议
+ */
+function check(evaluate,proposal){
+    $("#evaluate").val(evaluate);
+    $("#proposal").val(proposal);
+}
