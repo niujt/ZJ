@@ -64,7 +64,7 @@ public class LoginController {
             session.setAttribute("message",studentService.findStudent(service.findLoginByUserName(username).getId()));
         }
         else{
-
+            session.setAttribute("message","admin");
         }
         json.put("login",service.dologin(username,password));
         return  json;
