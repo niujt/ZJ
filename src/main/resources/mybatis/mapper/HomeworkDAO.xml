@@ -7,4 +7,7 @@
     <select id="findHomeworkById" resultType="com.wxthxy.zj.entity.HomeWork" parameterType="Integer">
         select * from homework where id=#{id};
     </select>
+    <update id="updateScoreById" parameterType="com.wxthxy.zj.entity.HomeWork">
+        update homework set score=#{score},state=1 where id=#{id}
+    </update>
 </mapper>

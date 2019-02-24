@@ -1,7 +1,9 @@
 package com.wxthxy.zj.service.impl;
 
+import com.wxthxy.zj.common.ServiceMessage;
 import com.wxthxy.zj.dao.HomeworkDAO;
 import com.wxthxy.zj.entity.HomeWork;
+import com.wxthxy.zj.entity.TeacherCorrection;
 import com.wxthxy.zj.service.HomeworkService;
 import com.wxthxy.zj.utils.HomeworkUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +43,15 @@ public class HomeworkServiceImpl implements HomeworkService {
         map.put("dpanswers",dpanswers);
         map.put("aqanswers",aqanswers);
         return map;
+    }
+
+    @Override
+    public String score(TeacherCorrection teacherCorrection) {
+        HomeWork homeWork=new HomeWork();
+        homeWork.setId(teacherCorrection.getId());
+        double totalScore=teacherCorrection.getAqScore()
+                +teacherCorrection.getCpScore()+teacherCorrection.getCqScore()+teacherCorrection.getDpScore()+teacherCorrection.getJqScore();
+        homeWork.setScore(totalScore+"");
+        return dao.updateScoreById(homeWork)>0? ServiceMessage.Common_message_04.getText():ServiceMessage.Common_message_05.getText();
     }
 }

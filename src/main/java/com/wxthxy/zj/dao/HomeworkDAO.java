@@ -18,4 +18,11 @@ public interface HomeworkDAO {
      * @return
      */
     HomeWork findHomeworkById(@Param("id") Integer id);
+
+    /**
+     * 更新作业分数
+     * @param homeWork
+     * @return
+     */
+    int updateScoreById(HomeWork homeWork);
 }

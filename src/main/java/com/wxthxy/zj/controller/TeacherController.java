@@ -2,6 +2,7 @@ package com.wxthxy.zj.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.wxthxy.zj.entity.Teacher;
+import com.wxthxy.zj.entity.TeacherCorrection;
 import com.wxthxy.zj.service.HomeworkService;
 import com.wxthxy.zj.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,6 +81,7 @@ public class TeacherController {
     @RequestMapping(value ="/teacher/homework/{id}",method = RequestMethod.GET)
     public String homework(@PathVariable Integer id,HttpServletRequest request){
         Map map=homeworkService.getHomeworkAnswer(id);
+        request.setAttribute("id",id);
         request.setAttribute("cpanswers", map.get("cpanswers"));
         request.setAttribute("cqanswers",map.get("cqanswers"));
         request.setAttribute("jqanswers",map.get("jqanswers"));
@@ -97,5 +99,16 @@ public class TeacherController {
     public String index(HttpSession session,HttpServletRequest request){
         request.setAttribute("teacher",session.getAttribute("message"));
         return "/teacher/index";
+    }
+
+    /**
+     * 批卷评分
+     * @param teacherCorrection
+     * @return
+     */
+    @RequestMapping(value ="/teacher/subhomework",method = RequestMethod.POST)
+    public String homework2(TeacherCorrection teacherCorrection){
+        homeworkService.score(teacherCorrection);
+        return "redirect:/zj/teacher/homework";
     }
 }

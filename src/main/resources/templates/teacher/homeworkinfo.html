@@ -16,9 +16,10 @@
 <body>
 <div th:include="menu.html :: menu" width="100%" height="100%" frameborder="no" border="0"  ></div>
 <div class="container">
+<form  method="post" action="/zj/teacher/subhomework">
 <div class="panel-heading">
     <h5 class="panel-title">
-        一、选择题（2分一题）
+        一、选择题（2分一题） <input name="id" type="hidden" th:value="${id}" style="width: 100px;">分</span>
     </h5>
 </div>
 <div class="panel-body">
@@ -30,7 +31,7 @@
         </div>
         <div class="card-footer">正确答案：
             <span>1.A,2.B,3.C</span>
-            <span style="float: right">选择题总分：<input style="width: 100px;">分</span>
+            <span style="float: right">选择题总分：<input name="cqScore" style="width: 100px;">分</span>
         </div>
     </div>
 </div>
@@ -48,7 +49,7 @@
         </div>
         <div class="card-footer">正确答案：
             <span>sfsfsdf</span>
-            <span style="float: right">填空题总分：<input style="width: 100px;">分</span>
+            <span style="float: right">填空题总分：<input name="cpScore" style="width: 100px;">分</span>
         </div>
     </div>
 </div>
@@ -66,7 +67,7 @@
         </div>
         <div class="card-footer">正确答案：
             <span>1.T,2.T,3.F</span>
-            <span style="float: right">判断题总分：<input style="width: 100px;">分</span>
+            <span style="float: right">判断题总分：<input name="jqScore" style="width: 100px;">分</span>
         </div>
     </div>
 </div>
@@ -84,7 +85,7 @@
         </div>
         <div class="card-footer">正确答案：
             <span>1.dasda,2.asda,3.dasdasda</span>
-            <span style="float: right">简答题总分：<input style="width: 100px;">分</span>
+            <span style="float: right">简答题总分：<input name="dpScore" style="width: 100px;">分</span>
         </div>
     </div>
 </div>
@@ -102,14 +103,15 @@
         </div>
         <div class="card-footer">正确答案：
             <span>1.A,2.B,3.C</span>
-            <span style="float: right">应用题总分：<input style="width: 100px;">分</span><br>
+            <span style="float: right">应用题总分：<input name="aqScore" style="width: 100px;">分</span><br>
         </div>
         <div>
-                <button style="float: right" type="button" class="button badge-danger" onclick="alert('成绩111')">评分</button>
+                <button style="float: right" type="submit" class="button badge-danger">评分</button>
                 <button style="float: right" type="button" class="button btn-info" onclick="back()">返回</button>
         </div>
     </div>
 </div>
+</form>
 </div>
 </body>
 </html>

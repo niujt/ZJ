@@ -34,4 +34,6 @@ public class HomeWork {
     private String evaluate;
     /**建议*/
     private String proposal;
+    /**成绩*/
+    private String score;
 }
