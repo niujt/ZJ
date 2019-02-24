@@ -29,8 +29,12 @@
                  <span th:text="${cqanswerStat.count}"></span>.<span th:text="${cqanswer}"></span>
             </span>
         </div>
-        <div class="card-footer">正确答案：
-            <span>1.A,2.B,3.C</span>
+        <div class="card-footer" >正确答案：
+            <div th:each="answer:${answers}">
+                <span th:each="cqanswer:${answer.cqanwsers}">
+                 <span th:text="${cqanswer}"></span>
+            </span>
+            </div>
             <span style="float: right">选择题总分：<input name="cqScore" style="width: 100px;">分</span>
         </div>
     </div>
@@ -48,7 +52,11 @@
             </div>
         </div>
         <div class="card-footer">正确答案：
-            <span>sfsfsdf</span>
+            <div th:each="answer:${answers}">
+            <div th:each="cpanswer:${answer.cpanwsers}">
+                <span th:text="${cpanswer}"></span>
+            </div>
+            </div>
             <span style="float: right">填空题总分：<input name="cpScore" style="width: 100px;">分</span>
         </div>
     </div>
@@ -66,7 +74,11 @@
             </span>
         </div>
         <div class="card-footer">正确答案：
-            <span>1.T,2.T,3.F</span>
+            <div th:each="answer:${answers}">
+                 <span th:each="jqanswer:${answer.jqanwsers}">
+                 <span th:text="${jqanswer}"></span>
+            </span>
+            </div>
             <span style="float: right">判断题总分：<input name="jqScore" style="width: 100px;">分</span>
         </div>
     </div>
@@ -84,7 +96,11 @@
             </div>
         </div>
         <div class="card-footer">正确答案：
-            <span>1.dasda,2.asda,3.dasdasda</span>
+            <div th:each="answer:${answers}">
+                <div th:each="dpanwser:${answer.dpanwsers}">
+                    <span th:text="${dpanwser}"></span>
+                </div>
+            </div>
             <span style="float: right">简答题总分：<input name="dpScore" style="width: 100px;">分</span>
         </div>
     </div>
@@ -102,7 +118,11 @@
             </div>
         </div>
         <div class="card-footer">正确答案：
-            <span>1.A,2.B,3.C</span>
+            <div th:each="answer:${answers}">
+                <div th:each="aqanwser:${answer.aqanswers}">
+                    <span th:text="${aqanwser}"></span>
+                </div>
+            </div>
             <span style="float: right">应用题总分：<input name="aqScore" style="width: 100px;">分</span><br>
         </div>
         <div>

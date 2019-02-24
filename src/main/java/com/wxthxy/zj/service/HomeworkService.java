@@ -11,4 +11,5 @@ public interface HomeworkService {
     Map getHomeworkAnswer(Integer id);
     String score(TeacherCorrection teacherCorrection);
     String eva(HomeWork homeWork);
+    HomeWork findHomeWork(Integer id);
 }

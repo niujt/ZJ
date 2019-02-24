@@ -5,6 +5,7 @@ import com.wxthxy.zj.entity.HomeWork;
 import com.wxthxy.zj.entity.Teacher;
 import com.wxthxy.zj.entity.TeacherCorrection;
 import com.wxthxy.zj.service.HomeworkService;
+import com.wxthxy.zj.service.PaperService;
 import com.wxthxy.zj.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,8 @@ public class TeacherController {
     TeacherService service;
     @Autowired
     HomeworkService homeworkService;
+    @Autowired
+    PaperService paperService;
     /**
      * 老师列表
      * @param request
@@ -82,12 +85,14 @@ public class TeacherController {
     @RequestMapping(value ="/teacher/homework/{id}",method = RequestMethod.GET)
     public String homework(@PathVariable Integer id,HttpServletRequest request){
         Map map=homeworkService.getHomeworkAnswer(id);
+        HomeWork homeWork=homeworkService.findHomeWork(id);
         request.setAttribute("id",id);
         request.setAttribute("cpanswers", map.get("cpanswers"));
         request.setAttribute("cqanswers",map.get("cqanswers"));
         request.setAttribute("jqanswers",map.get("jqanswers"));
         request.setAttribute("dpanswers",map.get("dpanswers"));
         request.setAttribute("aqanswers",map.get("aqanswers"));
+        request.setAttribute("answers",paperService.getPaperById(homeWork.getPaperid()).get("answers"));
         return "/teacher/homeworkinfo";
     }
 
