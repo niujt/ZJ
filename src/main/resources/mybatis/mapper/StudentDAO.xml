@@ -10,6 +10,9 @@
     <select id="findStudentByStuid" resultType="com.wxthxy.zj.entity.Student" parameterType="String">
         select * from student where stuid=#{stuid};
     </select>
+    <select id="findStudentById" resultType="com.wxthxy.zj.entity.Student" parameterType="Integer">
+        select * from student where id=#{id};
+    </select>
     <delete id="deleteStudentById" parameterType="Integer">
         delete from student where id=#{id}
     </delete>

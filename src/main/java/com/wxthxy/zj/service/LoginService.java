@@ -1,6 +1,8 @@
 package com.wxthxy.zj.service;
 
 
+import com.wxthxy.zj.entity.Login;
+
 public interface LoginService {
     /**
      * 登录
@@ -9,7 +11,7 @@ public interface LoginService {
      * @return
      */
     String dologin(String username, String password);
-
+    Login findLoginByUserName(String username);
     /**
      * 注册
      * @param username 账号

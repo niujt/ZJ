@@ -1,0 +1,36 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>菜单</title>
+    <link rel="stylesheet" type="text/css" th:href="@{~/css/bootstrap.css}">
+    <script type="text/javascript" th:src="@{~/js/jquery-3.3.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/jquery.form.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/bootstrap.js}"></script>
+</head>
+<body>
+<div th:fragment="menu">
+<nav class="navbar navbar-expand  bg-dark navbar-dark">
+    <ul class="navbar-nav" style="height: 40px;">
+        <li class="nav-item" style="margin-left: 380px">
+            <a class="nav-link" href="#">题库管理</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">试卷管理</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">作业管理</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">学生管理</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">老师管理</a>
+        </li>
+        <li class="nav-item" style="padding-left: 600px;">
+            <a class="nav-link" href="#">退出登录</a>
+        </li>
+    </ul>
+</nav>
+</div>
+</body>
+</html>

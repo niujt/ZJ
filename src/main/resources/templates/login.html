@@ -28,7 +28,7 @@
             <div class="logo">
             </div>
             <div class="formDiv">
-                <form id="login" action="/zj/login" method="get" onSubmit="return doLogin()">
+                <form id="login" action="/zj/login" method="post" onSubmit="return doLogin()">
                     <span id="message" style="text-align: center;color: red"></span><br><br>
                     <label class="user">
                         <input id="username" name="username" type="text" placeholder="请输入用户名" value="xiaoming"/>
@@ -38,7 +38,14 @@
                         <input id="password" name="password" type="password" placeholder="请输入密码" value="123456"/>
                         <i class="iconfont">&#xe615;</i>
                     </label><br>
-
+                    <label class="user">
+                        <select id="identity" name="identity" class="form-control" style="margin-left: 70px">
+                            <option value="teacher">老师</option>
+                            <option value="student">学生</option>
+                            <option value="admin">管理员</option>
+                        </select>
+                        <i class="iconfont">&#xe614;</i>
+                    </label><br>
                     <button type="submit" class="btn btn-info">登 录</button>&nbsp;&nbsp;&nbsp;&nbsp;
                     <button class="btn btn-dark" onclick="regist()" type="button" >注册</button>
                 </form>

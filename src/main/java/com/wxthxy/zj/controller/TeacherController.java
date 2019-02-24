@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 @Controller
@@ -59,11 +60,23 @@ public class TeacherController {
         return json;
     }
 
+    /**
+     * 老师作业管理页面
+     * @param request
+     * @return
+     */
     @RequestMapping(value ="/teacher/homework",method = RequestMethod.GET)
     public String homework(HttpServletRequest request){
         request.setAttribute("homeworks",homeworkService.getAll());
         return "/teacher/homework";
     }
+
+    /**
+     * 作业详情
+     * @param id
+     * @param request
+     * @return
+     */
     @RequestMapping(value ="/teacher/homework/{id}",method = RequestMethod.GET)
     public String homework(@PathVariable Integer id,HttpServletRequest request){
         Map map=homeworkService.getHomeworkAnswer(id);
@@ -75,4 +88,14 @@ public class TeacherController {
         return "/teacher/homeworkinfo";
     }
 
+    /**
+     * 老师首页
+     * @param session
+     * @return
+     */
+    @RequestMapping(value ="/teacher/index",method = RequestMethod.GET)
+    public String index(HttpSession session,HttpServletRequest request){
+        request.setAttribute("teacher",session.getAttribute("message"));
+        return "/teacher/index";
+    }
 }

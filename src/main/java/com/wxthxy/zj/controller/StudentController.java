@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("zj")
@@ -75,5 +76,15 @@ public class StudentController {
     public String doHomework(HttpServletRequest request){
         request.setAttribute("homeworks",homeworkService.getAll());
         return "/student/homework";
+    }
+    /**
+     * 学生首页
+     * @param session
+     * @return
+     */
+    @RequestMapping(value ="/student/index",method = RequestMethod.GET)
+    public String index(HttpSession session, HttpServletRequest request){
+        request.setAttribute("student",session.getAttribute("message"));
+        return "/student/index";
     }
 }

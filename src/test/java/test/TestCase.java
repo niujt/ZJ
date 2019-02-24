@@ -5,9 +5,7 @@ import com.wxthxy.zj.dao.*;
 import com.wxthxy.zj.entity.Choicequestion;
 import com.wxthxy.zj.entity.Paper;
 import com.wxthxy.zj.entity.Question;
-import com.wxthxy.zj.service.HomeworkService;
-import com.wxthxy.zj.service.PaperService;
-import com.wxthxy.zj.service.QuestionService;
+import com.wxthxy.zj.service.*;
 import com.wxthxy.zj.utils.PaperUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,6 +35,12 @@ public class TestCase {
     PaperService paperService;
     @Autowired
     HomeworkService homeworkService;
+    @Autowired
+    LoginService loginService;
+    @Autowired
+    TeacherService teacherService;
+    @Autowired
+    StudentService studentService;
     @Test
     public void test1(){
         List<Choicequestion> list=service.findAllQuestions("选择题");
@@ -81,5 +85,10 @@ public class TestCase {
     @Test
     public void test6(){
     System.out.println(homeworkService.getHomeworkAnswer(2));
+    }
+    @Test
+    public void test7(){
+        System.out.println(teacherService.findTeadcher(1));
+        System.out.println(studentService.findStudent(1));
     }
 }

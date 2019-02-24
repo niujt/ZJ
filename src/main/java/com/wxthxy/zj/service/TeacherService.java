@@ -31,4 +31,11 @@ public interface TeacherService {
      * @return
      */
     String updateTea(Teacher teacher);
+
+    /**
+     * g根据id查找老师
+     * @param id
+     * @return
+     */
+    Teacher findTeadcher(Integer id);
 }

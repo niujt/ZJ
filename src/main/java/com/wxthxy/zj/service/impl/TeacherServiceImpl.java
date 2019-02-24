@@ -38,4 +38,9 @@ public class TeacherServiceImpl implements TeacherService {
     public String updateTea(Teacher teacher) {
         return dao.updateTeacherByTeaId(teacher)>0?ServiceMessage.Common_message_04.getText():ServiceMessage.Common_message_05.getText();
     }
+
+    @Override
+    public Teacher findTeadcher(Integer id) {
+        return dao.findTeacherById(id);
+    }
 }

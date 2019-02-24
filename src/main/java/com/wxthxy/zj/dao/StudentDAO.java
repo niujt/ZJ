@@ -12,4 +12,5 @@ public interface StudentDAO {
     int deleteStudentById(@Param("id") Integer id);
     int updateStudentByStuId(Student student);
     int updateLoginId(Student student);
+    Student findStudentById(@Param("id")Integer id);
 }

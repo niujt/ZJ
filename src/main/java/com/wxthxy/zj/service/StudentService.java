@@ -1,6 +1,7 @@
 package com.wxthxy.zj.service;
 
 import com.wxthxy.zj.entity.Student;
+import com.wxthxy.zj.entity.Teacher;
 
 import java.util.List;
 
@@ -31,4 +32,10 @@ public interface StudentService {
      * @return
      */
     String updateStu(Student student);
+
+    /**
+     * 根据id查找学生信息
+     * @return
+     */
+    Student findStudent(Integer id);
 }

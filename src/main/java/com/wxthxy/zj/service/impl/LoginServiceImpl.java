@@ -66,4 +66,9 @@ public class LoginServiceImpl implements LoginService {
             }
         return message;
     }
+
+    @Override
+    public Login findLoginByUserName(String username) {
+        return loginDAO.findLoginByUsername(username);
+    }
 }

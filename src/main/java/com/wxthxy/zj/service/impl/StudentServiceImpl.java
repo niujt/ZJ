@@ -40,4 +40,9 @@ public class StudentServiceImpl implements StudentService {
     public String updateStu(Student student) {
         return dao.updateStudentByStuId(student)>0?ServiceMessage.Common_message_04.getText():ServiceMessage.Common_message_05.getText();
     }
+
+    @Override
+    public Student findStudent(Integer id) {
+        return dao.findStudentById(id);
+    }
 }
