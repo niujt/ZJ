@@ -8,6 +8,6 @@
         select * from paper where id=#{id}
     </select>
     <insert id="addPaper" parameterType="com.wxthxy.zj.entity.Paper">
-      insert into paper(name,cq,cp,jq,dp,aq) values(#{name},#{cq},#{cp},#{jq},#{dp},#{aq})
+      insert into paper(name,cq,cp,jq,dp,aq,score) values(#{name},#{cq},#{cp},#{jq},#{dp},#{aq},#{score})
     </insert>
 </mapper>

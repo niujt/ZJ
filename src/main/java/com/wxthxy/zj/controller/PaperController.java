@@ -53,6 +53,11 @@ public class PaperController {
         return "/paper/Answer";
     }
 
+    /**
+     * 自动组卷
+     * @param autoPaper
+     * @return
+     */
     @RequestMapping(value = "/paper/autoPaper",method = RequestMethod.POST)
     @ResponseBody
     public JSONObject autoPaper(AutoPaper autoPaper){

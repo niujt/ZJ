@@ -1,5 +1,6 @@
 package com.wxthxy.zj.service.impl;
 
+import com.alibaba.druid.sql.PagerUtils;
 import com.wxthxy.zj.common.ServiceMessage;
 import com.wxthxy.zj.dao.*;
 import com.wxthxy.zj.entity.*;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.processing.Completion;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -116,36 +118,63 @@ public class PaperServiceImpl  implements PaperService {
     public String getPaperByAuto(AutoPaper paper) {
         //该map用于存放随机的各类型题号
         Map map=new HashMap();
+        //试题总分
+        double score=0.0;
         //获取随机选择题id的集合
         List<Integer> cqids=new ArrayList<>();
         for(Choicequestion choicequestion:choicequestionDAO.findAllChoicequestion()){
             cqids.add(choicequestion.getId());
         }
         map.put("cqids",getIds(cqids,paper.getChoiceQueNumber()));
+        //选择题总分
+        List<Choicequestion> list1=choicequestionDAO.findChoicequestion4Paper(PaperUtils.getQuestionIds(getIds(cqids,paper.getChoiceQueNumber())));
+        for(Choicequestion q:list1){
+            score+=Double.parseDouble(q.getScore());
+        }
         //获取随机应用id的集合
         List<Integer> aqids=new ArrayList<>();
         for(ApplicationQuestion applicationQuestion:applicationQuestionDAO.getAllApplicationQuestion()){
             aqids.add(applicationQuestion.getId());
         }
         map.put("aqids",getIds(aqids,paper.getAppQueNumber()));
+        //应用题总分
+        List<ApplicationQuestion> list2=applicationQuestionDAO.findApplicationQuestion4Paper(PaperUtils.getQuestionIds(getIds(aqids,paper.getAppQueNumber())));
+        for(ApplicationQuestion q:list2){
+            score+=Double.parseDouble(q.getScore());
+        }
         //获取随机填空题id的集合
         List<Integer> cpids=new ArrayList<>();
         for(Question question:completionDAO.getAllCompletions()){
             cpids.add(question.getId());
         }
         map.put("cpids",getIds(cpids,paper.getCompQueNumber()));
+        //填空题总分
+        List<Question> list3=completionDAO.findCompletion4Paper(PaperUtils.getQuestionIds(getIds(cpids,paper.getCompQueNumber())));
+        for(Question q:list3){
+            score+=Double.parseDouble(q.getScore());
+        }
         //获取随机判断题id的集合
         List<Integer> jqids=new ArrayList<>();
         for(Question question:judgementquestionDAO.getAllJudgementquestions()){
             jqids.add(question.getId());
         }
         map.put("jqids",getIds(jqids,paper.getJudgeQueNumber()));
+        //判断题总分
+        List<Question> list4=judgementquestionDAO.findJudgementQuestion4Paper(PaperUtils.getQuestionIds(getIds(jqids,paper.getJudgeQueNumber())));
+        for(Question q:list4){
+            score+=Double.parseDouble(q.getScore());
+        }
         //获取随机简答题id的集合
         List<Integer> dpids=new ArrayList<>();
         for(Question question:designproblemDAO.getAllDesignproblems()){
             dpids.add(question.getId());
         }
         map.put("dpids",getIds(jqids,paper.getDesignQueNumber()));
+        //简答题总分
+        List<Question> list5=designproblemDAO.findDesignProblem4Paper(PaperUtils.getQuestionIds(getIds(dpids,paper.getDesignQueNumber())));
+        for(Question q:list5){
+            score+=Double.parseDouble(q.getScore());
+        }
         //添加考题
         Paper paper1=new Paper();
         paper1.setJq((String)map.get("jqids"));
@@ -154,6 +183,7 @@ public class PaperServiceImpl  implements PaperService {
         paper1.setDp((String)map.get("dpids"));
         paper1.setCp((String)map.get("cpids"));
         paper1.setName(paper.getName());
+        paper1.setScore(score+"");
         return paperDAO.addPaper(paper1)>0? ServiceMessage.Common_message_01.getText():ServiceMessage.Common_message_06.getText();
     }
 

@@ -29,10 +29,22 @@ else {
     $("#manual").css('display','none');
 }
 }
+
+/**
+ * 自动选题
+ * @returns {boolean}
+ */
 function autoPaper(){
     $("#autoPaper").ajaxSubmit(function(message) {
         console.log(message);
     });
     parent.location.reload();
     return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
+}
+
+/**
+ * 做考卷
+ */
+function doIt(id){
+    location.href="/zj/student/homework/"+id;
 }

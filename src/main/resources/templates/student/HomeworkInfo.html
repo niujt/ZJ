@@ -7,6 +7,11 @@
     <script type="text/javascript" th:src="@{~/js/jquery-3.3.1.min.js}"></script>
     <script type="text/javascript" th:src="@{~/js/jquery.form.js}"></script>
     <script type="text/javascript" th:src="@{~/js/bootstrap.js}"></script>
+    <script type="text/javascript">
+        function back(){
+            history.go(-1);
+        }
+    </script>
 </head>
 <body>
 <div th:include="menu.html :: menu" width="100%" height="100%" frameborder="no" border="0"  ></div>
@@ -92,11 +97,19 @@
             </h5>
         </div>
         <div class="panel-body">
-            <div class="card-header" >尚未开发</div>
+            <div class="card" th:each="dp,dpStat:${paperInfo.applicationquestions}">
+                <div class="card-header" >
+                    <span th:text="${dpStat.count}"></span>.
+                    <span th:text="${dp.text}"></span>&nbsp;&nbsp;&nbsp;（<span th:text="${dp.score}"></span>）分
+                </div>
+                <div class="card-body">
+                    <textarea class="form-control" rows="5" style="width: 600px;"></textarea>
+                </div>
+            </div>
         </div>
     </div>
     <div>
-        <button type="submit" class="button btn-info">提交</button><button type="button" class="button btn-info">返回</button>
+        <button type="submit" class="button btn-info">提交</button>
     </div>
 
 </div>
