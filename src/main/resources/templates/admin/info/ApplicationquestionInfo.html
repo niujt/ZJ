@@ -41,7 +41,7 @@
             <td th:text="${question.score}"></td>
             <td colspan="2">
                 <button class="btn btn-info" data-toggle="modal" data-target="#upModal" >详情</button>
-                <button class="btn btn-info" >删除</button>
+                <button class="btn btn-info" th:onclick="'javascript:delAppQue(\''+${question.id}+'\');'">删除</button>
             </td>
         </tr>
 

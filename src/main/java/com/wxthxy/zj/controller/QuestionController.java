@@ -104,6 +104,19 @@ public class QuestionController {
     }
 
     /**
+     * 删除应用题
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/ApplicationQuestion/{id}",method = RequestMethod.DELETE)
+    @ResponseBody
+    public JSONObject delApplicationQuestion(@PathVariable Integer id){
+        JSONObject json=new JSONObject();
+        json.put("message",service.deleteAppQue(id));
+        return json;
+    }
+
+    /**
      * 添加填空，判断，简答题
      * @param question
      * @return

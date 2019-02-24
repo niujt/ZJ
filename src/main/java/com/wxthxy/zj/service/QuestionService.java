@@ -47,6 +47,13 @@ public interface QuestionService {
      * @return
      */
     String updateChoiceQuestion(Choicequestion choicequestion);
+
+    /**
+     * 删除应用题
+     * @param id
+     * @return
+     */
+    String deleteAppQue(Integer id);
 /**出选择题,应用题以外，其他使用Question数据模型*/
     /**
      * 添加

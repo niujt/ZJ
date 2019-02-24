@@ -145,4 +145,9 @@ public class QuestionServiceImpl implements QuestionService {
         }
         return index>0?ServiceMessage.Common_message_02.getText():ServiceMessage.Common_message_03.getText();
     }
+
+    @Override
+    public String deleteAppQue(Integer id) {
+        return applicationQuestionDAO.deleteById(id)>0?ServiceMessage.Common_message_02.getText():ServiceMessage.Common_message_03.getText();
+    }
 }

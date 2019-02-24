@@ -125,3 +125,20 @@ function upOthers(){
     parent.location.reload();
     return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
 }
+
+/**
+ * 删除应用题
+ * @param id
+ */
+function delAppQue(id){
+    if(confirm("确认要删除么")){
+        $.ajax({
+            url: "/zj/ApplicationQuestion/"+id,
+            type:"DELETE",
+            success:function(data){
+                console.log(data);
+            }
+        });
+    }
+    location.reload();
+}
