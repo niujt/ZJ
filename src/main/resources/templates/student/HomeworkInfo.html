@@ -34,7 +34,7 @@
             <div class="card" th:each="cq,cqStat:${paperInfo.choicequestions}">
                 <div class="card-header" ><span th:text="${cqStat.count}"></span>.
                     <span th:text="${cq.text}"></span>&nbsp;&nbsp;&nbsp;（<span th:text="${cq.score}"></span>）分
-                    &nbsp;&nbsp;&nbsp;<input type="text" placeholder="请输入答案" class="form-control" style="width: 200px;float: right;">
+                    &nbsp;&nbsp;&nbsp;<input type="text" th:name="'choice'+${cq.id}" placeholder="请输入答案" class="form-control" style="width: 200px;float: right;">
                 </div>
                 <div class="card-body">
                     <span th:text="${cq.option1}"></span><br>
@@ -51,11 +51,11 @@
             </h5>
         </div>
         <div class="panel-body">
-            <div class="card" th:each="cp,jqStat:${paperInfo.completions}">
+            <div class="card" th:each="cp,cpStat:${paperInfo.completions}">
                 <div class="card-body" >
-                    <span th:text="${jqStat.count}"></span>.
+                    <span th:text="${cpStat.count}"></span>.
                     <span th:text="${cp.text}"></span>&nbsp;&nbsp;&nbsp;（<span th:text="${cp.score}"></span>）分<br>
-                    <textarea class="form-control" rows="1" style="width: 400px;"></textarea><span style="float: right">&nbsp;&nbsp;(答案从左往后依次，英文分号隔开;)</span>
+                    <textarea th:name="'comp'+${cp.id}" class="form-control" rows="1" style="width: 400px;"></textarea><span style="float: right">&nbsp;&nbsp;(答案从左往后依次，英文分号隔开;)</span>
                 </div>
             </div>
         </div>
@@ -68,7 +68,7 @@
             <div class="card" th:each="jq,jqStat:${paperInfo.judgementQuestions}">
                 <div class="card-header" ><span th:text="${jqStat.count}"></span>.
                     <span th:text="${jq.text}"></span>&nbsp;&nbsp;&nbsp;（<span th:text="${jq.score}"></span>）分
-                    &nbsp;&nbsp;&nbsp;<input type="text" placeholder="请输入T or F" class="form-control" style="width: 200px;float: right;"></div>
+                    &nbsp;&nbsp;&nbsp;<input th:name="'judge'+${jq.id}" type="text" placeholder="请输入T or F" class="form-control" style="width: 200px;float: right;"></div>
                 <div class="card-body">
                     <span>是</span><br>
                     <span>否</span>
@@ -87,7 +87,7 @@
                     <span th:text="${dp.text}"></span>&nbsp;&nbsp;&nbsp;（<span th:text="${dp.score}"></span>）分
                 </div>
                 <div class="card-body">
-                    <textarea class="form-control" rows="5" style="width: 600px;"></textarea>
+                    <textarea class="form-control" th:name="'design'+${dp.id}" rows="5" style="width: 600px;"></textarea>
                 </div>
             </div>
         </div>
@@ -97,13 +97,13 @@
             </h5>
         </div>
         <div class="panel-body">
-            <div class="card" th:each="dp,dpStat:${paperInfo.applicationquestions}">
+            <div class="card" th:each="ap,apStat:${paperInfo.applicationquestions}">
                 <div class="card-header" >
-                    <span th:text="${dpStat.count}"></span>.
-                    <span th:text="${dp.text}"></span>&nbsp;&nbsp;&nbsp;（<span th:text="${dp.score}"></span>）分
+                    <span th:text="${apStat.count}"></span>.
+                    <span th:text="${ap.text}"></span>&nbsp;&nbsp;&nbsp;（<span th:text="${ap.score}"></span>）分
                 </div>
                 <div class="card-body">
-                    <textarea class="form-control" rows="5" style="width: 600px;"></textarea>
+                    <textarea class="form-control" th:name="'application'+${ap.id}" rows="5" style="width: 600px;"></textarea>
                 </div>
             </div>
         </div>

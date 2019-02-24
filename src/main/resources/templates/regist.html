@@ -2,16 +2,24 @@
 <head>
     <meta charset="UTF-8">
     <title>注册</title>
+    <link rel="stylesheet" type="text/css" th:href="@{~/css/base.css}">
     <link rel="stylesheet" type="text/css" th:href="@{~/css/bootstrap.css}">
     <script type="text/javascript" th:src="@{~/js/jquery-3.3.1.min.js}"></script>
     <script type="text/javascript" th:src="@{~/js/jquery.form.js}"></script>
     <script type="text/javascript" th:src="@{~/app/regist.js}"></script>
 </head>
 <body>
-<div class="container">
-    <h2>注册<span id="message" style="color: red;font-size: 15px"></span></h2>
+<div class="header Cgreen">
+    <div class="wrapper clearfix">
+        <h1>注册<span id="message" style="color: red;font-size: 15px"></span></h1>
+    </div>
+</div>
+<div class="content">
+    <div class="wrapper">
+        <img class="bg1" src="/img/bg1.png"/>
+        <div class="loginBox">
 <form action="/zj/regist" id="regist" method="post" onSubmit="return doRegist()">
-    <table class="table table-striped" style="width: 700px;">
+    <table class="table" style="width: 350px;">
         <tr>
             <td >工号或者学号:</td>
             <td ><input type="text" class="form-control" id="userid" name="userid"></td>
@@ -39,6 +47,13 @@
         </tr>
     </table>
 </form>
+        </div>
+    </div>
+    </div>
+<div class="footer">
+    <div class="wrapper">
+        <span>Copyright © 2019</span>
+    </div>
 </div>
 </body>
 </html>

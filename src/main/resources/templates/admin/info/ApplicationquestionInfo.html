@@ -107,7 +107,7 @@
     </div>
 </form>
 <!--新增模态框-->
-<form   method="post" action="" onSubmit="">
+<form   method="post" action="" onSubmit="" enctype="multipart/form-data">
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content" style="width: 800px;">
@@ -147,7 +147,7 @@
                         </tr>
                         <tr>
                             <td>上传答案贴图:</td>
-                            <td><input name="imgurl" type="file"></td>
+                            <td><input name="imgurl" type="file" multiple="multiple"></td>
                         </tr>
                     </table>
                 </div>
