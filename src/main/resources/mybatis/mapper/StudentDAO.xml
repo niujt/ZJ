@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.wxthxy.zj.dao.StudentDAO" >
     <select id="findAllStudents" resultType="com.wxthxy.zj.entity.Student">
-        select * from student;
+        select s.*,m.name as major from student s left join major m on s.majorid=m.id;
     </select>
     <insert id="addStudent" parameterType="com.wxthxy.zj.entity.Student">
         insert into student(name,majorid,classname,stuid) values(#{name},#{majorid},#{classname},#{stuid});

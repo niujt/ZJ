@@ -28,7 +28,7 @@
         <tr th:each="stu,stuStat:${students}">
             <td th:text="${stuStat.count}"></td>
             <td th:text="${stu.name}"></td>
-            <td th:text="${(stu.majorid==1)?'数据结构':'其他专业'}"></td>
+            <td th:text="${stu.major}"></td>
             <td th:text="${stu.classname}"></td>
             <td th:text="${stu.stuid}"></td>
             <td colspan="2">

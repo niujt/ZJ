@@ -16,6 +16,8 @@ public class Student {
     private Integer loginid;
     /**专业id*/
     private Integer majorid;
+    /**专业*/
+    private String major;
     /**班级*/
     private String classname;
     /**学号*/
