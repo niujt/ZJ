@@ -7,12 +7,10 @@ import com.wxthxy.zj.entity.TeacherCorrection;
 import com.wxthxy.zj.service.HomeworkService;
 import com.wxthxy.zj.service.PaperService;
 import com.wxthxy.zj.service.TeacherService;
+import com.wxthxy.zj.utils.PageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -33,8 +31,18 @@ public class TeacherController {
      * @return
      */
     @RequestMapping(value = "/teacher",method = RequestMethod.GET)
-    public  String toTeacher(HttpServletRequest request){
-        request.setAttribute("teachers",service.getAllTeacher());
+    public  String toTeacher(HttpServletRequest request,@RequestParam(value = "pageNum",required = false)Integer pageNum){
+        int start;
+        if(pageNum==null||pageNum<=1){
+            pageNum=1;
+            start=0;
+        }
+        if(pageNum>PageUtils.pageMax(service.getCount())){
+            pageNum=PageUtils.pageMax(service.getCount());
+        }
+        start=PageUtils.PageSize*(pageNum-1);
+        request.setAttribute("pageNum",pageNum);
+        request.setAttribute("teachers",service.getAllTeacher(pageNum,PageUtils.PageSize));
         return "/admin/TeacherManagement";
 
     }

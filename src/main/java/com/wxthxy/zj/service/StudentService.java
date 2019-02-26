@@ -10,7 +10,7 @@ public interface StudentService {
      * 学生列表
      * @return
      */
-    List<Student> findAllStudents();
+    List<Student> findAllStudents(Integer pageNum,Integer PageSize);
 
     /**
      * 添加学生
@@ -38,4 +38,5 @@ public interface StudentService {
      * @return
      */
     Student findStudent(Integer loginid);
+    Integer getCount();
 }

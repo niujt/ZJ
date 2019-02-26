@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.wxthxy.zj.dao.TeacherDAO" >
-    <select id="findAllTeacher" resultType="com.wxthxy.zj.entity.Teacher">
-        select * from teacher;
+    <select id="getCount" resultType="Integer">
+        select count(1) from teacher
+    </select>
+    <select id="findAllTeacher" resultType="com.wxthxy.zj.entity.Teacher" parameterType="Integer">
+        select * from teacher limit #{pageNum},#{pageSize};
     </select>
     <insert id="addTeacher" parameterType="com.wxthxy.zj.entity.Teacher">
         insert into teacher(teaid,majorid,name,roleid) values(#{teaid},#{majorid},#{name},#{roleid});

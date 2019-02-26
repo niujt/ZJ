@@ -37,6 +37,10 @@
         </tr>
         </tbody>
     </table>
+    <ul class="pagination" style="float:right">
+        <li class="page-item"><a th:href="@{'/zj/student?pageNum='+${(pageNum-1)<=1?1:(pageNum-1)}}" class="page-link" href="#">上一页</a></li>
+        <li class="page-item"><a th:href="@{'/zj/student?pageNum='+${pageNum+1}}" class="page-link" href="#">下一页</a></li>
+    </ul>
 </div>
 
 <!-- 新增模态框 -->

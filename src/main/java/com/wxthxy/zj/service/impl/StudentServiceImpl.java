@@ -13,8 +13,8 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     StudentDAO dao;
     @Override
-    public List<Student> findAllStudents() {
-        return dao.findAllStudents();
+    public List<Student> findAllStudents(Integer pageNum,Integer PageSize) {
+        return dao.findAllStudents(pageNum, PageSize);
     }
 
     @Override
@@ -44,5 +44,10 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Student findStudent(Integer id) {
         return dao.findStudentByLoginId(id);
+    }
+
+    @Override
+    public Integer getCount() {
+        return dao.getCount();
     }
 }

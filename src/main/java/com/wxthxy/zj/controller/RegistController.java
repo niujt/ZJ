@@ -32,7 +32,12 @@ public class RegistController {
     public JSONObject doRegist(@RequestParam("username")String username,@RequestParam("password")String password,
     @RequestParam("userid")String userid,@RequestParam("identity")String identity){
         JSONObject json=new JSONObject();
-        json.put("message",service.doRegist(username,password,userid,identity));
+        if(username.equals("")||password.equals("")){
+            json.put("message","账号密码不能为空");
+        }
+        else{
+            json.put("message",service.doRegist(username,password,userid,identity));
+        }
         return json;
     }
 }

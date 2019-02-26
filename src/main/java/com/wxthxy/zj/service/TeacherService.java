@@ -9,7 +9,7 @@ public interface TeacherService {
      * 老师列表
      * @return
      */
-    List<Teacher>  getAllTeacher();
+    List<Teacher>  getAllTeacher(Integer pageNum,Integer PageSize);
 
     /**
      * 添加老师
@@ -38,4 +38,5 @@ public interface TeacherService {
      * @return
      */
     Teacher findTeadcher(Integer loginid);
+    int getCount();
 }
