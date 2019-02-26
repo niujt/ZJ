@@ -18,15 +18,15 @@ function doLogin(){
         $("#message").html(message.login);
         if(message.login=='登录成功'){
            if($("#identity").val()=="teacher"){
-               alert('老师');
+               console.log('老师');
                 location.href="/zj/teacher/index";
             }
             else if($("#identity").val()=="student"){
-               alert('学生');
+               console.log('学生');
                 location.href="/zj/student/index";
             }
             else {
-               alert('管理员');
+               console.log('管理员');
                 location.href="/zj/index";
             }
         }

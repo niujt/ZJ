@@ -90,7 +90,6 @@ public class StudentController {
     @RequestMapping(value ="/student/index",method = RequestMethod.GET)
     public String index(HttpSession session, HttpServletRequest request){
         request.setAttribute("student",session.getAttribute("message"));
-        System.out.println((Student)session.getAttribute("message"));
         return "/student/index";
     }
 
@@ -99,7 +98,6 @@ public class StudentController {
     public JSONObject subhomework(@RequestBody Map<String,String> map,HttpSession session){
         JSONObject json=new JSONObject();
         Student student=(Student)session.getAttribute("message");
-        System.out.println(student);
         HomeWork homeWork=HomeworkUtils.subHomework(map,student);
         json.put("message",homeworkService.subHomework(homeWork));
         return json;

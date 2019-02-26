@@ -7,6 +7,13 @@
     <script type="text/javascript" th:src="@{~/js/jquery-3.3.1.min.js}"></script>
     <script type="text/javascript" th:src="@{~/js/jquery.form.js}"></script>
     <script type="text/javascript" th:src="@{~/app/regist.js}"></script>
+    <style>
+        td{
+          padding:10px 20px ;
+            white-space: nowrap;
+            font-size: 15px;
+        }
+    </style>
 </head>
 <body>
 <div class="header Cgreen">
@@ -19,9 +26,9 @@
         <img class="bg1" src="/img/bg1.png"/>
         <div class="loginBox">
 <form action="/zj/regist" id="regist" method="post" onSubmit="return doRegist()">
-    <table class="table" style="width: 350px;">
+    <table  style="width: 350px;">
         <tr>
-            <td >工号或者学号:</td>
+            <td >工号(学号):</td>
             <td ><input type="text" class="form-control" id="userid" name="userid"></td>
         </tr>
         <tr>

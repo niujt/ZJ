@@ -74,7 +74,6 @@ public class HomeworkUtils {
         homeWork.setStuid(student.getStuid());
         homeWork.setClassname(student.getClassname());
         homeWork.setStudentname(student.getName());
-        System.out.println(homeWork);
         return  homeWork;
     }
 }
