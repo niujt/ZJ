@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.wxthxy.zj.dao.PaperDAO" >
-    <select id="findAllPapers" resultType="com.wxthxy.zj.entity.Paper">
-        select * from paper
+    <select id="findAllPapers" resultType="com.wxthxy.zj.entity.Paper" parameterType="Integer">
+        select * from paper limit #{pageNum},#{pageSize}
     </select>
     <select id="findPaperById" resultType="com.wxthxy.zj.entity.Paper" parameterType="Integer">
         select * from paper where id=#{id}
@@ -10,4 +10,7 @@
     <insert id="addPaper" parameterType="com.wxthxy.zj.entity.Paper">
       insert into paper(name,cq,cp,jq,dp,aq,score) values(#{name},#{cq},#{cp},#{jq},#{dp},#{aq},#{score})
     </insert>
+    <select id="getCount" resultType="Integer">
+        select count(1) from paper
+    </select>
 </mapper>

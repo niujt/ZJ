@@ -42,7 +42,7 @@ public class TeacherController {
         }
         start=PageUtils.PageSize*(pageNum-1);
         request.setAttribute("pageNum",pageNum);
-        request.setAttribute("teachers",service.getAllTeacher(pageNum,PageUtils.PageSize));
+        request.setAttribute("teachers",service.getAllTeacher(start,PageUtils.PageSize));
         return "/admin/TeacherManagement";
 
     }

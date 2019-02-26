@@ -6,6 +6,7 @@ import com.wxthxy.zj.entity.ManualPaper;
 import com.wxthxy.zj.entity.Paper;
 import com.wxthxy.zj.service.PaperService;
 import com.wxthxy.zj.service.QuestionService;
+import com.wxthxy.zj.utils.PageUtils;
 import com.wxthxy.zj.utils.PaperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,8 +28,18 @@ public class PaperController {
      * @return
      */
     @RequestMapping(value = "/paper",method = RequestMethod.GET)
-    public String paperList(HttpServletRequest request){
-        List<Paper> papers=service.getAll();
+    public String paperList(HttpServletRequest request,@RequestParam(value = "pageNum",required = false)Integer pageNum){
+        int start;
+        if(pageNum==null||pageNum<=1){
+            pageNum=1;
+            start=0;
+        }
+        if(pageNum> PageUtils.pageMax(service.getCount())){
+            pageNum=PageUtils.pageMax(service.getCount());
+        }
+        start=PageUtils.PageSize*(pageNum-1);
+        request.setAttribute("pageNum",pageNum);
+        List<Paper> papers=service.getAll(start,PageUtils.PageSize);
         PaperUtils.doPaper(papers);
         request.setAttribute("cps",questionService.findAllQuestions("填空题"));
         request.setAttribute("jqs",questionService.findAllQuestions("判断题"));

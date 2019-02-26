@@ -12,7 +12,7 @@ public interface PaperService {
      * 获取试卷列表
      * @return
      */
-    List<Paper> getAll();
+    List<Paper> getAll(Integer pageNum,Integer pageSize);
 
     /**
      * 试卷详情（作业）
@@ -34,4 +34,5 @@ public interface PaperService {
      * @return
      */
     String getPaperByManual(ManualPaper manualPaper);
+    int getCount();
 }

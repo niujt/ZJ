@@ -28,9 +28,9 @@ public class PaperServiceImpl  implements PaperService {
     ApplicationQuestionDAO applicationQuestionDAO;
 
     @Override
-    public List<Paper> getAll() {
+    public List<Paper> getAll(Integer pageNum,Integer pageSize) {
 
-        return paperDAO.findAllPapers();
+        return paperDAO.findAllPapers(pageNum,pageSize);
     }
 
     @Override
@@ -206,5 +206,10 @@ public class PaperServiceImpl  implements PaperService {
                 ,PaperUtils.array2String(manualPaper.getJq())
                 ,PaperUtils.array2String(manualPaper.getAq()),score);
         return  paperDAO.addPaper(paper)>0? ServiceMessage.Common_message_01.getText():ServiceMessage.Common_message_06.getText();
+    }
+
+    @Override
+    public int getCount() {
+        return paperDAO.getCount();
     }
 }

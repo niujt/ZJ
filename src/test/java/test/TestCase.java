@@ -67,9 +67,9 @@ public class TestCase {
     }
     @Test
     public void test4(){
-        List<Paper> papers=paperDAO.findAllPapers();
-        PaperUtils.doPaper(papers);
-        papers.forEach(System.out::println);
+//        List<Paper> papers=paperDAO.findAllPapers();
+//        PaperUtils.doPaper(papers);
+//        papers.forEach(System.out::println);
     }
     @Test
     public void test5(){
