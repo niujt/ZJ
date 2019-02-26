@@ -69,4 +69,9 @@ public class HomeworkServiceImpl implements HomeworkService {
     public String subHomework(HomeWork homeWork) {
         return dao.addHomework(homeWork)>0?ServiceMessage.Common_message_01.getText():ServiceMessage.Common_message_06.getText();
     }
+
+    @Override
+    public List<HomeWork> getAllByStuid(String stuid) {
+        return dao.findAllByStuid(stuid);
+    }
 }

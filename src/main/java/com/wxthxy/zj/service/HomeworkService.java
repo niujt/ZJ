@@ -13,4 +13,5 @@ public interface HomeworkService {
     String eva(HomeWork homeWork);
     HomeWork findHomeWork(Integer id);
     String subHomework(HomeWork homeWork);
+    List<HomeWork> getAllByStuid(String stuid);
 }

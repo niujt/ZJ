@@ -77,8 +77,9 @@ public class StudentController {
      * @return
      */
     @RequestMapping(value ="/student/homework",method = RequestMethod.GET)
-    public String doHomework(HttpServletRequest request){
-        request.setAttribute("homeworks",homeworkService.getAll());
+    public String doHomework(HttpServletRequest request,HttpSession session){
+        Student student=(Student)session.getAttribute("message");
+        request.setAttribute("homeworks",homeworkService.getAllByStuid(student.getStuid()));
         return "/student/homework";
     }
     /**

@@ -33,4 +33,5 @@ public interface HomeworkDAO {
      */
     int updateOtherById(HomeWork homeWork);
     int  addHomework(HomeWork homeWork);
+    List<HomeWork> findAllByStuid(@Param("stuid")String stuid);
 }
