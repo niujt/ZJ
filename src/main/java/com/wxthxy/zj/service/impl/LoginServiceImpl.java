@@ -53,13 +53,13 @@ public class LoginServiceImpl implements LoginService {
                 Login login=new Login();
                 login.setUsername(username);
                 login.setPassword(password);
-                loginDAO.addLogin(login);
-                Integer id=loginDAO.findLoginByUsername(username).getId();
-                message=ServiceMessage.regist_message_02.getText();
                 if(teacherDAO.findTeacherByTeaid(userid)==null||studentDAO.findStudentByStuid(userid)==null){
                     message=ServiceMessage.regist_message_03.getText();
                 }
                 else{
+                    loginDAO.addLogin(login);
+                    Integer id=loginDAO.findLoginByUsername(username).getId();
+                    message=ServiceMessage.regist_message_02.getText();
                     if(identity.equals("teacher")){
                         Teacher teacher=new Teacher();
                         teacher.setLoginid(id);
