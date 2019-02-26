@@ -45,9 +45,9 @@
                         <td th:text="${paper.dpCount}"></td>
                         <td th:text="${paper.score}"></td>
                         <td>
-                                <button class="btn btn-info" th:onclick="'javascript:paperInfo(\''+${paper.id}+'\');'">详情</button>
-                                <button class="btn btn-info" th:onclick="'javascript:showAnswer(\''+${paper.id}+'\');'">查看答案</button>
-                                <button class="btn btn-info" th:onclick="'javascript:doIt(\''+${paper.id}+'\');'">答题</button>
+                                <button class="btn btn-info"  th:onclick="'javascript:paperInfo(\''+${paper.id}+'\');'">详情</button>
+                                <button class="btn btn-info" th:style="${session.identity=='teacher'?'':'display: none'}"  th:onclick="'javascript:showAnswer(\''+${paper.id}+'\');'">查看答案</button>
+                                <button class="btn btn-info" th:style="${session.identity=='student'?'':'display: none'}" th:onclick="'javascript:doIt(\''+${paper.id}+'\');'">答题</button>
                         </td>
                 </tr>
                 </tbody>

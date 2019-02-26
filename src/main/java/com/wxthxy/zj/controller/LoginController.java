@@ -2,6 +2,7 @@ package com.wxthxy.zj.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.wxthxy.zj.common.ServiceMessage;
 import com.wxthxy.zj.entity.Student;
+import com.wxthxy.zj.entity.Teacher;
 import com.wxthxy.zj.service.LoginService;
 import com.wxthxy.zj.service.StudentService;
 import com.wxthxy.zj.service.TeacherService;
@@ -48,6 +49,8 @@ public class LoginController {
     @RequestMapping(value = "/loginout",method = RequestMethod.GET)
     public String loginout(HttpSession session){
         session.removeAttribute("message");
+        session.removeAttribute("identity");
+        session.removeAttribute("role");
         return "/login";
     }
     /**
@@ -58,8 +61,11 @@ public class LoginController {
     @ResponseBody
     public JSONObject dologin(@RequestParam("username")String username, @RequestParam("password")String password, @RequestParam("identity") String identity, HttpSession session){
         JSONObject json=new JSONObject();
+        Teacher teacher=null;
         if(identity.equals("teacher")){
-            session.setAttribute("message",teacherService.findTeadcher(service.findLoginByUserName(username).getId()));
+            teacher=teacherService.findTeadcher(service.findLoginByUserName(username).getId());
+            session.setAttribute("message",teacher);
+            session.setAttribute("role",teacher.getRoleid());
         }
         else if(identity.equals("student")){
             session.setAttribute("message",studentService.findStudent(service.findLoginByUserName(username).getId()));
@@ -67,8 +73,8 @@ public class LoginController {
         else{
             session.setAttribute("message","admin");
         }
+        session.setAttribute("identity",identity);
         json.put("login",service.dologin(username,password));
-        System.out.println((Student)session.getAttribute("message"));
         return  json;
 
     }

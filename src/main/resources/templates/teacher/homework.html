@@ -23,6 +23,7 @@
             <th>学生姓名</th>
             <th>班级</th>
             <th>学号</th>
+            <th>分数</th>
             <th>状态</th>
             <th>操作&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-default" onclick="alert('未实现')" >查重</button></th>
         </thead>
@@ -32,6 +33,7 @@
             <td th:text="${homework.studentname}"></td>
             <td th:text="${homework.classname}"></td>
             <td th:text="${homework.stuid}"></td>
+            <td th:text="${homework.score}"></td>
             <td th:text="${(homework.state)==0?'未批改':'已批完'}"></td>
             <td>
                 <div class="btn-group">

@@ -11,22 +11,31 @@
 <div th:fragment="menu">
 <nav class="navbar navbar-expand  bg-dark navbar-dark">
     <ul class="navbar-nav" style="height: 40px;">
-        <li class="nav-item" style="margin-left: 380px">
+        <li class="nav-item" style="margin-left: 380px" th:style="${session.identity=='admin'?'':'display: none'}">
             <a class="nav-link" href="/zj/question">题库管理</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" style="margin-left: 380px" th:style="${session.role==1?'':'display: none'}">
+            <a class="nav-link" href="/zj/question">题库管理</a>
+        </li>
+        <li class="nav-item" th:style="${session.identity=='admin'?'':'display: none'}">
             <a class="nav-link" href="/zj/paper">试卷管理</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">作业管理</a>
+        <li class="nav-item" th:style="${session.identity=='teacher'?'':'display: none'}">
+            <a class="nav-link" href="/zj/paper">试卷管理</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" th:style="${session.identity=='student'?'':'display: none'}">
+            <a class="nav-link" href="/zj/student/homework">作业管理</a>
+        </li>
+        <li class="nav-item" th:style="${session.identity=='teacher'?'':'display: none'}">
+            <a class="nav-link" href="/zj/teacher/homework">作业管理</a>
+        </li>
+        <li class="nav-item" th:style="${session.identity=='admin'?'':'display: none'}">
             <a class="nav-link" href="/zj/student">学生管理</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" th:style="${session.identity=='admin'?'':'display: none'}">
             <a class="nav-link" href="/zj/teacher">老师管理</a>
         </li>
-        <li class="nav-item" style="padding-left: 600px;">
+        <li class="nav-item" style="position: absolute;right: 0px">
             <a class="nav-link" href="/zj/loginout">退出登录</a>
         </li>
     </ul>
