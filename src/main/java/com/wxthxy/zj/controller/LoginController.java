@@ -1,6 +1,7 @@
 package com.wxthxy.zj.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.wxthxy.zj.common.ServiceMessage;
+import com.wxthxy.zj.entity.Student;
 import com.wxthxy.zj.service.LoginService;
 import com.wxthxy.zj.service.StudentService;
 import com.wxthxy.zj.service.TeacherService;
@@ -67,6 +68,7 @@ public class LoginController {
             session.setAttribute("message","admin");
         }
         json.put("login",service.dologin(username,password));
+        System.out.println((Student)session.getAttribute("message"));
         return  json;
 
     }

@@ -15,7 +15,7 @@ public class HomeWork {
     /**班级*/
     private String classname;
     /**学号*/
-    private Integer stuid;
+    private String stuid;
     /**试卷编号*/
     private Integer paperid;
     /**选择题答案*/

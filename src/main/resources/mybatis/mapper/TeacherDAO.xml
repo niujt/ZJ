@@ -10,8 +10,8 @@
     <select id="findTeacherByTeaid" resultType="com.wxthxy.zj.entity.Teacher" parameterType="String">
         select * from teacher where teaid=#{teaid};
     </select>
-    <select id="findTeacherById" resultType="com.wxthxy.zj.entity.Teacher" parameterType="Integer">
-        select * from teacher where id=#{id};
+    <select id="findTeacherByLoginId" resultType="com.wxthxy.zj.entity.Teacher" parameterType="Integer">
+        select * from teacher where loginid=#{loginid};
     </select>
     <delete id="deleteTeacherById" parameterType="Integer">
         delete from teacher where id=#{id}

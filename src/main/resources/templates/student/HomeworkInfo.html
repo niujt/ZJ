@@ -7,6 +7,7 @@
     <script type="text/javascript" th:src="@{~/js/jquery-3.3.1.min.js}"></script>
     <script type="text/javascript" th:src="@{~/js/jquery.form.js}"></script>
     <script type="text/javascript" th:src="@{~/js/bootstrap.js}"></script>
+    <script type="text/javascript" th:src="@{~/app/homework.js}"></script>
     <script type="text/javascript">
         function back(){
             history.go(-1);
@@ -15,13 +16,14 @@
 </head>
 <body>
 <div th:include="menu.html :: menu" width="100%" height="100%" frameborder="no" border="0"  ></div>
-<form>
+<form  onSubmit="return upHomework()">
 <div class="container">
     <div class="panel panel-default">
         <header style="text-align: center">
             <button type="button" class="btn btn btn-outline-dark" style="float: left;" onclick="back()">返回</button>
             <!--<button type="button" class="btn btn-outline-secondary">&lt;&#45;&#45;</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
             试卷名称：<span th:text="${paperInfo.paper.name}"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(总分<span th:text="${paperInfo.paper.score}"></span>分)
+            <span id="ss" style="float: right;">120分钟</span>
         </header>
         <hr>
         <div class="panel-heading">
@@ -30,7 +32,7 @@
             </h5>
         </div>
         <div class="panel-body">
-            <input type="hidden" th:value="${paperInfo.paper.id}">
+            <input type="hidden" name="id" th:value="${paperInfo.paper.id}">
             <div class="card" th:each="cq,cqStat:${paperInfo.choicequestions}">
                 <div class="card-header" ><span th:text="${cqStat.count}"></span>.
                     <span th:text="${cq.text}"></span>&nbsp;&nbsp;&nbsp;（<span th:text="${cq.score}"></span>）分
@@ -55,7 +57,7 @@
                 <div class="card-body" >
                     <span th:text="${cpStat.count}"></span>.
                     <span th:text="${cp.text}"></span>&nbsp;&nbsp;&nbsp;（<span th:text="${cp.score}"></span>）分<br>
-                    <textarea th:name="'comp'+${cp.id}" class="form-control" rows="1" style="width: 400px;"></textarea><span style="float: right">&nbsp;&nbsp;(答案从左往后依次，英文分号隔开;)</span>
+                    <textarea th:name="'comp'+${cp.id}" class="form-control" rows="1" style="width: 400px;"></textarea><span style="float: right">&nbsp;&nbsp;(答案从左往后依次，英文逗号隔开,)</span>
                 </div>
             </div>
         </div>
@@ -109,7 +111,7 @@
         </div>
     </div>
     <div>
-        <button type="submit" class="button btn-info">提交</button>
+        <button type="submit" id="submit" class="button btn-info">提交</button>
     </div>
 
 </div>

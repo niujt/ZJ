@@ -1,15 +1,19 @@
 package com.wxthxy.zj.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.wxthxy.zj.entity.HomeWork;
 import com.wxthxy.zj.entity.Student;
 import com.wxthxy.zj.service.HomeworkService;
 import com.wxthxy.zj.service.PaperService;
 import com.wxthxy.zj.service.StudentService;
+import com.wxthxy.zj.utils.HomeworkUtils;
+import com.wxthxy.zj.utils.PaperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 @Controller
 @RequestMapping("zj")
@@ -85,6 +89,18 @@ public class StudentController {
     @RequestMapping(value ="/student/index",method = RequestMethod.GET)
     public String index(HttpSession session, HttpServletRequest request){
         request.setAttribute("student",session.getAttribute("message"));
+        System.out.println((Student)session.getAttribute("message"));
         return "/student/index";
+    }
+
+    @RequestMapping(value = "/student/subhomework",method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject subhomework(@RequestBody Map<String,String> map,HttpSession session){
+        JSONObject json=new JSONObject();
+        Student student=(Student)session.getAttribute("message");
+        System.out.println(student);
+        HomeWork homeWork=HomeworkUtils.subHomework(map,student);
+        json.put("message",homeworkService.subHomework(homeWork));
+        return json;
     }
 }

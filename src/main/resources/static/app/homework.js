@@ -28,3 +28,48 @@ function check(evaluate,proposal){
     $("#evaluate").val(evaluate);
     $("#proposal").val(proposal);
 }
+
+/**
+ * 提交作业
+ */
+function upHomework(){
+    console.log('提交考卷');
+        var d = {};
+        var t = $('form').serializeArray();
+        $.each(t, function () {
+            d[this.name] = this.value;
+        });
+        var str=JSON.stringify(d);
+       console.log(str);
+        $.ajax({
+            url:'/zj/student/subhomework',
+            contentType: 'application/json; charset=UTF-8',
+            type:'post',
+            data:str,
+            dataType:'json',
+            success:function(data){
+                console.log(data);
+            }
+
+        });
+    return false;
+}
+
+/**
+ * 倒计时
+ */
+var time=119;
+function leftTimer(){
+    setInterval(function(){
+       $("#ss").html(time+"分钟");
+        time--;
+    },1000*60);
+}
+$(function(){
+    leftTimer();
+    if($("#ss").html()==0){
+        //未完善
+        upHomework();
+    }
+});
+

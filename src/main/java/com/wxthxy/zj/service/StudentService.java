@@ -37,5 +37,5 @@ public interface StudentService {
      * 根据id查找学生信息
      * @return
      */
-    Student findStudent(Integer id);
+    Student findStudent(Integer loginid);
 }

@@ -34,8 +34,8 @@ public interface TeacherService {
 
     /**
      * g根据id查找老师
-     * @param id
+     * @param loginid
      * @return
      */
-    Teacher findTeadcher(Integer id);
+    Teacher findTeadcher(Integer loginid);
 }

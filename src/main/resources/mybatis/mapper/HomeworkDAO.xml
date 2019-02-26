@@ -13,4 +13,8 @@
     <update id="updateOtherById" parameterType="com.wxthxy.zj.entity.HomeWork">
         update homework set evaluate=#{evaluate},proposal=#{proposal} where id=#{id}
     </update>
+    <insert id="addHomework" parameterType="com.wxthxy.zj.entity.HomeWork">
+        insert into homework(studentname, classname, stuid, paperid, cqanswer, cpanswer, dpanswer, jqanswer, apanswer,state)
+        values (#{studentname},#{classname} ,#{stuid} ,#{paperid} ,#{cqanswer} ,#{cpanswer} ,#{dpanswer} ,#{jqanswer} ,#{apanswer},0);
+    </insert>
 </mapper>

@@ -43,6 +43,6 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student findStudent(Integer id) {
-        return dao.findStudentById(id);
+        return dao.findStudentByLoginId(id);
     }
 }

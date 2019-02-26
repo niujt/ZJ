@@ -12,4 +12,5 @@ public interface HomeworkService {
     String score(TeacherCorrection teacherCorrection);
     String eva(HomeWork homeWork);
     HomeWork findHomeWork(Integer id);
+    String subHomework(HomeWork homeWork);
 }

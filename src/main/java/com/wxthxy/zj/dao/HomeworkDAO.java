@@ -32,4 +32,5 @@ public interface HomeworkDAO {
      * @return
      */
     int updateOtherById(HomeWork homeWork);
+    int  addHomework(HomeWork homeWork);
 }
