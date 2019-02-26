@@ -79,8 +79,18 @@ public class TeacherController {
      * @return
      */
     @RequestMapping(value ="/teacher/homework",method = RequestMethod.GET)
-    public String homework(HttpServletRequest request){
-        request.setAttribute("homeworks",homeworkService.getAll());
+    public String homework(HttpServletRequest request,@RequestParam(value = "pageNum",required = false)Integer pageNum){
+        int start;
+        if(pageNum==null||pageNum<=1){
+            pageNum=1;
+            start=0;
+        }
+        if(pageNum>PageUtils.pageMax(service.getCount())){
+            pageNum=PageUtils.pageMax(service.getCount());
+        }
+        start=PageUtils.PageSize*(pageNum-1);
+        request.setAttribute("pageNum",pageNum);
+        request.setAttribute("homeworks",homeworkService.getAll(start,PageUtils.PageSize));
         return "/teacher/homework";
     }
 
@@ -138,7 +148,7 @@ public class TeacherController {
     @RequestMapping(value ="/teacher/check",method = RequestMethod.GET)
     public String check(HttpServletRequest request){
         request.setAttribute("keys", homeworkService.check());
-        request.setAttribute("homeworks", homeworkService.getAll());
+        request.setAttribute("homeworks", homeworkService.getAll(0,1000));
         return "/teacher/check";
     }
 }
