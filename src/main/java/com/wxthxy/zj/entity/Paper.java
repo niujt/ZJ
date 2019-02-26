@@ -41,8 +41,16 @@ public class Paper {
     /**答案编号*/
     private Integer answerid;
 
+    public Paper(String name, String cq, String cp, String dp, String jq, String aq,String score) {
+        this.name = name;
+        this.cq = cq;
+        this.cp = cp;
+        this.dp = dp;
+        this.jq = jq;
+        this.aq = aq;
+        this.score = score;
+    }
+    public Paper(){
 
-
-
-
+    }
 }

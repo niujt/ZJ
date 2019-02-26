@@ -1,6 +1,7 @@
 package com.wxthxy.zj.service;
 
 import com.wxthxy.zj.entity.AutoPaper;
+import com.wxthxy.zj.entity.ManualPaper;
 import com.wxthxy.zj.entity.Paper;
 
 import java.util.List;
@@ -26,4 +27,11 @@ public interface PaperService {
      * @return
      */
     String getPaperByAuto(AutoPaper paper);
+
+    /**
+     * 手动组卷
+     * @param manualPaper
+     * @return
+     */
+    String getPaperByManual(ManualPaper manualPaper);
 }

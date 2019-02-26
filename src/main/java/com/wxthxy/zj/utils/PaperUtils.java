@@ -59,4 +59,12 @@ public class PaperUtils {
             str=str.substring(0,str.length()-1);
             return str;
     }
+    public static String array2String (String[] message){
+        String ids="";
+        for(String str:message){
+            ids+=str+",";
+        }
+        ids=ids.substring(0,ids.length()-1);
+        return ids;
+    }
 }

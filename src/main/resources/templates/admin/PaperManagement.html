@@ -73,14 +73,77 @@
                                         </div>
                                         <!--人工选题-->
                                         <div style="display: none;" id="manual">
+                                                <form id="manualPaper" action="/zj/paper/manualPaper" method="post" onsubmit="return manualPaper()">
                                                 <ul class="list-group">
-                                                        <li class="list-group-item">题目类型&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button style="float: right" type="submit" class="btn btn-primary" onclick="alert(222)">添加</button></li>
-                                                        <li class="list-group-item">选择题&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" onclick="alert(111)">详情</button></li>
-                                                        <li class="list-group-item">填空题&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" onclick="alert(111)">详情</button></li>
-                                                        <li class="list-group-item">判断题&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" onclick="alert(111)">详情</button></li>
-                                                        <li class="list-group-item">简答题&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" onclick="alert(111)">详情</button></li>
-                                                        <li class="list-group-item">应用题&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" onclick="alert(111)">详情</button></li>
+                                                        <li class="list-group-item">题目类型&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button style="float: right" type="submit" class="btn btn-primary" >添加</button></li>
+                                                        <li class="list-group-item">试题名称&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="name" ></li>
+                                                        <li class="list-group-item">选择题&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                <button type="button" class="btn btn-primary" onclick="showchoice()">&#8595;</button>
+                                                                <button type="button" class="btn btn-primary" onclick="offchoice()">&#8593;</button>
+                                                                <div id="choiceinfo" style="display: none;overflow:scroll; width:100%; height:200px;">
+                                                                        <ul class="list-group" th:each="cq,cqStat:${cqs}" >
+                                                                                <li class="list-group-item">
+                                                                                        <input type="checkbox" class="form-check-input"  name="cq" th:value="${cq.id}">
+                                                                                        <span th:text="${cqStat.count}"></span>.
+                                                                                        <span th:text="${cq.text}"></span>
+                                                                                </li>
+                                                                        </ul>
+                                                                </div>
+                                                        </li>
+                                                        <li class="list-group-item">填空题&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                <button type="button" class="btn btn-primary" onclick="showcomp()">&#8595;</button>
+                                                                <button type="button" class="btn btn-primary" onclick="offcomp()">&#8593;</button>
+                                                                <div id="compinfo" style="display: none;overflow:scroll; width:100%; height:200px;">
+                                                                        <ul class="list-group" th:each="cp,cpStat:${cps}" >
+                                                                                <li class="list-group-item">
+                                                                                        <input type="checkbox" class="form-check-input"  name="cp" th:value="${cp.id}">
+                                                                                        <span th:text="${cpStat.count}"></span>.
+                                                                                        <span th:text="${cp.text}"></span>
+                                                                                </li>
+                                                                        </ul>
+                                                                </div>
+                                                        </li>
+                                                        <li class="list-group-item">判断题&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                <button type="button" class="btn btn-primary" onclick="showjudge()">&#8595;</button>
+                                                                <button type="button" class="btn btn-primary" onclick="offjudge()">&#8593;</button>
+                                                                <div id="judgeinfo" style="display: none;overflow:scroll; width:100%; height:200px;">
+                                                                        <ul class="list-group" th:each="jq,jqStat:${jqs}" >
+                                                                                <li class="list-group-item">
+                                                                                        <input type="checkbox" class="form-check-input"  name="jq" th:value="${jq.id}">
+                                                                                        <span th:text="${jqStat.count}"></span>.
+                                                                                        <span th:text="${jq.text}"></span>
+                                                                                </li>
+                                                                        </ul>
+                                                                </div>
+                                                        </li>
+                                                        <li class="list-group-item">简答题&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                <button type="button" class="btn btn-primary" onclick="showdesign()">&#8595;</button>
+                                                                <button type="button" class="btn btn-primary" onclick="offdesign()">&#8593;</button>
+                                                                <div id="designinfo" style="display: none;overflow:scroll; width:100%; height:200px;">
+                                                                        <ul class="list-group" th:each="dp,dpStat:${dps}" >
+                                                                                <li class="list-group-item">
+                                                                                        <input type="checkbox" class="form-check-input"  name="dp" th:value="${dp.id}">
+                                                                                        <span th:text="${dpStat.count}"></span>.
+                                                                                        <span th:text="${dp.text}"></span>
+                                                                                </li>
+                                                                        </ul>
+                                                                </div>
+                                                        </li>
+                                                        <li class="list-group-item">应用题&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                <button type="button" class="btn btn-primary" onclick="showapp()">&#8595;</button>
+                                                                <button type="button" class="btn btn-primary" onclick="offapp()">&#8593;</button>
+                                                                <div id="appinfo" style="display: none;overflow:scroll; width:100%; height:200px;">
+                                                                        <ul class="list-group" th:each="aq,aqStat:${aqs}" >
+                                                                                <li class="list-group-item">
+                                                                                        <input type="checkbox" class="form-check-input" value="" name="aq" th:value="${aq.id}">
+                                                                                        <span th:text="${aqStat.count}"></span>.
+                                                                                        <span th:text="${aq.text}"></span>
+                                                                                </li>
+                                                                        </ul>
+                                                                </div>
+                                                        </li>
                                                 </ul>
+                                                </form>
                                         </div>
                                         <!--自动组卷-->
                                         <div id="auto" style="display: none;">

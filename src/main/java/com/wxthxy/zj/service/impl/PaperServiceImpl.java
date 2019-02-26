@@ -1,6 +1,5 @@
 package com.wxthxy.zj.service.impl;
 
-import com.alibaba.druid.sql.PagerUtils;
 import com.wxthxy.zj.common.ServiceMessage;
 import com.wxthxy.zj.dao.*;
 import com.wxthxy.zj.entity.*;
@@ -8,9 +7,6 @@ import com.wxthxy.zj.service.PaperService;
 import com.wxthxy.zj.utils.PaperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.processing.Completion;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -196,5 +192,19 @@ public class PaperServiceImpl  implements PaperService {
     public String getIds(List<Integer> oldids,int number){
         return PaperUtils.autoQustionId(oldids,number);
 
+    }
+
+    @Override
+    public String getPaperByManual(ManualPaper manualPaper) {
+        String score="";
+        int _score=2*manualPaper.getCq().length+1*manualPaper.getJq().length+5*manualPaper.getCp().length+10*manualPaper.getDp().length+20*manualPaper.getAq().length;
+        score=_score+".0";
+        Paper paper=new Paper(manualPaper.getName()
+                ,PaperUtils.array2String(manualPaper.getCq())
+                ,PaperUtils.array2String(manualPaper.getCp())
+                ,PaperUtils.array2String(manualPaper.getDp())
+                ,PaperUtils.array2String(manualPaper.getJq())
+                ,PaperUtils.array2String(manualPaper.getAq()),score);
+        return  paperDAO.addPaper(paper)>0? ServiceMessage.Common_message_01.getText():ServiceMessage.Common_message_06.getText();
     }
 }
