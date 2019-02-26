@@ -10,7 +10,7 @@ public interface LoginService {
      * @param password
      * @return
      */
-    String dologin(String username, String password);
+    String dologin(String username, String password,String identity);
     Login findLoginByUserName(String username);
     /**
      * 注册

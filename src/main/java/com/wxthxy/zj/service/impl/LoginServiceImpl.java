@@ -20,7 +20,7 @@ public class LoginServiceImpl implements LoginService {
     @Autowired
     StudentDAO studentDAO;
     @Override
-    public String dologin(String username,String password) {
+    public String dologin(String username,String password,String identity) {
 
         if(loginDAO.findLoginByUsername(username)==null){
             return ServiceMessage.login_message_01.getText();
@@ -29,6 +29,16 @@ public class LoginServiceImpl implements LoginService {
             return ServiceMessage.login_message_02.getText();
         }
         else{
+            if(identity.equals("student")){
+                if(studentDAO.findStudentByLoginId(loginDAO.findLoginByUsername(username).getId())==null){
+                    return "该账户不是学生";
+                }
+            }
+            else if(identity.equals("teacher")){
+                 if(teacherDAO.findTeacherByLoginId(loginDAO.findLoginByUsername(username).getId())==null){
+                    return "该账户不是老师";
+                }
+            }
             return ServiceMessage.login_message_03.getText();
         }
     }

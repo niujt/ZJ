@@ -65,7 +65,9 @@ public class LoginController {
         if(identity.equals("teacher")){
             teacher=teacherService.findTeadcher(service.findLoginByUserName(username).getId());
             session.setAttribute("message",teacher);
-            session.setAttribute("role",teacher.getRoleid());
+            if(teacher!=null){
+                session.setAttribute("role",teacher.getRoleid());
+            }
         }
         else if(identity.equals("student")){
             session.setAttribute("message",studentService.findStudent(service.findLoginByUserName(username).getId()));
@@ -74,7 +76,7 @@ public class LoginController {
             session.setAttribute("message","admin");
         }
         session.setAttribute("identity",identity);
-        json.put("login",service.dologin(username,password));
+        json.put("login",service.dologin(username,password,identity));
         return  json;
 
     }
