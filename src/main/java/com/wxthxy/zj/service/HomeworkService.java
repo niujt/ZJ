@@ -1,6 +1,7 @@
 package com.wxthxy.zj.service;
 
 import com.wxthxy.zj.entity.HomeWork;
+import com.wxthxy.zj.entity.Key;
 import com.wxthxy.zj.entity.TeacherCorrection;
 
 import java.util.List;
@@ -14,4 +15,5 @@ public interface HomeworkService {
     HomeWork findHomeWork(Integer id);
     String subHomework(HomeWork homeWork);
     List<HomeWork> getAllByStuid(String stuid);
+    List<Key> check();
 }

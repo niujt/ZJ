@@ -2,13 +2,16 @@ package com.wxthxy.zj.service.impl;
 
 import com.wxthxy.zj.common.ServiceMessage;
 import com.wxthxy.zj.dao.HomeworkDAO;
+import com.wxthxy.zj.dao.KeyDAO;
 import com.wxthxy.zj.entity.HomeWork;
+import com.wxthxy.zj.entity.Key;
 import com.wxthxy.zj.entity.TeacherCorrection;
 import com.wxthxy.zj.service.HomeworkService;
 import com.wxthxy.zj.utils.HomeworkUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +20,8 @@ import java.util.Map;
 public class HomeworkServiceImpl implements HomeworkService {
     @Autowired
     HomeworkDAO dao;
+    @Autowired
+    KeyDAO keyDAO;
     @Override
     public List<HomeWork> getAll() {
         return dao.findAll();
@@ -73,5 +78,12 @@ public class HomeworkServiceImpl implements HomeworkService {
     @Override
     public List<HomeWork> getAllByStuid(String stuid) {
         return dao.findAllByStuid(stuid);
+    }
+
+    @Override
+    public List<Key> check() {
+        List<Key> list=keyDAO.findAll();
+
+        return list;
     }
 }

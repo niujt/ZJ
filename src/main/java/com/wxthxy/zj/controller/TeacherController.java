@@ -127,4 +127,10 @@ public class TeacherController {
         homeworkService.eva(homeWork);
         return "redirect:/zj/teacher/homework";
     }
+    @RequestMapping(value ="/teacher/check",method = RequestMethod.GET)
+    public String check(HttpServletRequest request){
+        request.setAttribute("keys", homeworkService.check());
+        request.setAttribute("homeworks", homeworkService.getAll());
+        return "/teacher/check";
+    }
 }

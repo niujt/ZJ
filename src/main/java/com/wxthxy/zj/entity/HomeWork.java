@@ -18,6 +18,8 @@ public class HomeWork {
     private String stuid;
     /**试卷编号*/
     private Integer paperid;
+    /**试卷*/
+    private String papername;
     /**选择题答案*/
     private String cqanswer;
     /**填空题答案*/

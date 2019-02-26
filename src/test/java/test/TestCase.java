@@ -3,6 +3,7 @@ package test;
 import com.wxthxy.zj.ZjApp;
 import com.wxthxy.zj.dao.*;
 import com.wxthxy.zj.entity.Choicequestion;
+import com.wxthxy.zj.entity.HomeWork;
 import com.wxthxy.zj.entity.Paper;
 import com.wxthxy.zj.entity.Question;
 import com.wxthxy.zj.service.*;
@@ -90,5 +91,11 @@ public class TestCase {
     public void test7(){
         System.out.println(teacherService.findTeadcher(1));
         System.out.println(studentService.findStudent(1));
+    }
+    @Test
+    public void test8(){
+        //designproblemDAO.getAllDesignproblems().forEach(System.out::println);
+        //homeworkDAO.check("运算集合").forEach(System.out::println);
+        System.out.println(homeworkService.check());
     }
 }

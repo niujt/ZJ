@@ -68,8 +68,11 @@ function leftTimer(){
 $(function(){
     leftTimer();
     if($("#ss").html()==0){
-        //未完善
         upHomework();
     }
 });
+
+function checkinfo(){
+    location.href="/zj/teacher/check";
+}
 
