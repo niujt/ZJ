@@ -15,7 +15,7 @@ public interface JudgementquestionDAO {
      * 获取所有的判断题详情
      * @return
      */
-    List<Question> getAllJudgementquestions();
+    List<Question> getAllJudgementquestions(@Param("pageNum")Integer pageNum,@Param("pageSize")Integer pageSize);
 
     /**
      * 添加判断题

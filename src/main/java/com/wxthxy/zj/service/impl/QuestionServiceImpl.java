@@ -34,22 +34,22 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public List findAllQuestions(String type) {
+    public List findAllQuestions(String type,Integer PageNum,Integer PageSize) {
         List questions=null;
         if(type.equals("选择题")){
-            questions=choicequestionDAO.findAllChoicequestion();
+            questions=choicequestionDAO.findAllChoicequestion(PageNum,PageSize);
         }
         else if(type.equals("填空题")){
-            questions=completionDAO.getAllCompletions();
+            questions=completionDAO.getAllCompletions(PageNum,PageSize);
         }
         else if(type.equals("判断题")){
-            questions=judgementquestionDAO.getAllJudgementquestions();
+            questions=judgementquestionDAO.getAllJudgementquestions(PageNum,PageSize);
         }
         else if(type.equals("简答题")){
-            questions=designproblemDAO.getAllDesignproblems();
+            questions=designproblemDAO.getAllDesignproblems(PageNum,PageSize);
         }
         else if(type.equals("应用题")){
-            questions=applicationQuestionDAO.getAllApplicationQuestion();
+            questions=applicationQuestionDAO.getAllApplicationQuestion(PageNum,PageSize);
         }
         return questions;
 

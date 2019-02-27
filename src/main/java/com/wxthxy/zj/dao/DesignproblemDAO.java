@@ -16,7 +16,7 @@ public interface DesignproblemDAO {
      * 获取所有的简答题详情
      * @return
      */
-    List<Question> getAllDesignproblems();
+    List<Question> getAllDesignproblems(@Param("pageNum")Integer pageNum,@Param("pageSize")Integer pageSize);
 
     /**
      * 添加简答题

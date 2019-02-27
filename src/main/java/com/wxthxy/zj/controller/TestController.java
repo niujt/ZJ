@@ -13,7 +13,7 @@ public class TestController {
     QuestionService service;
    @RequestMapping("/test")
    public String index(HttpServletRequest request){
-       request.setAttribute("questions",service.findAllQuestions("选择题"));
+     //  request.setAttribute("questions",service.findAllQuestions("选择题"));
        return "/admin/info/ChoicequestionInfo";
   }
 }

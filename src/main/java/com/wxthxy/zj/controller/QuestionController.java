@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.wxthxy.zj.entity.Choicequestion;
 import com.wxthxy.zj.entity.Question;
 import com.wxthxy.zj.service.QuestionService;
+import com.wxthxy.zj.utils.PageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -37,8 +38,18 @@ public class QuestionController {
      * @return
      */
     @RequestMapping(value = "/questionInfo/{type}",method = RequestMethod.GET)
-    public String questionInfo(HttpServletRequest request, @PathVariable String type){
-        request.setAttribute("questions",service.findAllQuestions(type));
+    public String questionInfo(HttpServletRequest request, @PathVariable String type,@RequestParam(value = "pageNum",required = false)Integer pageNum){
+        int start;
+        if(pageNum==null||pageNum<=1){
+            pageNum=1;
+            start=0;
+        }
+        if(pageNum> PageUtils.pageMax(service.getQuestionCounts().get(type))){
+            pageNum=PageUtils.pageMax(service.getQuestionCounts().get(type));
+        }
+        start=PageUtils.PageSize*(pageNum-1);
+        request.setAttribute("pageNum",pageNum);
+        request.setAttribute("questions",service.findAllQuestions(type,start,PageUtils.PageSize));
         request.setAttribute("type",type);
         if(type.equals("选择题")){
             return "/admin/info/ChoicequestionInfo";

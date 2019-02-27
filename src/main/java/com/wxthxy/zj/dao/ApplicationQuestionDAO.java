@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ApplicationQuestionDAO {
     Integer getCount();
-    List<ApplicationQuestion> getAllApplicationQuestion();
+    List<ApplicationQuestion> getAllApplicationQuestion(@Param("pageNum")Integer pageNum,@Param("pageSize")Integer pageSize);
     int addApplicationQuestion(ApplicationQuestion applicationQuestion);
     List<ApplicationQuestion> findApplicationQuestion4Paper(@Param("aqids") List<Integer> aqids);
     int deleteById(@Param("id")Integer id);

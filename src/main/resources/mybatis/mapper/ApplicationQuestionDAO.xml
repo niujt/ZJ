@@ -4,10 +4,10 @@
     <select id="getCount" resultType="Integer">
         select count(1) from ApplicationQuestion;
     </select>
-    <select id="getAllApplicationQuestion" resultType="com.wxthxy.zj.entity.ApplicationQuestion">
+    <select id="getAllApplicationQuestion" resultType="com.wxthxy.zj.entity.ApplicationQuestion" parameterType="Integer">
         select qt.type as type,qt.level as level,qt.score as score,aq.*
         from ApplicationQuestion aq left join questiontype qt
-        on aq.questiontypeid=qt.id;
+        on aq.questiontypeid=qt.id limit #{pageNum},#{pageSize};
     </select>
     <insert id="addApplicationQuestion" parameterType="com.wxthxy.zj.entity.ApplicationQuestion">
         insert into ApplicationQuestion(questiontypeid,text,answer)

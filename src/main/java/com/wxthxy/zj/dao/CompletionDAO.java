@@ -16,7 +16,7 @@ public interface CompletionDAO {
      * 获取所有的填空题详情
      * @return
      */
-    List<Question> getAllCompletions();
+    List<Question> getAllCompletions(@Param("pageNum")Integer pageNum,@Param("pageSize")Integer pageSize);
 
     /**
      * 添加填空题

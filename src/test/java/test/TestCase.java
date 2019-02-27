@@ -44,10 +44,10 @@ public class TestCase {
     StudentService studentService;
     @Test
     public void test1(){
-        List<Choicequestion> list=service.findAllQuestions("选择题");
-        for(Choicequestion cq:list){
-            System.out.println( cq.getText());
-        }
+        //List<Choicequestion> list=service.findAllQuestions("选择题");
+//        for(Choicequestion cq:list){
+//            System.out.println( cq.getText());
+//        }
     }
     @Test
     public void test2(){

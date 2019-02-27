@@ -41,11 +41,11 @@ public class PaperController {
         request.setAttribute("pageNum",pageNum);
         List<Paper> papers=service.getAll(start,PageUtils.PageSize);
         PaperUtils.doPaper(papers);
-        request.setAttribute("cps",questionService.findAllQuestions("填空题"));
-        request.setAttribute("jqs",questionService.findAllQuestions("判断题"));
-        request.setAttribute("dps",questionService.findAllQuestions("简答题"));
-        request.setAttribute("aqs",questionService.findAllQuestions("应用题"));
-        request.setAttribute("cqs",questionService.findAllQuestions("选择题"));
+        request.setAttribute("cps",questionService.findAllQuestions("填空题",0,10000));
+        request.setAttribute("jqs",questionService.findAllQuestions("判断题",0,10000));
+        request.setAttribute("dps",questionService.findAllQuestions("简答题",0,10000));
+        request.setAttribute("aqs",questionService.findAllQuestions("应用题",0,10000));
+        request.setAttribute("cqs",questionService.findAllQuestions("选择题",0,10000));
         request.setAttribute("papers",papers);
         return "/admin/PaperManagement";
     }

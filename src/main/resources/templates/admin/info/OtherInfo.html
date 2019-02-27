@@ -28,7 +28,7 @@
             <th>分值</th>
             <th width="100px" colspan="2">操作&nbsp;&nbsp;&nbsp;&nbsp;
                 <button class="btn btn-info" data-toggle="modal" data-target="#addModal">新增</button>
-                <button class="btn btn-info" onclick="history.go(-1)">返回</button>
+                <button class="btn btn-info" onclick="location.href='/zj/question'">返回</button>
             </th>
         </tr>
         </thead>
@@ -46,9 +46,15 @@
                 <button class="btn btn-info" th:onclick="|javascript:delOther('${question.type}','${question.id}')|">删除</button>
             </td>
         </tr>
-
         </tbody>
     </table>
+    <ul class="pagination" style="float:right">
+        <li class="page-item"><a th:href="@{'/zj/questionInfo/'+${type}+'?pageNum='+${(pageNum-1)<=1?1:(pageNum-1)}}" class="page-link" href="#">上一页</a></li>
+        &nbsp;&nbsp;&nbsp;
+        <li class="page-item" th:text="'第'+${pageNum}+'页'"></li>
+        &nbsp;&nbsp;&nbsp;
+        <li class="page-item"><a th:href="@{'/zj/questionInfo/'+${type}+'?pageNum='+${pageNum+1}}" class="page-link" href="#">下一页</a></li>
+    </ul>
 </div>
 <!--新增模态框-->
 <form id="addQuestion" method="post" action="/zj/addOthers" onSubmit="return addOthers();">
