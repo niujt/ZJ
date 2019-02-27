@@ -62,7 +62,20 @@ public interface QuestionService {
      * @return
      */
     String addApplicationQue(ApplicationQuestion applicationQuestion);
+
+    /**
+     * 应用题详情
+     * @param id
+     * @return
+     */
     ApplicationQuestion loadApplication(Integer id);
+
+    /**
+     * 更新应用题
+     * @param applicationQuestion
+     * @return
+     */
+    String updateApplication(ApplicationQuestion applicationQuestion);
 /**出选择题,应用题以外，其他使用Question数据模型*/
     /**
      * 添加

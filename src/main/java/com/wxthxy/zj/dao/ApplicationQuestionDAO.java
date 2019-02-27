@@ -12,4 +12,5 @@ public interface ApplicationQuestionDAO {
     List<ApplicationQuestion> findApplicationQuestion4Paper(@Param("aqids") List<Integer> aqids);
     int deleteById(@Param("id")Integer id);
     ApplicationQuestion getApplicationQuestionById(@Param("id")Integer id);
+    Integer updateApplicationQue(ApplicationQuestion applicationQuestion);
 }

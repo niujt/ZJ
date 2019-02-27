@@ -31,4 +31,7 @@
         from ApplicationQuestion aq left join questiontype qt on aq.questiontypeid=qt.id
        where aq.id=#{id};
     </select>
+    <update id="updateApplicationQue" parameterType="com.wxthxy.zj.entity.ApplicationQuestion">
+        update applicationquestion set questiontypeid=#{questiontypeid},text=#{text},answer=#{answer},imgurl=#{imgurl} where id=#{id}
+    </update>
 </mapper>

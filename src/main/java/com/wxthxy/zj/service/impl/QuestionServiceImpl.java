@@ -160,4 +160,9 @@ public class QuestionServiceImpl implements QuestionService {
     public ApplicationQuestion loadApplication(Integer id) {
         return applicationQuestionDAO.getApplicationQuestionById(id);
     }
+
+    @Override
+    public String updateApplication(ApplicationQuestion applicationQuestion) {
+        return applicationQuestionDAO.updateApplicationQue(applicationQuestion)>0?ServiceMessage.Common_message_04.getText():ServiceMessage.Common_message_05.getText();
+    }
 }

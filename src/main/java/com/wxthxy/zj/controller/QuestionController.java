@@ -132,14 +132,13 @@ public class QuestionController {
             path = URLDecoder.decode(path);
             path.replaceAll("\\\\", "/");
             path=path.substring(path.indexOf(":")+2,path.indexOf("target"));
-            path=path+"/appimg/"+applicationQuestion.getImgfile().getOriginalFilename();
-            System.out.println(path);
+            path=path+"src/main/resources/static/appimg/"+applicationQuestion.getImgfile().getOriginalFilename();
            File file= new File(path);
            if(!file.exists()){
                new File(path).createNewFile();
            }
             applicationQuestion.getImgfile().transferTo(file);
-            applicationQuestion.setImgurl(path);
+            applicationQuestion.setImgurl("/appimg/"+applicationQuestion.getImgfile().getOriginalFilename());
             json.put("message",service.addApplicationQue(applicationQuestion));
         }catch (Exception e){
             json.put("message","上传文件过大");
@@ -147,6 +146,38 @@ public class QuestionController {
         }
         return json;
     }
+
+    /**
+     * 添加应用题
+     * @param applicationQuestion
+     * @return
+     */
+    @RequestMapping(value = "/upapplicationQue",method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject upapplicationQue(ApplicationQuestion applicationQuestion){
+        String path = QuestionController.class.getResource("QuestionController.class") .toString();
+        JSONObject json=new JSONObject();
+        try{
+            path = URLDecoder.decode(path);
+            path.replaceAll("\\\\", "/");
+            path=path.substring(path.indexOf(":")+2,path.indexOf("target"));
+            path=path+"src/main/resources/static/appimg/"+applicationQuestion.getImgfile().getOriginalFilename();
+            File file= new File(path);
+            if(!file.exists()){
+                new File(path).createNewFile();
+            }
+            applicationQuestion.getImgfile().transferTo(file);
+            applicationQuestion.setImgurl("/appimg/"+applicationQuestion.getImgfile().getOriginalFilename());
+            json.put("message",service.updateApplication(applicationQuestion));
+        }catch (Exception e){
+            json.put("message","上传文件过大");
+            e.printStackTrace();
+        }
+        return json;
+    }
+
+
+
 
     /**
      * 应用题详情

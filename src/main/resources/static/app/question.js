@@ -100,6 +100,18 @@ function loadQueInfo(id){
         }
     });
 }
+
+/**
+ * 更新应用题
+ */
+function updateApplicationQue(){
+    $("#updateApplicationQue").ajaxSubmit(function(message) {
+        console.log(message);
+        $("#message").html(message.message);
+    });
+    parent.location.reload();
+    return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
+}
 /**
  * 填空，简答，判断题通用添加方法
  */
