@@ -84,13 +84,13 @@ public class QuestionServiceImpl implements QuestionService {
         switch (question.getType()){
         case "填空题" :
             index=completionDAO.addCompletion(question);
-            break;
+        break;
         case "判断题":
-            index=judgementquestionDAO.addJudgementQuestion(question);
-            break;
+        index=judgementquestionDAO.addJudgementQuestion(question);
+        break;
         case "简答题":
-            index=designproblemDAO.addDesignProblem(question);
-            break;
+        index=designproblemDAO.addDesignProblem(question);
+        break;
     }
             return index>0?ServiceMessage.Common_message_01.getText():ServiceMessage.Common_message_06.getText();
 }
@@ -149,5 +149,15 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public String deleteAppQue(Integer id) {
         return applicationQuestionDAO.deleteById(id)>0?ServiceMessage.Common_message_02.getText():ServiceMessage.Common_message_03.getText();
+    }
+
+    @Override
+    public String addApplicationQue(ApplicationQuestion applicationQuestion) {
+        return  applicationQuestionDAO.addApplicationQuestion(applicationQuestion)>0?ServiceMessage.Common_message_01.getText():ServiceMessage.Common_message_06.getText();
+    }
+
+    @Override
+    public ApplicationQuestion loadApplication(Integer id) {
+        return applicationQuestionDAO.getApplicationQuestionById(id);
     }
 }

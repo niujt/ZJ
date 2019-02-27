@@ -71,6 +71,36 @@ function upChoiceQue(){
 }
 
 /**
+ * 添加应用题
+ */
+function addapplicationQue(){
+    $("#addapplicationQue").ajaxSubmit(function(message) {
+        console.log(message);
+        $("#message").html(message.message);
+    });
+    parent.location.reload();
+    return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
+
+}
+
+/**
+ * 应用题详情页面
+ */
+function loadQueInfo(id){
+    $.ajax({
+        url: "/zj/applicationQue/"+id,
+        type:"GET",
+        success:function(data){
+            console.log(data);
+            $("#text").val(data.application.text);
+            $("#id").val(data.application.id);
+            $("#questiontypeid").val(data.application.questiontypeid);
+            $("#imgurl").attr('src',data.application.imgurl).attr('style','width:50px;height:50px');
+            $("#answer").val(data.application.answer);
+        }
+    });
+}
+/**
  * 填空，简答，判断题通用添加方法
  */
 function addOthers(){

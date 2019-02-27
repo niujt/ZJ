@@ -20,3 +20,7 @@ spring:
 mybatis:
   mapper-locations: classpath:mybatis/mapper/*.xml
   type-aliases-package: com.wxthxy.zj.entity
+  http:
+    multipart:
+      maxFileSize: 500Mb
+      maxRequestSize: 500Mb

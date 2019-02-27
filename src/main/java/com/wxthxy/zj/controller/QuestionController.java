@@ -1,6 +1,7 @@
 package com.wxthxy.zj.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.wxthxy.zj.entity.ApplicationQuestion;
 import com.wxthxy.zj.entity.Choicequestion;
 import com.wxthxy.zj.entity.Question;
 import com.wxthxy.zj.service.QuestionService;
@@ -8,8 +9,11 @@ import com.wxthxy.zj.utils.PageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.net.URLDecoder;
 
 /**
  * 题库
@@ -111,6 +115,49 @@ public class QuestionController {
     public JSONObject upChoiceQuestion(Choicequestion choicequestion){
         JSONObject json=new JSONObject();
         json.put("message",service.updateChoiceQuestion(choicequestion));
+        return json;
+    }
+
+    /**
+     * 添加应用题
+     * @param applicationQuestion
+     * @return
+     */
+    @RequestMapping(value = "/applicationQue",method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject addapplicationQue(ApplicationQuestion applicationQuestion){
+        String path = QuestionController.class.getResource("QuestionController.class") .toString();
+        JSONObject json=new JSONObject();
+        try{
+            path = URLDecoder.decode(path);
+            path.replaceAll("\\\\", "/");
+            path=path.substring(path.indexOf(":")+2,path.indexOf("target"));
+            path=path+"/appimg/"+applicationQuestion.getImgfile().getOriginalFilename();
+            System.out.println(path);
+           File file= new File(path);
+           if(!file.exists()){
+               new File(path).createNewFile();
+           }
+            applicationQuestion.getImgfile().transferTo(file);
+            applicationQuestion.setImgurl(path);
+            json.put("message",service.addApplicationQue(applicationQuestion));
+        }catch (Exception e){
+            json.put("message","上传文件过大");
+         e.printStackTrace();
+        }
+        return json;
+    }
+
+    /**
+     * 应用题详情
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/applicationQue/{id}",method = RequestMethod.GET)
+    @ResponseBody
+    public JSONObject upapplicationQue(@PathVariable Integer id){
+        JSONObject json=new JSONObject();
+        json.put("application",service.loadApplication(id));
         return json;
     }
 

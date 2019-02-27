@@ -1,5 +1,6 @@
 package com.wxthxy.zj.service;
 
+import com.wxthxy.zj.entity.ApplicationQuestion;
 import com.wxthxy.zj.entity.Choicequestion;
 import com.wxthxy.zj.entity.Question;
 
@@ -54,6 +55,14 @@ public interface QuestionService {
      * @return
      */
     String deleteAppQue(Integer id);
+
+    /**
+     * 添加应用题
+     * @param applicationQuestion
+     * @return
+     */
+    String addApplicationQue(ApplicationQuestion applicationQuestion);
+    ApplicationQuestion loadApplication(Integer id);
 /**出选择题,应用题以外，其他使用Question数据模型*/
     /**
      * 添加

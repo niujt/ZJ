@@ -165,7 +165,7 @@ public class PaperServiceImpl  implements PaperService {
         for(Question question:designproblemDAO.getAllDesignproblems(0,10000)){
             dpids.add(question.getId());
         }
-        map.put("dpids",getIds(jqids,paper.getDesignQueNumber()));
+        map.put("dpids",getIds(dpids,paper.getDesignQueNumber()));
         //简答题总分
         List<Question> list5=designproblemDAO.findDesignProblem4Paper(PaperUtils.getQuestionIds(getIds(dpids,paper.getDesignQueNumber())));
         for(Question q:list5){

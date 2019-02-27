@@ -10,8 +10,8 @@
         on aq.questiontypeid=qt.id limit #{pageNum},#{pageSize};
     </select>
     <insert id="addApplicationQuestion" parameterType="com.wxthxy.zj.entity.ApplicationQuestion">
-        insert into ApplicationQuestion(questiontypeid,text,answer)
-        values(#{questiontypeid},#{text},#{answer})
+        insert into ApplicationQuestion(imgurl,questiontypeid,text,answer)
+        values(#{imgurl},#{questiontypeid},#{text},#{answer})
     </insert>
     <select id="findApplicationQuestion4Paper" resultType="com.wxthxy.zj.entity.ApplicationQuestion">
         select qt.type as type,qt.level as level,qt.score as score,aq.* from ApplicationQuestion aq left join questiontype qt
@@ -26,4 +26,9 @@
     <delete id="deleteById" parameterType="Integer">
         delete from applicationquestion where id=#{id}
     </delete>
+    <select id="getApplicationQuestionById" resultType="com.wxthxy.zj.entity.ApplicationQuestion" parameterType="Integer">
+        select qt.type as type,qt.level as level,qt.score as score,aq.*
+        from ApplicationQuestion aq left join questiontype qt on aq.questiontypeid=qt.id
+       where aq.id=#{id};
+    </select>
 </mapper>
