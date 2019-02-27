@@ -39,6 +39,9 @@ public class LoginServiceImpl implements LoginService {
                     return "该账户不是老师";
                 }
             }
+            else if(identity.equals("admin")&&!username.equals("admin")){
+                return "该账户不是admin管理员";
+            }
             return ServiceMessage.login_message_03.getText();
         }
     }
