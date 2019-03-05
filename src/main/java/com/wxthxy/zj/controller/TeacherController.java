@@ -7,6 +7,7 @@ import com.wxthxy.zj.entity.TeacherCorrection;
 import com.wxthxy.zj.service.HomeworkService;
 import com.wxthxy.zj.service.PaperService;
 import com.wxthxy.zj.service.TeacherService;
+import com.wxthxy.zj.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -30,18 +31,12 @@ public class TeacherController {
      * @return
      */
     @RequestMapping(value = "/teacher",method = RequestMethod.GET)
-    public  String toTeacher(HttpServletRequest request,@RequestParam(value = "pageNum",required = false)Integer pageNum){
-//        int start;
-//        if(pageNum==null||pageNum<=1){
-//            pageNum=1;
-//            start=0;
-//        }
-//        if(pageNum>PageUtils.pageMax(service.getCount())){
-//            pageNum=PageUtils.pageMax(service.getCount());
-//        }
-//        start=PageUtils.PageSize*(pageNum-1);
-//        request.setAttribute("pageNum",pageNum);
-//        request.setAttribute("teachers",service.getAllTeacher(start,PageUtils.PageSize));
+    public  String toTeacher(HttpServletRequest request,@RequestParam(value = "currentPage",required = false)Integer currentPage){
+        if(currentPage==null){
+            currentPage=1;
+        }
+        PageBean pageBean=service.getAllTeacher(currentPage);
+        request.setAttribute("pageBean",pageBean);
         return "/admin/TeacherManagement";
 
     }

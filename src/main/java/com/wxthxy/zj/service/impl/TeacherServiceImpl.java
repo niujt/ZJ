@@ -1,9 +1,11 @@
 package com.wxthxy.zj.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.wxthxy.zj.common.ServiceMessage;
 import com.wxthxy.zj.dao.TeacherDAO;
 import com.wxthxy.zj.entity.Teacher;
 import com.wxthxy.zj.service.TeacherService;
+import com.wxthxy.zj.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +15,13 @@ public class TeacherServiceImpl implements TeacherService {
     @Autowired
     TeacherDAO dao;
     @Override
-    public List<Teacher> getAllTeacher() {
-        return dao.findAllTeacher();
+    public PageBean<Teacher> getAllTeacher(Integer currentPage) {
+        PageHelper.startPage(currentPage, PageBean.pageSize);
+        List<Teacher> allItems =dao.findAllTeacher();
+        int countNums = dao.getCount();           //总记录数
+        PageBean<Teacher> pageData = new PageBean<>(currentPage, PageBean.pageSize, countNums);
+        pageData.setItems(allItems);
+        return pageData;
     }
 
     @Override
