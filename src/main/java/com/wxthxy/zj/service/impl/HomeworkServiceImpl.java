@@ -1,5 +1,6 @@
 package com.wxthxy.zj.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.wxthxy.zj.common.ServiceMessage;
 import com.wxthxy.zj.dao.HomeworkDAO;
 import com.wxthxy.zj.dao.KeyDAO;
@@ -8,6 +9,7 @@ import com.wxthxy.zj.entity.Key;
 import com.wxthxy.zj.entity.TeacherCorrection;
 import com.wxthxy.zj.service.HomeworkService;
 import com.wxthxy.zj.utils.HomeworkUtils;
+import com.wxthxy.zj.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +25,14 @@ public class HomeworkServiceImpl implements HomeworkService {
     @Autowired
     KeyDAO keyDAO;
     @Override
-    public List<HomeWork> getAll() {
-        return dao.findAll();
+    public PageBean<HomeWork> getAll(Integer currentPage) {
+        //设置分页信息，分别是当前页数和每页显示的总记录数【记住：必须在mapper接口中的方法执行之前设置该分页信息】
+        PageHelper.startPage(currentPage, PageBean.pageSize);
+        List<HomeWork> allItems = dao.findAll();
+        int countNums = dao.getCount();    //总记录数
+        PageBean<HomeWork> pageData = new PageBean<>(currentPage, PageBean.pageSize, countNums);
+        pageData.setItems(allItems);
+        return pageData;
     }
 
     @Override
@@ -90,5 +98,10 @@ public class HomeworkServiceImpl implements HomeworkService {
     @Override
     public Integer getCount() {
         return dao.getCount();
+    }
+
+    @Override
+    public List<HomeWork> getAll() {
+        return dao.findAll();
     }
 }

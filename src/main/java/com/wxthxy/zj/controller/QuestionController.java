@@ -1,7 +1,6 @@
 package com.wxthxy.zj.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.github.pagehelper.PageHelper;
 import com.wxthxy.zj.entity.ApplicationQuestion;
 import com.wxthxy.zj.entity.Choicequestion;
 import com.wxthxy.zj.entity.Question;
@@ -10,7 +9,6 @@ import com.wxthxy.zj.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
