@@ -25,6 +25,7 @@
             <th>学号</th>
             <th>分数</th>
             <th>状态</th>
+            <th>批改类型</th>
             <th>操作&nbsp;&nbsp;&nbsp;&nbsp;<button type="button"  class="btn btn-primary" onclick="doHomework()">做作业</button></th>
         </thead>
         <tbody>
@@ -33,11 +34,13 @@
             <td th:text="${homework.studentname}"></td>
             <td th:text="${homework.classname}"></td>
             <td th:text="${homework.stuid}"></td>
-            <td th:text="${homework.score}"></td>
-            <td th:text="${(homework.state)==0?'批改中':'已批完'}"></td>
+            <td th:text="${(homework.score)==null?'':(homework.score)}+${(homework.dotype==1)?'(主观题)':''}"></td>
+            <td th:text="${((homework.state)==0&&(homework.dotype)==0)?'批改中':'已批完'}"></td>
+            <td th:text="${(homework.dotype)==0?'老师批':'自测'}"></td>
             <td>
                 <div class="btn-group">
-                    <button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#addModal" th:onclick="|javascript:check('${homework.evaluate}','${homework.proposal}')|">评价和建议</button>
+                    <button th:style="${homework.dotype==0?'':'display: none'}" type="button"  class="btn btn-primary" data-toggle="modal" data-target="#addModal" th:onclick="|javascript:check('${homework.evaluate}','${homework.proposal}')|">评价和建议</button>
+                        <button th:style="${homework.dotype==1?'':'display: none'}" type="button" class="btn btn-primary" th:onclick="|javascript:checkBySelf('${homework.paperid}','${homework.id}')|">查看自测结果</button>
                 </div>
             </td>
         </tr>

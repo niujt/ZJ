@@ -16,16 +16,17 @@
 </head>
 <body>
 <div th:include="menu.html :: menu" width="100%" height="100%" frameborder="no" border="0"  ></div>
-<form  onSubmit="return upHomework()">
 <div class="container">
     <div class="panel panel-default">
         <header style="text-align: center">
             <button type="button" class="btn btn btn-outline-dark" style="float: left;" onclick="back()">返回</button>
             <!--<button type="button" class="btn btn-outline-secondary">&lt;&#45;&#45;</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
             试卷名称：<span th:text="${paperInfo.paper.name}"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(总分<span th:text="${paperInfo.paper.score}"></span>分)
-            <span id="ss" style="float: right;">120分钟</span>
+            <span id="ss" style="float: right;">120分钟</span><hr>
+            <button type="botton"  class="button btn-info" onclick="doBySelf();">自测</button>(提交给老师的话请滚动至右下角点击提交按钮)
         </header>
         <hr>
+        <form  onSubmit="return upHomework()">
         <div class="panel-heading">
             <h5 class="panel-title">
                 一、选择题
@@ -109,12 +110,11 @@
                 </div>
             </div>
         </div>
-    </div>
     <div>
         <button type="submit" id="submit" class="button btn-info">提交</button>
     </div>
-
-</div>
 </form>
+    </div>
+</div>
 </body>
 </html>

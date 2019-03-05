@@ -99,4 +99,22 @@ public class TestCase {
        //System.out.println(homeworkService.check());
        // paperService.getAll(2).forEach(paper->System.out.println(paper));
     }
+    @Test
+    public void test9(){
+        List<String> list1=new ArrayList<>();
+        list1.add("A");
+        list1.add("B");
+        list1.add("C");
+        List<String> list2=new ArrayList<>();
+        list2.add("A");
+        list2.add("B");
+        list2.add("D");
+        double score=0.0;
+        for(int i=0;i<list1.size();i++){
+            if(list1.get(i).equals(list2.get(i))){
+                score=score+2;
+            }
+        }
+        System.out.println(score);
+    }
 }

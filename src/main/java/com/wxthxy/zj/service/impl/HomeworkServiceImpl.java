@@ -80,6 +80,7 @@ public class HomeworkServiceImpl implements HomeworkService {
 
     @Override
     public String subHomework(HomeWork homeWork) {
+        homeWork.setDotype(0);
         return dao.addHomework(homeWork)>0?ServiceMessage.Common_message_01.getText():ServiceMessage.Common_message_06.getText();
     }
 
@@ -99,14 +100,22 @@ public class HomeworkServiceImpl implements HomeworkService {
 
         return list;
     }
-
-    @Override
-    public Integer getCount() {
-        return dao.getCount();
-    }
-
     @Override
     public List<HomeWork> getAll() {
         return dao.findAll();
+    }
+
+    @Override
+    public String subHomeworkBySelf(HomeWork homeWork) {
+        homeWork.setDotype(1);
+        homeWork.setState(1);
+
+       // homeWork.setScore();
+        return dao.addHomework(homeWork)>0?ServiceMessage.Common_message_01.getText():ServiceMessage.Common_message_06.getText();
+    }
+
+    @Override
+    public String scoreBySelf(HomeWork homeWork) {
+        return dao.updateScoreById(homeWork)>0? ServiceMessage.Common_message_04.getText():ServiceMessage.Common_message_05.getText();
     }
 }

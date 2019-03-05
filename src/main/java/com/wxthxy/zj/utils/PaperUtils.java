@@ -58,6 +58,12 @@ public class PaperUtils {
             str=str.substring(0,str.length()-1);
             return str;
     }
+
+    /**
+     * 数组转字符串（，隔开）
+     * @param message
+     * @return
+     */
     public static String array2String (String[] message){
         String ids="";
         for(String str:message){

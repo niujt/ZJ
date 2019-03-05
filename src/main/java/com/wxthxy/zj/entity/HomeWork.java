@@ -38,4 +38,6 @@ public class HomeWork {
     private String proposal;
     /**成绩*/
     private String score;
+    /**批改类型（0老师批，1自测）*/
+    private Integer dotype;
 }

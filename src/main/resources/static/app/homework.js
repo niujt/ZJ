@@ -49,12 +49,44 @@ function upHomework(){
             dataType:'json',
             success:function(data){
                 console.log(data);
-                location.href='/zj/paper';
+                location.href='/zj/student/homework';
             }
 
         });
-
     return false;
+}
+
+/**
+ * 自测
+ */
+function doBySelf(){
+    console.log('自测');
+    var d = {};
+    var t = $('form').serializeArray();
+    $.each(t, function () {
+        d[this.name] = this.value;
+    });
+    var str=JSON.stringify(d);
+    console.log(str);
+    $.ajax({
+        url:'/zj/student/subhomeworkBySelf',
+        contentType: 'application/json; charset=UTF-8',
+        type:'post',
+        data:str,
+        dataType:'json',
+        success:function(data){
+            console.log(data);
+            location.href='/zj/student/homework';
+        }
+
+    });
+}
+
+/**
+ * 查看自测结果
+ */
+function checkBySelf(paperid,id){
+    location.href='/zj/student/DoBySelf?paperid='+paperid+'&id='+id;
 }
 
 /**
