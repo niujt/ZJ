@@ -84,8 +84,13 @@ public class HomeworkServiceImpl implements HomeworkService {
     }
 
     @Override
-    public List<HomeWork> getAllByStuid(String stuid) {
-        return dao.findAllByStuid(stuid);
+    public PageBean<HomeWork> getAllByStuid(String stuid,Integer currentPage) {
+        PageHelper.startPage(currentPage, PageBean.pageSize);
+        List<HomeWork> allItems =dao.findAllByStuid(stuid);
+        int countNums =dao.getCountByStuId(stuid);    //总记录数
+        PageBean<HomeWork> pageData = new PageBean<>(currentPage, PageBean.pageSize, countNums);
+        pageData.setItems(allItems);
+        return pageData;
     }
 
     @Override

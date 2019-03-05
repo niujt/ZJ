@@ -49,9 +49,11 @@ function upHomework(){
             dataType:'json',
             success:function(data){
                 console.log(data);
+                location.href='/zj/paper';
             }
 
         });
+
     return false;
 }
 

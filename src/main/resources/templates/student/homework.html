@@ -28,7 +28,7 @@
             <th>操作&nbsp;&nbsp;&nbsp;&nbsp;<button type="button"  class="btn btn-primary" onclick="doHomework()">做作业</button></th>
         </thead>
         <tbody>
-        <tr th:each="homework,homeworkStat:${homeworks}">
+        <tr th:each="homework,homeworkStat:${pageBean.items}">
             <td th:text="${homeworkStat.count}"></td>
             <td th:text="${homework.studentname}"></td>
             <td th:text="${homework.classname}"></td>
@@ -43,6 +43,13 @@
         </tr>
         </tbody>
     </table>
+    <ul class="pagination" style="float:right">
+        <li class="page-item"><a th:href="@{'/zj/student/homework?currentPage='+${(pageBean.currentPage-1)<1?1:(pageBean.currentPage-1)}}" class="page-link" href="#">上一页</a></li>
+        &nbsp;&nbsp;&nbsp;
+        <li class="page-item" th:text="'第'+${pageBean.currentPage}+'页(共'+${pageBean.totalNum}+'条）'"></li>
+        &nbsp;&nbsp;&nbsp;
+        <li class="page-item"><a th:href="@{'/zj/student/homework?currentPage='+${((pageBean.currentPage+1)>pageBean.totalPage)?pageBean.totalPage:(pageBean.currentPage+1)}}" class="page-link" href="#">下一页</a></li>
+    </ul>
 </div>
 
 <!-- 新增模态框 -->

@@ -81,9 +81,12 @@ public class StudentController {
      * @return
      */
     @RequestMapping(value ="/student/homework",method = RequestMethod.GET)
-    public String doHomework(HttpServletRequest request,HttpSession session){
+    public String doHomework(HttpServletRequest request,HttpSession session,@RequestParam(value = "currentPage",required = false)Integer currentPage){
+        if(currentPage==null){
+            currentPage=1;
+        }
         Student student=(Student)session.getAttribute("message");
-        request.setAttribute("homeworks",homeworkService.getAllByStuid(student.getStuid()));
+        request.setAttribute("pageBean",homeworkService.getAllByStuid(student.getStuid(),currentPage));
         return "/student/homework";
     }
     /**

@@ -36,4 +36,5 @@ public interface HomeworkDAO {
     List<HomeWork> findAllByStuid(@Param("stuid")String stuid);
     List<HomeWork> check(@Param("keywords")String keywords);
     Integer getCount();
+    Integer getCountByStuId(@Param("stuid")String stuid);
 }
