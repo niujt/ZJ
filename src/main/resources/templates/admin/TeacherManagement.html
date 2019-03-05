@@ -38,11 +38,11 @@
         </tbody>
     </table>
     <ul class="pagination" style="float:right">
-        <li class="page-item"><a th:href="@{'/zj/teacher?pageNum='+${(pageNum-1)<=1?1:(pageNum-1)}}" class="page-link" href="#">上一页</a></li>
+        <li class="page-item"><a th:href="@{'/zj/paper?currentPage='+${(pageBean.currentPage-1)<1?1:(pageBean.currentPage-1)}}" class="page-link" href="#">上一页</a></li>
         &nbsp;&nbsp;&nbsp;
-        <li class="page-item" th:text="'第'+${pageNum}+'页'"></li>
+        <li class="page-item" th:text="'第'+${pageBean.currentPage}+'页(共'+${pageBean.totalNum}+'条）'"></li>
         &nbsp;&nbsp;&nbsp;
-        <li class="page-item"><a th:href="@{'/zj/teacher?pageNum='+${pageNum+1}}" class="page-link" href="#">下一页</a></li>
+        <li class="page-item"><a th:href="@{'/zj/paper?currentPage='+${((pageBean.currentPage+1)>pageBean.totalPage)?pageBean.totalPage:(pageBean.currentPage+1)}}" class="page-link" href="#">下一页</a></li>
     </ul>
 </div>
 <!-- 新增模态框 -->

@@ -19,7 +19,7 @@ public interface QuestionService {
      * @param type
      * @return
      */
-    List findAllQuestions(String type,Integer PageNum,Integer PageSize);
+    List findAllQuestions(String type);
 
     /**
      * 添加选择题

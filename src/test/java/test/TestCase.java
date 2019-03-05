@@ -25,6 +25,8 @@ public class TestCase {
     @Autowired
     PaperDAO paperDAO;
     @Autowired
+    PaperService paperService;
+    @Autowired
     ChoicequestionDAO choicequestionDAO;
     @Autowired
     CompletionDAO completionDAO;
@@ -32,8 +34,6 @@ public class TestCase {
     JudgementquestionDAO judgementquestionDAO;
     @Autowired
     DesignproblemDAO designproblemDAO;
-    @Autowired
-    PaperService paperService;
     @Autowired
     HomeworkService homeworkService;
     @Autowired
@@ -96,6 +96,7 @@ public class TestCase {
     public void test8(){
         //designproblemDAO.getAllDesignproblems().forEach(System.out::println);
         //homeworkDAO.check("运算集合").forEach(System.out::println);
-        System.out.println(homeworkService.check());
+       //System.out.println(homeworkService.check());
+       // paperService.getAll(2).forEach(paper->System.out.println(paper));
     }
 }

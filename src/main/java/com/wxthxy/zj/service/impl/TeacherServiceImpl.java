@@ -13,8 +13,8 @@ public class TeacherServiceImpl implements TeacherService {
     @Autowired
     TeacherDAO dao;
     @Override
-    public List<Teacher> getAllTeacher(Integer pageNum,Integer PageSize) {
-        return dao.findAllTeacher(pageNum, PageSize);
+    public List<Teacher> getAllTeacher() {
+        return dao.findAllTeacher();
     }
 
     @Override

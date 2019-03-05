@@ -5,7 +5,7 @@
         select count(1) from teacher
     </select>
     <select id="findAllTeacher" resultType="com.wxthxy.zj.entity.Teacher" parameterType="Integer">
-        select * from teacher limit #{pageNum},#{pageSize};
+        select * from teacher
     </select>
     <insert id="addTeacher" parameterType="com.wxthxy.zj.entity.Teacher">
         insert into teacher(teaid,majorid,name,roleid) values(#{teaid},#{majorid},#{name},#{roleid});

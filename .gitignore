@@ -32,3 +32,7 @@ hs_err_pid*
 out
 gen
 target
+.classpath
+.project
+.settings/
+src/main/java/com/wxthxy/zj/comfiguration/

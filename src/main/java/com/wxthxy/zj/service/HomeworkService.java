@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface HomeworkService {
-    List<HomeWork> getAll(Integer pageNum,Integer PageSize);
+    List<HomeWork> getAll();
     Map getHomeworkAnswer(Integer id);
     String score(TeacherCorrection teacherCorrection);
     String eva(HomeWork homeWork);

@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface PaperDAO {
-    List<Paper> findAllPapers(@Param("pageNum")Integer pageNum,@Param("pageSize")Integer pageSize);
+    List<Paper> findAllPapers();
     Paper findPaperById(@Param("id") Integer id);
     int addPaper(Paper paper);
     int getCount();

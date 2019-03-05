@@ -6,7 +6,7 @@
     </select>
     <select id="findAllChoicequestion" resultType="com.wxthxy.zj.entity.Choicequestion" parameterType="Integer">
         select qt.type as type,qt.level as level,qt.score as score,cq.* from Choicequestion cq left join questiontype qt
-        on cq.questiontypeid=qt.id limit #{pageNum},#{pageSize};
+        on cq.questiontypeid=qt.id
     </select>
     <insert id="addChoicequestion" parameterType="com.wxthxy.zj.entity.Choicequestion">
         insert into Choicequestion(questiontypeid,text,option1,option2,option3,option4,option5,answer)

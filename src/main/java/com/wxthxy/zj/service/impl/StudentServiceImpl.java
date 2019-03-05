@@ -1,9 +1,11 @@
 package com.wxthxy.zj.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.wxthxy.zj.common.ServiceMessage;
 import com.wxthxy.zj.dao.StudentDAO;
 import com.wxthxy.zj.entity.Student;
 import com.wxthxy.zj.service.StudentService;
+import com.wxthxy.zj.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +15,13 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     StudentDAO dao;
     @Override
-    public List<Student> findAllStudents(Integer pageNum,Integer PageSize) {
-        return dao.findAllStudents(pageNum, PageSize);
+    public PageBean<Student> findAllStudents(Integer currentPage) {
+        PageHelper.startPage(currentPage, PageBean.pageSize);
+        List<Student> allItems = dao.findAllStudents();
+        int countNums = dao.getCount();           //总记录数
+        PageBean<Student> pageData = new PageBean<>(currentPage, PageBean.pageSize, countNums);
+        pageData.setItems(allItems);
+        return pageData;
     }
 
     @Override
@@ -44,10 +51,5 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Student findStudent(Integer id) {
         return dao.findStudentByLoginId(id);
-    }
-
-    @Override
-    public Integer getCount() {
-        return dao.getCount();
     }
 }

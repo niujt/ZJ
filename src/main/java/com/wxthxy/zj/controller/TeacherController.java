@@ -7,7 +7,6 @@ import com.wxthxy.zj.entity.TeacherCorrection;
 import com.wxthxy.zj.service.HomeworkService;
 import com.wxthxy.zj.service.PaperService;
 import com.wxthxy.zj.service.TeacherService;
-import com.wxthxy.zj.utils.PageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -32,17 +31,17 @@ public class TeacherController {
      */
     @RequestMapping(value = "/teacher",method = RequestMethod.GET)
     public  String toTeacher(HttpServletRequest request,@RequestParam(value = "pageNum",required = false)Integer pageNum){
-        int start;
-        if(pageNum==null||pageNum<=1){
-            pageNum=1;
-            start=0;
-        }
-        if(pageNum>PageUtils.pageMax(service.getCount())){
-            pageNum=PageUtils.pageMax(service.getCount());
-        }
-        start=PageUtils.PageSize*(pageNum-1);
-        request.setAttribute("pageNum",pageNum);
-        request.setAttribute("teachers",service.getAllTeacher(start,PageUtils.PageSize));
+//        int start;
+//        if(pageNum==null||pageNum<=1){
+//            pageNum=1;
+//            start=0;
+//        }
+//        if(pageNum>PageUtils.pageMax(service.getCount())){
+//            pageNum=PageUtils.pageMax(service.getCount());
+//        }
+//        start=PageUtils.PageSize*(pageNum-1);
+//        request.setAttribute("pageNum",pageNum);
+//        request.setAttribute("teachers",service.getAllTeacher(start,PageUtils.PageSize));
         return "/admin/TeacherManagement";
 
     }
@@ -80,17 +79,17 @@ public class TeacherController {
      */
     @RequestMapping(value ="/teacher/homework",method = RequestMethod.GET)
     public String homework(HttpServletRequest request,@RequestParam(value = "pageNum",required = false)Integer pageNum){
-        int start;
-        if(pageNum==null||pageNum<=1){
-            pageNum=1;
-            start=0;
-        }
-        if(pageNum>PageUtils.pageMax(service.getCount())){
-            pageNum=PageUtils.pageMax(service.getCount());
-        }
-        start=PageUtils.PageSize*(pageNum-1);
-        request.setAttribute("pageNum",pageNum);
-        request.setAttribute("homeworks",homeworkService.getAll(start,PageUtils.PageSize));
+//        int start;
+//        if(pageNum==null||pageNum<=1){
+//            pageNum=1;
+//            start=0;
+//        }
+//        if(pageNum>PageUtils.pageMax(service.getCount())){
+//            pageNum=PageUtils.pageMax(service.getCount());
+//        }
+//        start=PageUtils.PageSize*(pageNum-1);
+//        request.setAttribute("pageNum",pageNum);
+//        request.setAttribute("homeworks",homeworkService.getAll(start,PageUtils.PageSize));
         return "/teacher/homework";
     }
 
@@ -148,7 +147,7 @@ public class TeacherController {
     @RequestMapping(value ="/teacher/check",method = RequestMethod.GET)
     public String check(HttpServletRequest request){
         request.setAttribute("keys", homeworkService.check());
-        request.setAttribute("homeworks", homeworkService.getAll(0,1000));
+        request.setAttribute("homeworks", homeworkService.getAll());
         return "/teacher/check";
     }
 }

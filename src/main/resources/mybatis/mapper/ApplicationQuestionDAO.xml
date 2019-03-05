@@ -7,7 +7,7 @@
     <select id="getAllApplicationQuestion" resultType="com.wxthxy.zj.entity.ApplicationQuestion" parameterType="Integer">
         select qt.type as type,qt.level as level,qt.score as score,aq.*
         from ApplicationQuestion aq left join questiontype qt
-        on aq.questiontypeid=qt.id limit #{pageNum},#{pageSize};
+        on aq.questiontypeid=qt.id
     </select>
     <insert id="addApplicationQuestion" parameterType="com.wxthxy.zj.entity.ApplicationQuestion">
         insert into ApplicationQuestion(imgurl,questiontypeid,text,answer)

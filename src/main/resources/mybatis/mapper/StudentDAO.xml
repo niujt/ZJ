@@ -5,7 +5,7 @@
         select count(1) from student
     </select>
     <select id="findAllStudents" resultType="com.wxthxy.zj.entity.Student" parameterType="Integer">
-        select s.*,m.name as major from student s left join major m on s.majorid=m.id limit #{pageNum},#{pageSize};
+        select s.*,m.name as major from student s left join major m on s.majorid=m.id
     </select>
     <insert id="addStudent" parameterType="com.wxthxy.zj.entity.Student">
         insert into student(name,majorid,classname,stuid) values(#{name},#{majorid},#{classname},#{stuid});

@@ -23,8 +23,8 @@ public class HomeworkServiceImpl implements HomeworkService {
     @Autowired
     KeyDAO keyDAO;
     @Override
-    public List<HomeWork> getAll(Integer pageNum,Integer PageSize) {
-        return dao.findAll(pageNum, PageSize);
+    public List<HomeWork> getAll() {
+        return dao.findAll();
     }
 
     @Override

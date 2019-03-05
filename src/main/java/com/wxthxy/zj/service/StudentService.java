@@ -2,6 +2,7 @@ package com.wxthxy.zj.service;
 
 import com.wxthxy.zj.entity.Student;
 import com.wxthxy.zj.entity.Teacher;
+import com.wxthxy.zj.utils.PageBean;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ public interface StudentService {
      * 学生列表
      * @return
      */
-    List<Student> findAllStudents(Integer pageNum,Integer PageSize);
+    PageBean<Student> findAllStudents(Integer currentPage);
 
     /**
      * 添加学生
@@ -38,5 +39,4 @@ public interface StudentService {
      * @return
      */
     Student findStudent(Integer loginid);
-    Integer getCount();
 }

@@ -1,9 +1,11 @@
 package com.wxthxy.zj.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.wxthxy.zj.common.ServiceMessage;
 import com.wxthxy.zj.dao.*;
 import com.wxthxy.zj.entity.*;
 import com.wxthxy.zj.service.PaperService;
+import com.wxthxy.zj.utils.PageBean;
 import com.wxthxy.zj.utils.PaperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,9 +30,14 @@ public class PaperServiceImpl  implements PaperService {
     ApplicationQuestionDAO applicationQuestionDAO;
 
     @Override
-    public List<Paper> getAll(Integer pageNum,Integer pageSize) {
-
-        return paperDAO.findAllPapers(pageNum,pageSize);
+    public PageBean<Paper> getAll(Integer currentPage) {
+        //设置分页信息，分别是当前页数和每页显示的总记录数【记住：必须在mapper接口中的方法执行之前设置该分页信息】
+        PageHelper.startPage(currentPage, PageBean.pageSize);
+        List<Paper> allItems = paperDAO.findAllPapers();
+        int countNums = paperDAO.getCount();           //总记录数
+        PageBean<Paper> pageData = new PageBean<>(currentPage, PageBean.pageSize, countNums);
+        pageData.setItems(allItems);
+        return pageData;
     }
 
     @Override
@@ -118,7 +125,7 @@ public class PaperServiceImpl  implements PaperService {
         double score=0.0;
         //获取随机选择题id的集合
         List<Integer> cqids=new ArrayList<>();
-        for(Choicequestion choicequestion:choicequestionDAO.findAllChoicequestion(0,10000)){
+        for(Choicequestion choicequestion:choicequestionDAO.findAllChoicequestion()){
             cqids.add(choicequestion.getId());
         }
         map.put("cqids",getIds(cqids,paper.getChoiceQueNumber()));
@@ -129,7 +136,7 @@ public class PaperServiceImpl  implements PaperService {
         }
         //获取随机应用id的集合
         List<Integer> aqids=new ArrayList<>();
-        for(ApplicationQuestion applicationQuestion:applicationQuestionDAO.getAllApplicationQuestion(1,10000)){
+        for(ApplicationQuestion applicationQuestion:applicationQuestionDAO.getAllApplicationQuestion()){
             aqids.add(applicationQuestion.getId());
         }
         map.put("aqids",getIds(aqids,paper.getAppQueNumber()));
@@ -140,7 +147,7 @@ public class PaperServiceImpl  implements PaperService {
         }
         //获取随机填空题id的集合
         List<Integer> cpids=new ArrayList<>();
-        for(Question question:completionDAO.getAllCompletions(0,10000)){
+        for(Question question:completionDAO.getAllCompletions()){
             cpids.add(question.getId());
         }
         map.put("cpids",getIds(cpids,paper.getCompQueNumber()));
@@ -151,7 +158,7 @@ public class PaperServiceImpl  implements PaperService {
         }
         //获取随机判断题id的集合
         List<Integer> jqids=new ArrayList<>();
-        for(Question question:judgementquestionDAO.getAllJudgementquestions(0,10000)){
+        for(Question question:judgementquestionDAO.getAllJudgementquestions()){
             jqids.add(question.getId());
         }
         map.put("jqids",getIds(jqids,paper.getJudgeQueNumber()));
@@ -162,7 +169,7 @@ public class PaperServiceImpl  implements PaperService {
         }
         //获取随机简答题id的集合
         List<Integer> dpids=new ArrayList<>();
-        for(Question question:designproblemDAO.getAllDesignproblems(0,10000)){
+        for(Question question:designproblemDAO.getAllDesignproblems()){
             dpids.add(question.getId());
         }
         map.put("dpids",getIds(dpids,paper.getDesignQueNumber()));

@@ -6,7 +6,7 @@
     </select>
     <select id="findAll" resultType="com.wxthxy.zj.entity.HomeWork">
         select p.name as papername,h.* from homework h left join paper p
-        on p.id=h.paperid limit #{pageNum},#{pageSize};
+        on p.id=h.paperid
     </select>
     <select id="findAllByStuid" resultType="com.wxthxy.zj.entity.HomeWork" parameterType="String">
         select * from homework where stuid=#{stuid};
