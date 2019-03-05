@@ -43,12 +43,12 @@ public class QuestionController {
      * @return
      */
     @RequestMapping(value = "/questionInfo/{type}",method = RequestMethod.GET)
-    public String questionInfo(HttpServletRequest request, @PathVariable String type,@RequestParam(value = "pageNum",required = false)Integer pageNum){
-//        PageHelper.startPage(pageNum, PageBean.pageSize);
-//        start=PageUtils.PageSize*(pageNum-1);
-//        request.setAttribute("pageNum",pageNum);
-//        request.setAttribute("questions",service.findAllQuestions(type,start,PageUtils.PageSize));
-//        request.setAttribute("type",type);
+    public String questionInfo(HttpServletRequest request, @PathVariable String type,@RequestParam(value = "currentPage",required = false)Integer currentPage){
+        if(currentPage==null){
+            currentPage=1;
+        }
+        PageBean pageBean=service.findAllQuestions(type,currentPage);
+        request.setAttribute("pageBean",pageBean);
         if(type.equals("选择题")){
             return "/admin/info/ChoicequestionInfo";
         }

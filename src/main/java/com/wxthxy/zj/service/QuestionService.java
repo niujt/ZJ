@@ -3,6 +3,7 @@ package com.wxthxy.zj.service;
 import com.wxthxy.zj.entity.ApplicationQuestion;
 import com.wxthxy.zj.entity.Choicequestion;
 import com.wxthxy.zj.entity.Question;
+import com.wxthxy.zj.utils.PageBean;
 
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,12 @@ public interface QuestionService {
      */
     Map<String,Integer> getQuestionCounts();
 
+    /**
+     * 获取各类型题目列表
+     * @param type
+     * @return
+     */
+    PageBean findAllQuestions(String type, Integer currentPage);
     /**
      * 获取各类型题目列表
      * @param type
