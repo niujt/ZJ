@@ -3,6 +3,7 @@ package com.wxthxy.zj.service;
 import com.wxthxy.zj.entity.AutoPaper;
 import com.wxthxy.zj.entity.ManualPaper;
 import com.wxthxy.zj.entity.Paper;
+import com.wxthxy.zj.utils.PageBean;
 
 import java.util.List;
 import java.util.Map;
@@ -12,7 +13,7 @@ public interface PaperService {
      * 获取试卷列表
      * @return
      */
-    List<Paper> getAll(Integer pageNum,Integer pageSize);
+    PageBean<Paper> getAll(Integer currentPage);
 
     /**
      * 试卷详情（作业）

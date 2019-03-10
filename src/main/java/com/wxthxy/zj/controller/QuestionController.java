@@ -5,11 +5,10 @@ import com.wxthxy.zj.entity.ApplicationQuestion;
 import com.wxthxy.zj.entity.Choicequestion;
 import com.wxthxy.zj.entity.Question;
 import com.wxthxy.zj.service.QuestionService;
-import com.wxthxy.zj.utils.PageUtils;
+import com.wxthxy.zj.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -42,19 +41,12 @@ public class QuestionController {
      * @return
      */
     @RequestMapping(value = "/questionInfo/{type}",method = RequestMethod.GET)
-    public String questionInfo(HttpServletRequest request, @PathVariable String type,@RequestParam(value = "pageNum",required = false)Integer pageNum){
-        int start;
-        if(pageNum==null||pageNum<=1){
-            pageNum=1;
-            start=0;
+    public String questionInfo(HttpServletRequest request, @PathVariable String type,@RequestParam(value = "currentPage",required = false)Integer currentPage){
+        if(currentPage==null){
+            currentPage=1;
         }
-        if(pageNum> PageUtils.pageMax(service.getQuestionCounts().get(type))){
-            pageNum=PageUtils.pageMax(service.getQuestionCounts().get(type));
-        }
-        start=PageUtils.PageSize*(pageNum-1);
-        request.setAttribute("pageNum",pageNum);
-        request.setAttribute("questions",service.findAllQuestions(type,start,PageUtils.PageSize));
-        request.setAttribute("type",type);
+        PageBean pageBean=service.findAllQuestions(type,currentPage);
+        request.setAttribute("pageBean",pageBean);
         if(type.equals("选择题")){
             return "/admin/info/ChoicequestionInfo";
         }

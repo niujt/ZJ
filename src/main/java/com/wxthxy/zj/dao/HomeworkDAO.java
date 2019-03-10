@@ -10,7 +10,7 @@ public interface HomeworkDAO {
      * 获取作业列表
      * @return
      */
-    List<HomeWork> findAll(@Param("pageNum")Integer pageNum,@Param("pageSize")Integer pageSize);
+    List<HomeWork> findAll();
 
     /**
      * 根据id获取作业详情
@@ -36,4 +36,5 @@ public interface HomeworkDAO {
     List<HomeWork> findAllByStuid(@Param("stuid")String stuid);
     List<HomeWork> check(@Param("keywords")String keywords);
     Integer getCount();
+    Integer getCountByStuId(@Param("stuid")String stuid);
 }

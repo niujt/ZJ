@@ -1,12 +1,10 @@
 package com.wxthxy.zj.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.wxthxy.zj.entity.AutoPaper;
-import com.wxthxy.zj.entity.ManualPaper;
-import com.wxthxy.zj.entity.Paper;
+import com.wxthxy.zj.entity.*;
 import com.wxthxy.zj.service.PaperService;
 import com.wxthxy.zj.service.QuestionService;
-import com.wxthxy.zj.utils.PageUtils;
+import com.wxthxy.zj.utils.PageBean;
 import com.wxthxy.zj.utils.PaperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,25 +26,19 @@ public class PaperController {
      * @return
      */
     @RequestMapping(value = "/paper",method = RequestMethod.GET)
-    public String paperList(HttpServletRequest request,@RequestParam(value = "pageNum",required = false)Integer pageNum){
-        int start;
-        if(pageNum==null||pageNum<=1){
-            pageNum=1;
-            start=0;
+    public String paperList(HttpServletRequest request,@RequestParam(value = "currentPage",required = false)Integer currentPage){
+        if(currentPage==null){
+            currentPage=1;
         }
-        if(pageNum> PageUtils.pageMax(service.getCount())){
-            pageNum=PageUtils.pageMax(service.getCount());
-        }
-        start=PageUtils.PageSize*(pageNum-1);
-        request.setAttribute("pageNum",pageNum);
-        List<Paper> papers=service.getAll(start,PageUtils.PageSize);
+        PageBean pageBean=service.getAll(currentPage);
+        List<Paper> papers=pageBean.getItems();
         PaperUtils.doPaper(papers);
-        request.setAttribute("cps",questionService.findAllQuestions("填空题",0,10000));
-        request.setAttribute("jqs",questionService.findAllQuestions("判断题",0,10000));
-        request.setAttribute("dps",questionService.findAllQuestions("简答题",0,10000));
-        request.setAttribute("aqs",questionService.findAllQuestions("应用题",0,10000));
-        request.setAttribute("cqs",questionService.findAllQuestions("选择题",0,10000));
-        request.setAttribute("papers",papers);
+        request.setAttribute("cps",questionService.findAllQuestions("填空题"));
+        request.setAttribute("jqs",questionService.findAllQuestions("判断题"));
+        request.setAttribute("dps",questionService.findAllQuestions("简答题"));
+        request.setAttribute("aqs",questionService.findAllQuestions("应用题"));
+        request.setAttribute("cqs",questionService.findAllQuestions("选择题"));
+        request.setAttribute("pageBean",pageBean);
         return "/admin/PaperManagement";
     }
 

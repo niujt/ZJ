@@ -1,6 +1,7 @@
 package com.wxthxy.zj.service;
 
 import com.wxthxy.zj.entity.Teacher;
+import com.wxthxy.zj.utils.PageBean;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ public interface TeacherService {
      * 老师列表
      * @return
      */
-    List<Teacher>  getAllTeacher(Integer pageNum,Integer PageSize);
+    PageBean<Teacher> getAllTeacher(Integer currentPage);
 
     /**
      * 添加老师

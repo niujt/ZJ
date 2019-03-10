@@ -4,9 +4,9 @@
     <select id="getCount" resultType="Integer">
         select count(1) from completion;
     </select>
-    <select id="getAllCompletions" resultType="com.wxthxy.zj.entity.Question" parameterType="Integer">
+    <select id="getAllCompletions" resultType="com.wxthxy.zj.entity.Question">
         select qt.type as type,qt.level as level,qt.score as score,c.* from Completion c left join questiontype qt
-        on c.questiontypeid=qt.id limit #{pageNum},#{pageSize};
+        on c.questiontypeid=qt.id
     </select>
     <insert id="addCompletion" parameterType="com.wxthxy.zj.entity.Question">
         insert into Completion(questiontypeid,text,answer)

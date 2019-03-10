@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface StudentDAO {
-    List<Student> findAllStudents(@Param("pageNum")Integer pageNum,@Param("pageSize")Integer pageSize);
+    List<Student> findAllStudents();
     void addStudent(Student student);
     Student findStudentByStuid(@Param("stuid")String stuid);
     int deleteStudentById(@Param("id") Integer id);
