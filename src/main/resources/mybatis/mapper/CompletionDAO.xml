@@ -9,15 +9,15 @@
         on c.questiontypeid=qt.id
     </select>
     <insert id="addCompletion" parameterType="com.wxthxy.zj.entity.Question">
-        insert into Completion(questiontypeid,text,answer)
-        values(#{questiontypeid},#{text},#{answer})
+        insert into Completion(questiontypeid,text,answer,chapter)
+        values(#{questiontypeid},#{text},#{answer},#{chapter})
     </insert>
     <select id="findCompletionByid" parameterType="Integer" resultType="com.wxthxy.zj.entity.Question">
         select qt.type as type,qt.level as level,qt.score as score,c.* from Completion c left join questiontype qt
         on c.questiontypeid=qt.id where c.id=#{id};
     </select>
     <update id="updateCompletionById" parameterType="com.wxthxy.zj.entity.Question">
-        update Completion set questiontypeid=#{questiontypeid},text=#{text},answer=#{answer} where id=#{id}
+        update Completion set questiontypeid=#{questiontypeid},text=#{text},answer=#{answer},chapter=#{chapter} where id=#{id}
     </update>
     <delete id="deleteCompletionByid" parameterType="Integer">
         delete from Completion where id=#{id}

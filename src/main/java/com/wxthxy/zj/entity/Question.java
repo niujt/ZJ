@@ -26,4 +26,6 @@ public  class Question {
     public String level;
     /**分数*/
     public String score;
+    /**章节*/
+    private String chapter;
 }

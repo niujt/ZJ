@@ -17,16 +17,17 @@
 <body>
 <div th:include="menu.html :: menu" width="100%" height="100%" frameborder="no" border="0"></div>
 <div class="container">
-    <table class="table table-hover">
+    <table class="table table-hover" style="width: 1450px;margin-left: -200px;">
         <thead>
         <tr>
             <th>编号</th>
             <th>类型</th>
             <th>难度</th>
             <th>题目</th>
+            <th width="100px">章节</th>
             <th>答案</th>
             <th>分值</th>
-            <th width="100px" colspan="2">操作&nbsp;&nbsp;&nbsp;&nbsp;
+            <th width="100px" colspan="2">
                 <button class="btn btn-info" data-toggle="modal" data-target="#addModal">新增</button>
                 <button class="btn btn-info" onclick="location.href='/zj/question'">返回</button>
             </th>
@@ -39,6 +40,7 @@
             <td id="td1" width="100px" th:text="${question.type}"></td>
             <td th:text="${question.level}"></td>
             <td th:text="${question.text}"></td>
+            <td width="100px" th:text="${question.chapter}"></td>
             <td th:text="${question.answer}"></td>
             <td th:text="${question.score}"></td>
             <td  colspan="2" width="300px">
@@ -80,14 +82,27 @@
                                     <option value="0">--请选择题目难度--</option>
                                     <option th:style="${type=='判断题'?'':'display: none'}" value="4">简单</option>
                                     <option th:style="${type=='判断题'?'':'display: none'}" value="5">一般</option>
-                                    <option th:style="${type=='判断题'?'':'display: none'}" value="6">苦难</option>
+                                    <option th:style="${type=='判断题'?'':'display: none'}" value="6">困难</option>
                                     <option th:style="${type=='简答题'?'':'display: none'}" value="7">简单</option>
                                     <option th:style="${type=='简答题'?'':'display: none'}" value="8">一般</option>
-                                    <option th:style="${type=='简答题'?'':'display: none'}" value="9">苦难</option>
+                                    <option th:style="${type=='简答题'?'':'display: none'}" value="9">困难</option>
                                     <option th:style="${type=='填空题'?'':'display: none'}" value="10">简单</option>
                                     <option th:style="${type=='填空题'?'':'display: none'}" value="11">一般</option>
-                                    <option th:style="${type=='填空题'?'':'display: none'}" value="12">苦难</option>
+                                    <option th:style="${type=='填空题'?'':'display: none'}" value="12">困难</option>
                                 </select>
+                        </tr>
+                        <tr>
+                            <td>章节</td>
+                            <td>
+                                <select class="form-control" name="chapter">
+                                    <option value="">--请选择章节--</option>
+                                    <option value="第一章">第一章</option>
+                                    <option value="第二章">第二章</option>
+                                    <option value="第三章">第三章</option>
+                                    <option value="第四章">第四章</option>
+                                    <option value="第五章">第五章</option>
+                                </select>
+                            </td>
                         </tr>
                         <tr>
                             <td>题目</td>
@@ -136,18 +151,31 @@
                         <tr>
                             <td>难度类型</td>
                             <td>
-                                    <select class="form-control" name="questiontypeid" >
+                                    <select class="form-control" name="questiontypeid"  id="questiontypeid">
                                         <option value="0">--请选择题目难度--</option>
                                         <option th:style="${type=='判断题'?'':'display: none'}" value="4">简单</option>
                                         <option th:style="${type=='判断题'?'':'display: none'}" value="5">一般</option>
-                                        <option th:style="${type=='判断题'?'':'display: none'}" value="6">苦难</option>
+                                        <option th:style="${type=='判断题'?'':'display: none'}" value="6">困难</option>
                                         <option th:style="${type=='简答题'?'':'display: none'}" value="7">简单</option>
                                         <option th:style="${type=='简答题'?'':'display: none'}" value="8">一般</option>
-                                        <option th:style="${type=='简答题'?'':'display: none'}" value="9">苦难</option>
+                                        <option th:style="${type=='简答题'?'':'display: none'}" value="9">困难</option>
                                         <option th:style="${type=='填空题'?'':'display: none'}" value="10">简单</option>
                                         <option th:style="${type=='填空题'?'':'display: none'}" value="11">一般</option>
-                                        <option th:style="${type=='填空题'?'':'display: none'}" value="12">苦难</option>
+                                        <option th:style="${type=='填空题'?'':'display: none'}" value="12">困难</option>
                                     </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>章节</td>
+                            <td>
+                                <select class="form-control" id="chapter"  name="chapter">
+                                    <option value="">--请选择章节--</option>
+                                    <option value="第一章">第一章</option>
+                                    <option value="第二章">第二章</option>
+                                    <option value="第三章">第三章</option>
+                                    <option value="第四章">第四章</option>
+                                    <option value="第五章">第五章</option>
+                                </select>
                             </td>
                         </tr>
                         <tr>

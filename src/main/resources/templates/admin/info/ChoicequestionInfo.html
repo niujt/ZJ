@@ -18,16 +18,17 @@
 <body>
 <div th:include="menu.html :: menu" width="100%" height="100%" frameborder="no" border="0"></div>
 <div class="container">
-    <table class="table table-hover">
+    <table class="table table-hover" style="width: 1350px;margin-left: -200px;">
         <thead>
         <tr>
             <th>编号</th>
             <th>难度</th>
             <th>题目</th>
+            <th>章节</th>
             <th width="400px">选项</th>
             <th>答案</th>
             <th>分值</th>
-            <th width="100px" colspan="2">操作
+            <th width="100px" colspan="2">
                 <button class="btn btn-info" data-toggle="modal" data-target="#addModal">新增</button>
                 <button class="btn btn-info" onclick="location.href='/zj/question'">返回</button>
             </th>
@@ -39,6 +40,7 @@
             <td th:text="${questionStat.count}"></td>
             <td th:text="${question.level}"></td>
             <td th:text="${question.text}"></td>
+            <td th:text="${question.chapter}"></td>
             <td>
                 <ul class="list-group">
                     <li class="list-group-item" th:text="${question.option1}"></li>
@@ -90,7 +92,20 @@
                                     <option value="0">--请选择题目难度--</option>
                                     <option value="1">简单</option>
                                     <option value="2">一般</option>
-                                    <option value="3">苦难</option>
+                                    <option value="3">困难</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>章节</td>
+                            <td>
+                                <select class="form-control" id="chapter" name="chapter">
+                                    <option value="">--请选择章节--</option>
+                                    <option value="第一章">第一章</option>
+                                    <option value="第二章">第二章</option>
+                                    <option value="第三章">第三章</option>
+                                    <option value="第四章">第四章</option>
+                                    <option value="第五章">第五章</option>
                                 </select>
                             </td>
                         </tr>
@@ -168,7 +183,20 @@
                                     <option value="0">--请选择题目类型--</option>
                                     <option value="1">简单</option>
                                     <option value="2">一般</option>
-                                    <option value="3">苦难</option>
+                                    <option value="3">困难</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>章节</td>
+                            <td>
+                                <select class="form-control"  name="chapter">
+                                    <option value="">--请选择章节--</option>
+                                    <option value="第一章">第一章</option>
+                                    <option value="第二章">第二章</option>
+                                    <option value="第三章">第三章</option>
+                                    <option value="第四章">第四章</option>
+                                    <option value="第五章">第五章</option>
                                 </select>
                             </td>
                         </tr>

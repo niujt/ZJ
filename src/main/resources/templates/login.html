@@ -1,6 +1,5 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
     <title>智能组卷测试系统--登录页面</title>
     <link rel="stylesheet" type="text/css" th:href="@{~/css/base.css}">
     <link rel="stylesheet" type="text/css" th:href="@{~/css/bootstrap.css}">
@@ -22,7 +21,7 @@
             <div class="logo">
             </div>
             <span style="font-family: '华文行楷';font-size: 25px;">考试管理系统<br>登录页面</span>
-            <div class="formDiv" style="margin-top: -20px;margin-left: 40px;">
+            <div class="formDiv" style="margin-top: -10px;margin-left: 40px;">
                 <form id="login" action="/zj/login" method="post" onSubmit="return doLogin()">
                     <span id="message" style="text-align: center;color: red"></span><br><br>
                     <label class="user">

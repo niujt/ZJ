@@ -9,8 +9,8 @@
         on dp.questiontypeid=qt.id
     </select>
     <insert id="addDesignProblem" parameterType="com.wxthxy.zj.entity.Question">
-        insert into Designproblem(questiontypeid,text,answer)
-        values(#{questiontypeid},#{text},#{answer})
+        insert into Designproblem(questiontypeid,text,answer,chapter)
+        values(#{questiontypeid},#{text},#{answer},#{chapter})
     </insert>
     <select id="findDesignProblem4Paper" resultType="com.wxthxy.zj.entity.Question">
         select qt.type as type,qt.level as level,qt.score as score,dp.* from Designproblem dp left join questiontype qt
@@ -26,7 +26,7 @@
         delete from Designproblem where id=#{id}
     </delete>
     <update id="updateDesignProblemById" parameterType="com.wxthxy.zj.entity.Question">
-        update designproblem set questiontypeid=#{questiontypeid},text=#{text},answer=#{answer} where id=#{id}
+        update designproblem set questiontypeid=#{questiontypeid},text=#{text},answer=#{answer},chapter=#{chapter} where id=#{id}
     </update>
     <select id="findDesignproblemByid" resultType="com.wxthxy.zj.entity.Question" parameterType="Integer">
         select qt.type as type,qt.level as level,qt.score as score,dp.* from Designproblem dp left join questiontype qt

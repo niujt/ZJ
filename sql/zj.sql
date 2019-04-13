@@ -302,19 +302,19 @@ CREATE TABLE `questiontype`  (
 -- ----------------------------
 INSERT INTO `questiontype` VALUES (1, '选择题', '简单', '2');
 INSERT INTO `questiontype` VALUES (2, '选择题', '一般', '2');
-INSERT INTO `questiontype` VALUES (3, '选择题', '苦难', '2');
+INSERT INTO `questiontype` VALUES (3, '选择题', '困难', '2');
 INSERT INTO `questiontype` VALUES (4, '判断题', '简单', '1');
 INSERT INTO `questiontype` VALUES (5, '判断题', '一般', '1');
-INSERT INTO `questiontype` VALUES (6, '判断题', '苦难', '1');
+INSERT INTO `questiontype` VALUES (6, '判断题', '困难', '1');
 INSERT INTO `questiontype` VALUES (7, '简答题', '简单', '10');
 INSERT INTO `questiontype` VALUES (8, '简答题', '一般', '10');
-INSERT INTO `questiontype` VALUES (9, '简答题', '苦难', '10');
+INSERT INTO `questiontype` VALUES (9, '简答题', '困难', '10');
 INSERT INTO `questiontype` VALUES (10, '填空题', '简单', '5');
 INSERT INTO `questiontype` VALUES (11, '填空题', '一般', '5');
-INSERT INTO `questiontype` VALUES (12, '填空题', '苦难', '5');
+INSERT INTO `questiontype` VALUES (12, '填空题', '困难', '5');
 INSERT INTO `questiontype` VALUES (13, '应用题', '简单', '20');
 INSERT INTO `questiontype` VALUES (14, '应用题', '一般', '20');
-INSERT INTO `questiontype` VALUES (15, '应用题', '苦难', '20');
+INSERT INTO `questiontype` VALUES (15, '应用题', '困难', '20');
 
 -- ----------------------------
 -- Table structure for student
