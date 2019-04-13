@@ -21,7 +21,8 @@
         <div class="loginBox">
             <div class="logo">
             </div>
-            <div class="formDiv">
+            <span style="font-family: '华文行楷';font-size: 25px;">考试管理系统<br>登录页面</span>
+            <div class="formDiv" style="margin-top: -20px;margin-left: 40px;">
                 <form id="login" action="/zj/login" method="post" onSubmit="return doLogin()">
                     <span id="message" style="text-align: center;color: red"></span><br><br>
                     <label class="user">
@@ -33,15 +34,15 @@
                         <i class="iconfont">&#xe615;</i>
                     </label><br>
                     <label class="user">
-                        <select id="identity" name="identity" class="form-control" style="margin-left: 70px">
+                        <select id="identity" name="identity" class="form-control" style="width:215px">
                             <option value="teacher">老师</option>
                             <option value="student">学生</option>
                             <option value="admin" selected>管理员</option>
                         </select>
-                        <i class="iconfont">&#xe614;</i>
                     </label><br>
-                    <button type="submit" class="btn btn-info">登 录</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-dark" onclick="regist()" type="button" >注册</button>
+                    <button type="submit" class="btn btn-info">登 录</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-info" onclick="regist()" type="button" >注册</button>
                 </form>
             </div>
         </div>
