@@ -29,10 +29,17 @@
                         <th>应用题数量</th>
                         <th>简答题数量</th>
                         <th>分数</th>
-                        <th>操作&nbsp;&nbsp;&nbsp;<button class="btn btn-info" data-toggle="modal" data-target="#addModal">新增</button></th>
+                        <th><button class="btn btn-info" data-toggle="modal" data-target="#addModal">新增</button></th>
+                </tr>
+                <tr>
+                    <form action="/zj/paper" method="get">
+                    <td >试卷名称:</td>
+                    <td ><input style="width:100px" type="text"   name="name" class="form-control"></td>
+                    <td colspan="6"></td>
+                    <td colspan="1"><button type="submit" class="btn btn-primary" >查询</button></td>
+                    </form>
                 </tr>
                 </thead>
-
                 <tbody>
                 <tr th:each="paper,paperStat:${pageBean.items}">
                         <td th:text="${paperStat.count}"></td>
@@ -45,6 +52,7 @@
                         <td th:text="${paper.score}"></td>
                         <td>
                                 <button class="btn btn-info"  th:onclick="'javascript:paperInfo(\''+${paper.id}+'\');'">详情</button>
+                                <button class="btn btn-info" th:style="${(session.role==1||session.identity=='admin')?'':'display: none'}" th:onclick="'javascript:delPaper(\''+${paper.id}+'\');'">删除</button>
                                 <button class="btn btn-info" th:style="${session.identity=='teacher'?'':'display: none'}"  th:onclick="'javascript:showAnswer(\''+${paper.id}+'\');'">查看答案</button>
                                 <button class="btn btn-info" th:style="${session.identity=='student'?'':'display: none'}" th:onclick="'javascript:doIt(\''+${paper.id}+'\');'">答题</button>
                         </td>

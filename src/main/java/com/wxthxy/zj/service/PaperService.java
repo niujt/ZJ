@@ -13,7 +13,7 @@ public interface PaperService {
      * 获取试卷列表
      * @return
      */
-    PageBean<Paper> getAll(Integer currentPage);
+    PageBean<Paper> getAll(Integer currentPage,String name);
 
     /**
      * 试卷详情（作业）
@@ -35,5 +35,6 @@ public interface PaperService {
      * @return
      */
     String getPaperByManual(ManualPaper manualPaper);
-    int getCount();
+    int getCount(String name);
+    String deletePaperById(Integer id);
 }

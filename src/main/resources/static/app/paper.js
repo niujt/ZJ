@@ -4,6 +4,23 @@
 function paperInfo(id){
     location.href="/zj/paperInfo/"+id;
 }
+
+/**
+ * 试卷删除
+ */
+function delPaper(id){
+    console.log(id)
+    if(confirm("确认要删除该试题的信息么")){
+        $.ajax({
+            url: "/zj/paper/"+id,
+            type:"DELETE",
+            success:function(data){
+                console.log(data);
+            }
+        });
+    }
+    location.reload();
+}
 function back(){
     location.href="/zj/paper";
 }

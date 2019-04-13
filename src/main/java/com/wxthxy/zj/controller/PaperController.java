@@ -26,11 +26,17 @@ public class PaperController {
      * @return
      */
     @RequestMapping(value = "/paper",method = RequestMethod.GET)
-    public String paperList(HttpServletRequest request,@RequestParam(value = "currentPage",required = false)Integer currentPage){
+    public String paperList(HttpServletRequest request,@RequestParam(value = "currentPage",required = false)Integer currentPage,@RequestParam(value = "name",required = false)String name){
         if(currentPage==null){
             currentPage=1;
         }
-        PageBean pageBean=service.getAll(currentPage);
+        if(name!=null) {
+            name = name.trim();
+        }
+        else if(name ==null){
+            name ="";
+        }
+        PageBean pageBean=service.getAll(currentPage,name);
         List<Paper> papers=pageBean.getItems();
         PaperUtils.doPaper(papers);
         request.setAttribute("cps",questionService.findAllQuestions("填空题"));
@@ -40,6 +46,19 @@ public class PaperController {
         request.setAttribute("cqs",questionService.findAllQuestions("选择题"));
         request.setAttribute("pageBean",pageBean);
         return "/admin/PaperManagement";
+    }
+
+    /**
+     * 删除试题
+     * @param id
+     * @return
+     */
+    @RequestMapping(value ="/paper/{id}",method = RequestMethod.DELETE)
+    @ResponseBody
+    public JSONObject deleterPaper(@PathVariable Integer id){
+        JSONObject json=new JSONObject();
+        json.put("message",service.deletePaperById(id));
+        return json;
     }
 
     /**
@@ -84,5 +103,6 @@ public class PaperController {
        json.put("message",service.getPaperByManual(manualPaper));
         return json;
     }
+
 
 }
