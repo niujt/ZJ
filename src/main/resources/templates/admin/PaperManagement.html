@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>作业管理页面</title>
+    <title>试卷管理页面</title>
         <link rel="stylesheet" type="text/css" th:href="@{~/css/bootstrap.css}">
         <script type="text/javascript" th:src="@{~/js/jquery-3.3.1.min.js}"></script>
         <script type="text/javascript" th:src="@{~/js/jquery.form.js}"></script>
@@ -29,7 +29,10 @@
                         <th>应用题数量</th>
                         <th>简答题数量</th>
                         <th>分数</th>
-                        <th><button class="btn btn-info" data-toggle="modal" data-target="#addModal">新增</button></th>
+                        <th>
+                                <button class="btn btn-info" data-toggle="modal" data-target="#addModal">新增</button>
+                                <button class="btn btn-info" onclick="history.go(-1)" th:style="${session.identity=='student'?'':'display: none'}">返回</button>
+                        </th>
                 </tr>
                 <tr>
                     <form action="/zj/paper" method="get">

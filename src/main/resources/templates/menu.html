@@ -33,10 +33,10 @@
             <a class="nav-link" href="/zj/paper">试卷管理</a>
         </li>
         <li class="nav-item" th:style="${session.identity=='student'?'':'display: none'}">
-            <a class="nav-link" href="/zj/student/homework">作业管理</a>
+            <a class="nav-link" href="/zj/student/homework">试卷测试</a>
         </li>
         <li class="nav-item" th:style="${session.identity=='teacher'?'':'display: none'}">
-            <a class="nav-link" href="/zj/teacher/homework">作业管理</a>
+            <a class="nav-link" href="/zj/teacher/homework">试卷批改</a>
         </li>
         <li class="nav-item" th:style="${session.identity=='admin'?'':'display: none'}">
             <a class="nav-link" href="/zj/student">学生管理</a>

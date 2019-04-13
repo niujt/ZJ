@@ -71,8 +71,10 @@ function manualPaper(){
  * 做考卷
  */
 function doIt(id){
-    alert('即将进入考试界面，考试时间120分钟');
-    location.href="/zj/student/homework/"+id;
+    if(confirm('即将进入考试界面，考试时间120分钟')){
+        location.href="/zj/student/homework/"+id;
+    }
+
 }
 
 
