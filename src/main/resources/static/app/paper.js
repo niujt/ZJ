@@ -4,6 +4,23 @@
 function paperInfo(id){
     location.href="/zj/paperInfo/"+id;
 }
+
+/**
+ * 试卷删除
+ */
+function delPaper(id){
+    console.log(id)
+    if(confirm("确认要删除该试题的信息么")){
+        $.ajax({
+            url: "/zj/paper/"+id,
+            type:"DELETE",
+            success:function(data){
+                console.log(data);
+            }
+        });
+    }
+    location.reload();
+}
 function back(){
     location.href="/zj/paper";
 }
@@ -54,8 +71,10 @@ function manualPaper(){
  * 做考卷
  */
 function doIt(id){
-    alert('即将进入考试界面，考试时间120分钟');
-    location.href="/zj/student/homework/"+id;
+    if(confirm('即将进入考试界面，考试时间120分钟')){
+        location.href="/zj/student/homework/"+id;
+    }
+
 }
 
 

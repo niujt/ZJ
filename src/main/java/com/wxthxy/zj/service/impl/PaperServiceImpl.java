@@ -30,11 +30,11 @@ public class PaperServiceImpl  implements PaperService {
     ApplicationQuestionDAO applicationQuestionDAO;
 
     @Override
-    public PageBean<Paper> getAll(Integer currentPage) {
+    public PageBean<Paper> getAll(Integer currentPage,String name) {
         //设置分页信息，分别是当前页数和每页显示的总记录数【记住：必须在mapper接口中的方法执行之前设置该分页信息】
         PageHelper.startPage(currentPage, PageBean.pageSize);
-        List<Paper> allItems = paperDAO.findAllPapers();
-        int countNums = paperDAO.getCount();           //总记录数
+        List<Paper> allItems = paperDAO.findAllPapers(name);
+        int countNums = paperDAO.getCount(name);           //总记录数
         PageBean<Paper> pageData = new PageBean<>(currentPage, PageBean.pageSize, countNums);
         pageData.setItems(allItems);
         return pageData;
@@ -216,7 +216,12 @@ public class PaperServiceImpl  implements PaperService {
     }
 
     @Override
-    public int getCount() {
-        return paperDAO.getCount();
+    public int getCount(String name) {
+        return paperDAO.getCount(name);
+    }
+
+    @Override
+    public String deletePaperById(Integer id) {
+        return paperDAO.deletePaperById(id)>0?ServiceMessage.Common_message_02.getText():ServiceMessage.Common_message_03.getText();
     }
 }

@@ -11,8 +11,8 @@
         on cq.questiontypeid=qt.id
     </select>
     <insert id="addChoicequestion" parameterType="com.wxthxy.zj.entity.Choicequestion">
-        insert into Choicequestion(questiontypeid,text,option1,option2,option3,option4,option5,answer)
-        values(#{questiontypeid},#{text},#{option1},#{option2},#{option3},#{option4},#{option5},#{answer});
+        insert into Choicequestion(questiontypeid,text,option1,option2,option3,option4,option5,answer,chapter)
+        values(#{questiontypeid},#{text},#{option1},#{option2},#{option3},#{option4},#{option5},#{answer},#{chapter});
     </insert>
     <delete id="delChoicequestion" parameterType="Integer">
         delete from Choicequestion where id=#{id}
@@ -23,7 +23,7 @@
     </select>
     <update id="updateChoiceQuestion">
         update Choicequestion set questiontypeid=#{questiontypeid},text=#{text},option1=#{option1},option2=#{option2},option3=#{option3},option4=#{option4},option5=#{option5},
-        answer=#{answer}
+        answer=#{answer},chapter=#{chapter}
         where id=#{id}
     </update>
     <select id="findChoicequestion4Paper" resultType="com.wxthxy.zj.entity.Choicequestion">

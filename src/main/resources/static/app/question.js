@@ -48,6 +48,7 @@ function loadChoiceQue(id){
             $("#text").val(data.ChoiceQuestion.text);
             $("#id").val(data.ChoiceQuestion.id);
             $("#questiontypeid").val(data.ChoiceQuestion.questiontypeid);
+            $("#chapter").val(data.ChoiceQuestion.chapter);
             $("#option1").val(data.ChoiceQuestion.option1);
             $("#option2").val(data.ChoiceQuestion.option2);
             $("#option3").val(data.ChoiceQuestion.option3);
@@ -95,6 +96,7 @@ function loadQueInfo(id){
             $("#text").val(data.application.text);
             $("#id").val(data.application.id);
             $("#questiontypeid").val(data.application.questiontypeid);
+            $("#chapter").val(data.application.chapter);
             $("#imgurl").attr('src',data.application.imgurl).attr('style','width:50px;height:50px');
             $("#answer").val(data.application.answer);
         }
@@ -152,6 +154,8 @@ function loadOtherQue(type,id){
             console.log(data);
             $("#text").val(data.otherQue.text);
             $("#id").val(data.otherQue.id);
+            $("#questiontypeid").val(data.otherQue.questiontypeid);
+            $("#chapter").val(data.otherQue.chapter);
             $("#answer").val(data.otherQue.answer);
         }
     });

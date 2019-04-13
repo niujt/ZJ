@@ -18,9 +18,9 @@ public enum ServiceMessage {
     Common_message_01(1,"添加成功"),
     Common_message_02(2,"删除成功"),
     Common_message_03(3,"删除失败"),
-    Common_message_04(3,"更新成功"),
-    Common_message_05(3,"更新失败"),
-    Common_message_06(1,"添加失败");
+    Common_message_04(4,"更新成功"),
+    Common_message_05(5,"更新失败"),
+    Common_message_06(6,"添加失败");
     private  int num;
     private String text;
     ServiceMessage(int num,String text){

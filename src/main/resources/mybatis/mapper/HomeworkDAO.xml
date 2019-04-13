@@ -12,7 +12,9 @@
         on p.id=h.paperid
     </select>
     <select id="findAllByStuid" resultType="com.wxthxy.zj.entity.HomeWork" parameterType="String">
-        select * from homework where stuid=#{stuid}
+        select h.*,p.name as papername from homework h
+        left join paper p on h.paperid =p.id
+        where stuid=#{stuid}
     </select>
     <select id="findHomeworkById" resultType="com.wxthxy.zj.entity.HomeWork" parameterType="Integer">
         select * from homework where id=#{id};
