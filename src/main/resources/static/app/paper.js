@@ -52,10 +52,16 @@ else {
  * @returns {boolean}
  */
 function autoPaper(){
+    console.log(11111)
     $("#autoPaper").ajaxSubmit(function(message) {
         console.log(message);
+        if(message.message=="添加成功"){
+            parent.location.reload();
+        }
+        else {
+            alert(message.message);
+        }
     });
-    parent.location.reload();
     return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
 }
 

@@ -8,6 +8,13 @@
         select qt.type as type,qt.level as level,qt.score as score,c.* from Completion c left join questiontype qt
         on c.questiontypeid=qt.id
     </select>
+    <select id="getAllCompletionsByChapter" resultType="com.wxthxy.zj.entity.Question" >
+        select qt.type as type,qt.level as level,qt.score as score,c.* from Completion c left join questiontype qt
+                                                                                                   on c.questiontypeid=qt.id
+        <if test="chapter !='chapter' and chapter !=null">
+            where c.chapter=#{chapter}
+        </if>
+    </select>
     <insert id="addCompletion" parameterType="com.wxthxy.zj.entity.Question">
         insert into Completion(questiontypeid,text,answer,chapter)
         values(#{questiontypeid},#{text},#{answer},#{chapter})

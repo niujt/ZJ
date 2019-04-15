@@ -29,12 +29,15 @@ public class PaperUtils {
      * @return
      */
     public static List<Integer> getQuestionIds(String str){
-        String[] ids=str.split(",");
         List<Integer> _ids=new ArrayList<>();
-        for(String id:ids){
-            Integer _id=Integer.parseInt(id);
-            _ids.add(_id);
+        if(!str.equals("error")){
+            String[] ids=str.split(",");
+            for(String id:ids){
+                Integer _id=Integer.parseInt(id);
+                _ids.add(_id);
+            }
         }
+
         return _ids;
     }
 
@@ -45,9 +48,14 @@ public class PaperUtils {
      * @return  随机试题集合
      */
     public static String autoQustionId(List<Integer> ids,Integer number){
-        Map map = new HashMap();
-        String str="";
-       // List listNew = new ArrayList();
+        String message="";
+        if(ids.size()<number){
+            message="error";
+        }
+        else{
+            Map map = new HashMap();
+            String str="";
+            // List listNew = new ArrayList();
             while (map.size() < number) {
                 int random = (int) (Math.random() * ids.size());
                 if (!map.containsKey(random)) {
@@ -55,8 +63,9 @@ public class PaperUtils {
                     str+=ids.get(random)+",";
                 }
             }
-            str=str.substring(0,str.length()-1);
-            return str;
+            message=str.substring(0,str.length()-1);
+        }
+            return message;
     }
 
     /**

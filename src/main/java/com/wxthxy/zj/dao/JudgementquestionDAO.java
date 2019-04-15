@@ -17,6 +17,8 @@ public interface JudgementquestionDAO {
      */
     List<Question> getAllJudgementquestions();
 
+    List<Question> getAllJudgementquestionsByChapter(@Param("chapter")String chapter);
+
     /**
      * 添加判断题
      * @param question

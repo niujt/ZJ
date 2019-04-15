@@ -12,6 +12,7 @@ public interface CompletionDAO {
      */
     Integer getCount();
 
+    List<Question> getAllCompletionsByChapter(@Param("chapter")String chapter);
     /**
      * 获取所有的填空题详情
      * @return

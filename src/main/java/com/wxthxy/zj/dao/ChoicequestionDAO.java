@@ -9,6 +9,7 @@ import java.util.List;
 public interface ChoicequestionDAO {
     Integer getCount();
     List<Choicequestion> findAllChoicequestion();
+    List<Choicequestion> findAllChoicequestionByChapter(@Param("chapter")String chapter);
     int addChoicequestion(Choicequestion choicequestion);
     int delChoicequestion(@Param("id") Integer id);
     Choicequestion getChoiceQuestionByid(@Param("id") Integer id);

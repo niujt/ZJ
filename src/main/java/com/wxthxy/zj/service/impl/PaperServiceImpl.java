@@ -123,71 +123,114 @@ public class PaperServiceImpl  implements PaperService {
         Map map=new HashMap();
         //试题总分
         double score=0.0;
+        //返回信息
+        StringBuilder message=new StringBuilder();
         //获取随机选择题id的集合
         List<Integer> cqids=new ArrayList<>();
-        for(Choicequestion choicequestion:choicequestionDAO.findAllChoicequestion()){
+        for(Choicequestion choicequestion:choicequestionDAO.findAllChoicequestionByChapter(paper.getChoiceQueChapter())){
             cqids.add(choicequestion.getId());
         }
         map.put("cqids",getIds(cqids,paper.getChoiceQueNumber()));
         //选择题总分
-        List<Choicequestion> list1=choicequestionDAO.findChoicequestion4Paper(PaperUtils.getQuestionIds(getIds(cqids,paper.getChoiceQueNumber())));
-        for(Choicequestion q:list1){
-            score+=Double.parseDouble(q.getScore());
+        if(!getIds(cqids,paper.getChoiceQueNumber()).equals("error")){
+            List<Choicequestion> list1=choicequestionDAO.findChoicequestion4Paper(PaperUtils.getQuestionIds(getIds(cqids,paper.getChoiceQueNumber())));
+            for(Choicequestion q:list1){
+                score+=Double.parseDouble(q.getScore());
+            }
         }
         //获取随机应用id的集合
         List<Integer> aqids=new ArrayList<>();
-        for(ApplicationQuestion applicationQuestion:applicationQuestionDAO.getAllApplicationQuestion()){
+        for(ApplicationQuestion applicationQuestion:applicationQuestionDAO.getAllApplicationQuestionByChapter(paper.getAppQueChapter())){
             aqids.add(applicationQuestion.getId());
         }
         map.put("aqids",getIds(aqids,paper.getAppQueNumber()));
         //应用题总分
-        List<ApplicationQuestion> list2=applicationQuestionDAO.findApplicationQuestion4Paper(PaperUtils.getQuestionIds(getIds(aqids,paper.getAppQueNumber())));
-        for(ApplicationQuestion q:list2){
-            score+=Double.parseDouble(q.getScore());
+        if(!getIds(aqids,paper.getAppQueNumber()).equals("error")){
+            List<ApplicationQuestion> list2=applicationQuestionDAO.findApplicationQuestion4Paper(PaperUtils.getQuestionIds(getIds(aqids,paper.getAppQueNumber())));
+            for(ApplicationQuestion q:list2){
+                score+=Double.parseDouble(q.getScore());
+            }
         }
         //获取随机填空题id的集合
         List<Integer> cpids=new ArrayList<>();
-        for(Question question:completionDAO.getAllCompletions()){
+        for(Question question:completionDAO.getAllCompletionsByChapter(paper.getCompQueChapter())){
             cpids.add(question.getId());
         }
         map.put("cpids",getIds(cpids,paper.getCompQueNumber()));
         //填空题总分
-        List<Question> list3=completionDAO.findCompletion4Paper(PaperUtils.getQuestionIds(getIds(cpids,paper.getCompQueNumber())));
-        for(Question q:list3){
-            score+=Double.parseDouble(q.getScore());
+        if(!getIds(cpids,paper.getCompQueNumber()).equals("error")){
+            List<Question> list3=completionDAO.findCompletion4Paper(PaperUtils.getQuestionIds(getIds(cpids,paper.getCompQueNumber())));
+            for(Question q:list3){
+                score+=Double.parseDouble(q.getScore());
+            }
         }
         //获取随机判断题id的集合
         List<Integer> jqids=new ArrayList<>();
-        for(Question question:judgementquestionDAO.getAllJudgementquestions()){
+        for(Question question:judgementquestionDAO.getAllJudgementquestionsByChapter(paper.getJudgeQueChapter())){
             jqids.add(question.getId());
         }
         map.put("jqids",getIds(jqids,paper.getJudgeQueNumber()));
         //判断题总分
-        List<Question> list4=judgementquestionDAO.findJudgementQuestion4Paper(PaperUtils.getQuestionIds(getIds(jqids,paper.getJudgeQueNumber())));
-        for(Question q:list4){
-            score+=Double.parseDouble(q.getScore());
+        if(!getIds(jqids,paper.getJudgeQueNumber()).equals("error")){
+            List<Question> list4=judgementquestionDAO.findJudgementQuestion4Paper(PaperUtils.getQuestionIds(getIds(jqids,paper.getJudgeQueNumber())));
+            for(Question q:list4){
+                score+=Double.parseDouble(q.getScore());
+            }
         }
         //获取随机简答题id的集合
         List<Integer> dpids=new ArrayList<>();
-        for(Question question:designproblemDAO.getAllDesignproblems()){
+        for(Question question:designproblemDAO.getAllDesignproblemsByChapter(paper.getDesignQueChapter())){
             dpids.add(question.getId());
         }
         map.put("dpids",getIds(dpids,paper.getDesignQueNumber()));
         //简答题总分
-        List<Question> list5=designproblemDAO.findDesignProblem4Paper(PaperUtils.getQuestionIds(getIds(dpids,paper.getDesignQueNumber())));
-        for(Question q:list5){
-            score+=Double.parseDouble(q.getScore());
+        if(!getIds(dpids,paper.getDesignQueNumber()).equals("error")){
+            List<Question> list5=designproblemDAO.findDesignProblem4Paper(PaperUtils.getQuestionIds(getIds(dpids,paper.getDesignQueNumber())));
+            for(Question q:list5){
+                score+=Double.parseDouble(q.getScore());
+            }
         }
         //添加考题
         Paper paper1=new Paper();
-        paper1.setJq((String)map.get("jqids"));
-        paper1.setAq((String)map.get("aqids"));
-        paper1.setCq((String)map.get("cqids"));
-        paper1.setDp((String)map.get("dpids"));
-        paper1.setCp((String)map.get("cpids"));
-        paper1.setName(paper.getName());
-        paper1.setScore(score+"");
-        return paperDAO.addPaper(paper1)>0? ServiceMessage.Common_message_01.getText():ServiceMessage.Common_message_06.getText();
+        String jqidfinal=(String)map.get("jqids");
+        String aqidfinal=(String)map.get("aqids");
+        String cqidfinal=(String)map.get("cqids");
+        String dpidfinal=(String)map.get("dpids");
+        String cpidfinal=(String)map.get("cpids");
+        if(cqidfinal.equals("error")){
+            message.append("选择题数量不足");
+        }
+        if(cpidfinal.equals("error")){
+            message.append(" 填空题数量不足");
+        }
+        if(jqidfinal.equals("error")){
+            message.append(" 判断题数量不足");
+        }
+        if(dpidfinal.equals("error")){
+            message.append(" 简答题数量不足");
+        }
+        if(aqidfinal.equals("error")){
+            message.append(" 应用题数量不足");
+        }
+        else{
+            paper1.setJq(jqidfinal);
+            paper1.setAq(aqidfinal);
+            paper1.setCq(cqidfinal);
+            paper1.setDp(dpidfinal);
+            paper1.setCp(cpidfinal);
+            paper1.setName(paper.getName());
+            paper1.setScore(score+"");
+            if(!paper1.getScore().contains("100")){
+                message=new StringBuilder();
+                message.append("总分为"+score+"分，不符合100分要求，请重新组卷");
+            }
+            else{
+                message=new StringBuilder();
+                message.append(paperDAO.addPaper(paper1)>0? ServiceMessage.Common_message_01.getText():ServiceMessage.Common_message_06.getText());
+            }
+        }
+
+        return message.toString();
     }
 
     /**
