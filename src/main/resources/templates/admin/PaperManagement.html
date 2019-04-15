@@ -18,6 +18,16 @@
 <div th:include="menu.html :: menu" width="100%" height="355px" frameborder="no" border="0"  ></div>
 <div class="container">
         <h3>试卷管理</h3>
+        <table>
+                <tr>
+                <form action="/zj/paper" method="get">
+                        <td >试卷名称:</td>
+                        <td ><input style="width:100px" type="text"   name="name" class="form-control"></td>
+                        <td colspan="6"></td>
+                        <td colspan="1"><button type="submit" class="btn btn-primary" >查询</button></td>
+                </form>
+                </tr>
+        </table>
         <table class="table table-hover">
                 <thead>
                 <tr>
@@ -33,14 +43,6 @@
                                 <button class="btn btn-info" data-toggle="modal" data-target="#addModal">新增</button>
                                 <button class="btn btn-info" onclick="history.go(-1)" th:style="${session.identity=='student'?'':'display: none'}">返回</button>
                         </th>
-                </tr>
-                <tr>
-                    <form action="/zj/paper" method="get">
-                    <td >试卷名称:</td>
-                    <td ><input style="width:100px" type="text"   name="name" class="form-control"></td>
-                    <td colspan="6"></td>
-                    <td colspan="1"><button type="submit" class="btn btn-primary" >查询</button></td>
-                    </form>
                 </tr>
                 </thead>
                 <tbody>
@@ -168,12 +170,14 @@
                                                 <table class="table table-responsive-sm">
                                                         <thead>
                                                                 <th>题目类型</th>
-                                                                <th colspan="2">题数  <button type="submit" class="btn btn-primary" style="float: right">添加</button></th>
+                                                                <th>章节</th>
+                                                                <th colspan="2">题数 </th>
+                                                                <th><button type="submit" class="btn btn-primary" style="float: right">添加</button></th>
                                                         </thead>
                                                         <tbody>
                                                         <tr>
                                                                 <td>试题名称 :</td>
-                                                                <td>
+                                                                <td colspan="3">
                                                                        <input style="width: 400px;" name="name" class="form-control" type="text" >
                                                                 </td>
                                                         </tr>
@@ -195,7 +199,7 @@
                                                                 <td>题</td>
                                                         </tr>
                                                         <tr>
-                                                                <td>填空题(5分)</td>
+                                                                <td>填空题(5分):</td>
                                                                 <td>
                                                                         <select class="form-control" name="CompQueChapter">
                                                                                 <option value="chapter">--请选择章节--</option>
@@ -210,7 +214,7 @@
                                                                 <td>题</td>
                                                         </tr>
                                                         <tr>
-                                                                <td>判断题(1分)</td>
+                                                                <td>判断题(1分):</td>
                                                                 <td>
                                                                         <select class="form-control" name="JudgeQueChapter">
                                                                                 <option value="chapter">--请选择章节--</option>
@@ -225,7 +229,7 @@
                                                                 <td>题</td>
                                                         </tr>
                                                         <tr>
-                                                                <td>简答题(10分)</td>
+                                                                <td>简答题(10分):</td>
                                                                 <td>
                                                                         <select class="form-control" name="DesignQueChapter">
                                                                                 <option value="chapter">--请选择章节--</option>
@@ -240,7 +244,7 @@
                                                                 <td>题</td>
                                                         </tr>
                                                         <tr>
-                                                                <td>应用题(20分)</td>
+                                                                <td>应用题(20分):</td>
                                                                 <td>
                                                                         <select class="form-control" name="AppQueChapter">
                                                                                 <option value="chapter">--请选择章节--</option>
