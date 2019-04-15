@@ -13,6 +13,10 @@
     <select id="findStudentByStuid" resultType="com.wxthxy.zj.entity.Student" parameterType="String">
         select * from student where stuid=#{stuid};
     </select>
+    <select id="findStudentByName" resultType="com.wxthxy.zj.entity.Student" parameterType="String">
+        select * from student
+            where name like concat('%',#{name},'%');
+    </select>
     <select id="findStudentByLoginId" resultType="com.wxthxy.zj.entity.Student" parameterType="Integer">
         select * from student where loginid=#{loginid};
     </select>

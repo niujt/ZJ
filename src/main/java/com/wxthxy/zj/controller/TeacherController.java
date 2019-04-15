@@ -73,11 +73,12 @@ public class TeacherController {
      * @return
      */
     @RequestMapping(value ="/teacher/homework",method = RequestMethod.GET)
-    public String homework(HttpServletRequest request,@RequestParam(value = "currentPage",required = false)Integer currentPage){
+    public String homework(HttpServletRequest request,@RequestParam(value = "currentPage",required = false)Integer currentPage,@RequestParam(value = "papername",required = false)String papername
+            ,@RequestParam(value = "studentname",required = false)String studentname){
         if(currentPage==null){
             currentPage=1;
         }
-        PageBean pageBean=homeworkService.getAll(currentPage);
+        PageBean pageBean=homeworkService.getAll(currentPage,papername,studentname);
         request.setAttribute("pageBean",pageBean);
         return "/teacher/homework";
     }

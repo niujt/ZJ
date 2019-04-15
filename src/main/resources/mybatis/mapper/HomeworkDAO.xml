@@ -3,6 +3,19 @@
 <mapper namespace="com.wxthxy.zj.dao.HomeworkDAO" >
     <select id="getCount" resultType="Integer">
         select count(1) from homework
+        where 1=1
+        <if test="paperids!=null">
+            and paperid in
+            <foreach collection="paperids" item="paperid" index="index" open="(" close=")" separator=",">
+                #{paperid}
+            </foreach>
+        </if>
+        <if test="studentids!=null">
+            and stuid in
+            <foreach collection="studentids" item="stuid" index="index" open="(" close=")" separator=",">
+                #{stuid}
+            </foreach>
+        </if>
     </select>
     <select id="getCountByStuId" resultType="Integer" parameterType="String">
         select count(1) from homework where stuid=#{stuid}
@@ -10,6 +23,19 @@
     <select id="findAll" resultType="com.wxthxy.zj.entity.HomeWork">
         select p.name as papername,h.* from homework h left join paper p
         on p.id=h.paperid
+        where 1=1
+        <if test="paperids!=null">
+            and h.paperid in
+            <foreach collection="paperids" item="paperid" index="index" open="(" close=")" separator=",">
+                #{paperid}
+            </foreach>
+        </if>
+        <if test="studentids!=null">
+            and h.stuid in
+            <foreach collection="studentids" item="stuid" index="index" open="(" close=")" separator=",">
+                #{stuid}
+            </foreach>
+        </if>
     </select>
     <select id="findAllByStuid" resultType="com.wxthxy.zj.entity.HomeWork" parameterType="String">
         select h.*,p.name as papername from homework h

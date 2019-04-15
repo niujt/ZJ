@@ -10,6 +10,10 @@
     <select id="findPaperById" resultType="com.wxthxy.zj.entity.Paper" parameterType="Integer">
         select * from paper where id=#{id}
     </select>
+    <select id="findPaperByName" resultType="com.wxthxy.zj.entity.Paper" parameterType="String">
+        select * from paper
+        where name like concat('%',#{name},'%')
+    </select>
     <insert id="addPaper" parameterType="com.wxthxy.zj.entity.Paper">
       insert into paper(name,cq,cp,jq,dp,aq,score) values(#{name},#{cq},#{cp},#{jq},#{dp},#{aq},#{score})
     </insert>

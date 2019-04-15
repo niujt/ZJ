@@ -14,4 +14,5 @@ public interface StudentDAO {
     int updateLoginId(Student student);
     Student findStudentByLoginId(@Param("loginid")Integer id);
     Integer getCount();
+    List<Student> findStudentByName(@Param("name") String name);
 }

@@ -1,9 +1,13 @@
 package com.wxthxy.zj.utils;
 
+import com.wxthxy.zj.dao.PaperDAO;
+import com.wxthxy.zj.dao.StudentDAO;
 import com.wxthxy.zj.entity.HomeWork;
+import com.wxthxy.zj.entity.Paper;
 import com.wxthxy.zj.entity.Student;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -75,5 +79,44 @@ public class HomeworkUtils {
         homeWork.setClassname(student.getClassname());
         homeWork.setStudentname(student.getName());
         return  homeWork;
+    }
+
+    public  static Map<String,List> getPaperIdsAndStudentIds(String papername, PaperDAO paperDAO, String studentname, StudentDAO studentDAO){
+        Map<String,List> map=new HashMap<>();
+        Integer paperid=99999999;
+        List<Integer> paperids=new ArrayList<>();
+        if(papername!="" &&papername!=null){
+            papername=papername.trim();
+            List<Paper> paperList=paperDAO.findPaperByName(papername);
+            if(paperList!=null){
+                paperids.add(paperid);
+                for(Paper paper:paperList){
+                    paperid=paper.getId();
+                    paperids.add(paperid);
+                }
+            }
+        }
+        else{
+            paperids=null;
+        }
+        String studentid="99999999";
+        List<String> studentids=new ArrayList<>();
+        if(studentname!="" &&studentname!=null){
+            studentname=studentname.trim();
+            List<Student> studentList=studentDAO.findStudentByName(studentname);
+            if(studentList!=null){
+                studentids.add(studentid);
+                for(Student student:studentList){
+                    studentid=student.getStuid();
+                    studentids.add(studentid);
+                }
+            }
+        }
+        else{
+            studentids=null;
+        }
+        map.put("paperids",paperids);
+        map.put("studentids",studentids);
+        return map;
     }
 }
