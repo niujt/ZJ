@@ -247,15 +247,42 @@ public class PaperServiceImpl  implements PaperService {
     @Override
     public String getPaperByManual(ManualPaper manualPaper) {
         String score="";
-        int _score=2*manualPaper.getCq().length+1*manualPaper.getJq().length+5*manualPaper.getCp().length+10*manualPaper.getDp().length+20*manualPaper.getAq().length;
-        score=_score+".0";
-        Paper paper=new Paper(manualPaper.getName()
-                ,PaperUtils.array2String(manualPaper.getCq())
-                ,PaperUtils.array2String(manualPaper.getCp())
-                ,PaperUtils.array2String(manualPaper.getDp())
-                ,PaperUtils.array2String(manualPaper.getJq())
-                ,PaperUtils.array2String(manualPaper.getAq()),score);
-        return  paperDAO.addPaper(paper)>0? ServiceMessage.Common_message_01.getText():ServiceMessage.Common_message_06.getText();
+        StringBuilder message =new StringBuilder();
+        if(manualPaper.getCq()==null){
+            message.append("请选择至少一道选择题");
+        }
+        if(manualPaper.getJq()==null){
+            message.append("  请选择至少一道判断题");
+
+        }
+        if(manualPaper.getCp()==null){
+            message.append("  请选择至少一道填空题");
+        }
+        if(manualPaper.getDp()==null){
+            message.append("  请选择至少一道简答题");
+        }
+        if(manualPaper.getAq()==null){
+            message.append("  请选择至少一道应用题");
+        }
+        else{
+            int _score=2*manualPaper.getCq().length+1*manualPaper.getJq().length+5*manualPaper.getCp().length+10*manualPaper.getDp().length+20*manualPaper.getAq().length;
+            score=_score+".0";
+            if(!score.contains("100")){
+                message =new StringBuilder();
+                message.append("分数为"+score+"不符合满分100分要求要求");
+            }
+            else{
+                Paper paper=new Paper(manualPaper.getName()
+                        ,PaperUtils.array2String(manualPaper.getCq())
+                        ,PaperUtils.array2String(manualPaper.getCp())
+                        ,PaperUtils.array2String(manualPaper.getDp())
+                        ,PaperUtils.array2String(manualPaper.getJq())
+                        ,PaperUtils.array2String(manualPaper.getAq()),score);
+                message =new StringBuilder();
+                message.append(paperDAO.addPaper(paper)>0? ServiceMessage.Common_message_01.getText():ServiceMessage.Common_message_06.getText());
+            }
+        }
+        return message.toString();
     }
 
     @Override
