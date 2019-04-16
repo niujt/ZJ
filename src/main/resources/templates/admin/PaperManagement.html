@@ -100,14 +100,18 @@
                                                                 <button type="button" class="btn btn-primary" onclick="showchoice()">&#8595;</button>
                                                                 <button type="button" class="btn btn-primary" onclick="offchoice()">&#8593;</button>
                                                                 <div id="choiceinfo" style="display: none;overflow:scroll; width:100%; height:200px;">
-                                                                        <ul class="list-group" th:each="cq,cqStat:${cqs}" >
-                                                                                <li class="list-group-item">
-                                                                                        <label class="form-check-label">
-                                                                                        <input type="checkbox" class="form-check-input"  name="cq" th:value="${cq.id}">
-                                                                                        <span th:text="${cqStat.count}"></span>.
-                                                                                        <span th:text="${cq.text}+'--------'+${cq.chapter}"></span>
-                                                                                        </label>
+                                                                        <ul class="list-group" th:each="cq:${cqs}">
+                                                                                <li class="list-group-item"   th:text="${cq.key}" style="font-weight: bold;">
                                                                                 </li>
+                                                                                <ul class="list-group" th:each="c:${cq.value}">
+                                                                                        <li class="list-group-item" >
+                                                                                        <label class="form-check-label">
+                                                                                        <input type="checkbox" class="form-check-input"  name="cq" th:value="${c.id}">
+                                                                                        <span th:text="${cStat.count}"></span>.
+                                                                                        <span th:text="${c.text}"></span>
+                                                                                        </label>
+                                                                                        </li>
+                                                                                </ul>
                                                                         </ul>
                                                                 </div>
                                                         </li>
@@ -115,14 +119,18 @@
                                                                 <button type="button" class="btn btn-primary" onclick="showcomp()">&#8595;</button>
                                                                 <button type="button" class="btn btn-primary" onclick="offcomp()">&#8593;</button>
                                                                 <div id="compinfo" style="display: none;overflow:scroll; width:100%; height:200px;">
-                                                                        <ul class="list-group" th:each="cp,cpStat:${cps}" >
-                                                                                <li class="list-group-item">
-                                                                                        <label class="form-check-label">
-                                                                                        <input type="checkbox" class="form-check-input"  name="cp" th:value="${cp.id}">
-                                                                                        <span th:text="${cpStat.count}"></span>.
-                                                                                        <span th:text="${cp.text}+'--------'+${cp.chapter}"></span>
-                                                                                        </label>
+                                                                        <ul class="list-group" th:each="cp:${cps}">
+                                                                                <li class="list-group-item"   th:text="${cp.key}" style="font-weight: bold;">
                                                                                 </li>
+                                                                                <ul class="list-group" th:each="c:${cp.value}">
+                                                                                        <li class="list-group-item" >
+                                                                                                <label class="form-check-label">
+                                                                                                        <input type="checkbox" class="form-check-input"  name="cp" th:value="${c.id}">
+                                                                                                        <span th:text="${cStat.count}"></span>.
+                                                                                                        <span th:text="${c.text}"></span>
+                                                                                                </label>
+                                                                                        </li>
+                                                                                </ul>
                                                                         </ul>
                                                                 </div>
                                                         </li>
@@ -130,14 +138,18 @@
                                                                 <button type="button" class="btn btn-primary" onclick="showjudge()">&#8595;</button>
                                                                 <button type="button" class="btn btn-primary" onclick="offjudge()">&#8593;</button>
                                                                 <div id="judgeinfo" style="display: none;overflow:scroll; width:100%; height:200px;">
-                                                                        <ul class="list-group" th:each="jq,jqStat:${jqs}" >
-                                                                                <li class="list-group-item">
-                                                                                        <label class="form-check-label">
-                                                                                        <input type="checkbox" class="form-check-input"  name="jq" th:value="${jq.id}">
-                                                                                        <span th:text="${jqStat.count}"></span>.
-                                                                                        <span th:text="${jq.text}+'--------'+${jq.chapter}"></span>
-                                                                                        </label>
+                                                                        <ul class="list-group" th:each="jq:${jqs}">
+                                                                                <li class="list-group-item"   th:text="${jq.key}" style="font-weight: bold;">
                                                                                 </li>
+                                                                                <ul class="list-group" th:each="j:${jq.value}">
+                                                                                        <li class="list-group-item" >
+                                                                                                <label class="form-check-label">
+                                                                                                        <input type="checkbox" class="form-check-input"  name="jq" th:value="${j.id}">
+                                                                                                        <span th:text="${jStat.count}"></span>.
+                                                                                                        <span th:text="${j.text}"></span>
+                                                                                                </label>
+                                                                                        </li>
+                                                                                </ul>
                                                                         </ul>
                                                                 </div>
                                                         </li>
@@ -145,14 +157,18 @@
                                                                 <button type="button" class="btn btn-primary" onclick="showdesign()">&#8595;</button>
                                                                 <button type="button" class="btn btn-primary" onclick="offdesign()">&#8593;</button>
                                                                 <div id="designinfo" style="display: none;overflow:scroll; width:100%; height:200px;">
-                                                                        <ul class="list-group" th:each="dp,dpStat:${dps}" >
-                                                                                <li class="list-group-item">
-                                                                                        <label class="form-check-label">
-                                                                                        <input type="checkbox" class="form-check-input"  name="dp" th:value="${dp.id}">
-                                                                                        <span th:text="${dpStat.count}"></span>.
-                                                                                        <span th:text="${dp.text}+'--------'+${dp.chapter}"></span>
-                                                                                        </label>
+                                                                        <ul class="list-group" th:each="dp:${dps}">
+                                                                                <li class="list-group-item"   th:text="${dp.key}" style="font-weight: bold;">
                                                                                 </li>
+                                                                                <ul class="list-group" th:each="d:${dp.value}">
+                                                                                        <li class="list-group-item" >
+                                                                                                <label class="form-check-label">
+                                                                                                        <input type="checkbox" class="form-check-input"  name="dp" th:value="${d.id}">
+                                                                                                        <span th:text="${dStat.count}"></span>.
+                                                                                                        <span th:text="${d.text}"></span>
+                                                                                                </label>
+                                                                                        </li>
+                                                                                </ul>
                                                                         </ul>
                                                                 </div>
                                                         </li>
@@ -160,14 +176,18 @@
                                                                 <button type="button" class="btn btn-primary" onclick="showapp()">&#8595;</button>
                                                                 <button type="button" class="btn btn-primary" onclick="offapp()">&#8593;</button>
                                                                 <div id="appinfo" style="display: none;overflow:scroll; width:100%; height:200px;">
-                                                                        <ul class="list-group" th:each="aq,aqStat:${aqs}" >
-                                                                                <li class="list-group-item">
-                                                                                        <label class="form-check-label">
-                                                                                        <input type="checkbox" class="form-check-input" value="" name="aq" th:value="${aq.id}">
-                                                                                        <span th:text="${aqStat.count}"></span>.
-                                                                                        <span th:text="${aq.text}+'--------'+${aq.chapter}"></span>
-                                                                                        </label>
+                                                                        <ul class="list-group" th:each="aq:${aqs}">
+                                                                                <li class="list-group-item"   th:text="${aq.key}" style="font-weight: bold;">
                                                                                 </li>
+                                                                                <ul class="list-group" th:each="a:${aq.value}">
+                                                                                        <li class="list-group-item" >
+                                                                                                <label class="form-check-label">
+                                                                                                        <input type="checkbox" class="form-check-input"  name="aq" th:value="${a.id}">
+                                                                                                        <span th:text="${aStat.count}"></span>.
+                                                                                                        <span th:text="${a.text}"></span>
+                                                                                                </label>
+                                                                                        </li>
+                                                                                </ul>
                                                                         </ul>
                                                                 </div>
                                                         </li>
