@@ -35,7 +35,7 @@
                  <span th:text="${cqanswer}"></span>
             </span>
             </div>
-            <span style="float: right">选择题总分：<input name="cqScore" style="width: 100px;">分</span>
+            <span style="float: right">选择题总分：<input name="cqScore" style="width: 100px;" th:value="${cqscore}" readonly>分</span>
         </div>
     </div>
 </div>
@@ -57,7 +57,7 @@
                 <span th:text="${cpanswer}"></span>
             </div>
             </div>
-            <span style="float: right">填空题总分：<input name="cpScore" style="width: 100px;">分</span>
+            <span style="float: right">填空题总分：<input name="cpScore" style="width: 100px;" th:value="${cpscore}" readonly>分</span>
         </div>
     </div>
 </div>
@@ -79,7 +79,7 @@
                  <span th:text="${jqanswer}"></span>
             </span>
             </div>
-            <span style="float: right">判断题总分：<input name="jqScore" style="width: 100px;">分</span>
+            <span style="float: right">判断题总分：<input name="jqScore" style="width: 100px;" th:value="${jqscore}" readonly>分</span>
         </div>
     </div>
 </div>

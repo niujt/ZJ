@@ -1,12 +1,14 @@
 package com.wxthxy.zj.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.wxthxy.zj.entity.Answer;
 import com.wxthxy.zj.entity.HomeWork;
 import com.wxthxy.zj.entity.Teacher;
 import com.wxthxy.zj.entity.TeacherCorrection;
 import com.wxthxy.zj.service.HomeworkService;
 import com.wxthxy.zj.service.PaperService;
 import com.wxthxy.zj.service.TeacherService;
+import com.wxthxy.zj.utils.HomeworkUtils;
 import com.wxthxy.zj.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -93,13 +95,18 @@ public class TeacherController {
     public String homework(@PathVariable Integer id,HttpServletRequest request){
         Map map=homeworkService.getHomeworkAnswer(id);
         HomeWork homeWork=homeworkService.findHomeWork(id);
+        Answer answer=(Answer) paperService.getPaperById(homeWork.getPaperid()).get("answers");
+        Map scoreMap=HomeworkUtils.scoreMain(map,answer);
         request.setAttribute("id",id);
         request.setAttribute("cpanswers", map.get("cpanswers"));
         request.setAttribute("cqanswers",map.get("cqanswers"));
         request.setAttribute("jqanswers",map.get("jqanswers"));
         request.setAttribute("dpanswers",map.get("dpanswers"));
         request.setAttribute("aqanswers",map.get("aqanswers"));
-        request.setAttribute("answers",paperService.getPaperById(homeWork.getPaperid()).get("answers"));
+        request.setAttribute("answers",answer);
+        request.setAttribute("cpscore",scoreMap.get("cpscore"));
+        request.setAttribute("cqscore",scoreMap.get("cqscore"));
+        request.setAttribute("jqscore",scoreMap.get("jqscore"));
         return "/teacher/homeworkinfo";
     }
 
