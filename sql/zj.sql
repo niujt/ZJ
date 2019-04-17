@@ -11,7 +11,7 @@
  Target Server Version : 50712
  File Encoding         : 65001
 
- Date: 13/04/2019 14:10:16
+ Date: 18/04/2019 00:03:45
 */
 
 SET NAMES utf8mb4;
@@ -81,7 +81,7 @@ INSERT INTO `choicequestion` VALUES (20, 3, '下述哪一条是顺序存储结�
 INSERT INTO `choicequestion` VALUES (21, 2, '下面关于线性表的叙述中，错误的是哪一个？（    ）', 'A．线性表采用顺序存储，必须占用一片连续的存储单元。', 'B．线性表采用顺序存储，便于进行插入和删除操作。', 'C．线性表采用链接存储，不必占用一片连续的存储单元。', 'D．线性表采用链接存储，便于插入和删除操作。', '', 'B', '第二章');
 INSERT INTO `choicequestion` VALUES (22, 3, '线性表是具有n个（    ）的有限序列（n>0）。', 'A．表元素', 'B．字符', 'C．数据元素', 'D．数据项', ' E．信息项', 'C', '第二章');
 INSERT INTO `choicequestion` VALUES (23, 1, '若某线性表最常用的操作是存取任一指定序号的元素和在最后进行插入和删除运算，则利用（    ）存储方式最节省时间。', 'A．顺序表', 'B．双链表', 'C．带头结点的双循环链表', 'D．单循环链表', '', 'A', '第二章');
-INSERT INTO `choicequestion` VALUES (24, 2, '某线性表中最常用的操作是在最后一个元素之后插入一个元素和删除第一个元素，则采用（    ）存储方式最节省运算时间。', 'A．单链表', ' B．仅有头指针的单循环链表', 'C．双链表', ' D．仅有尾指针的单循环链表', '', 'D', '3');
+INSERT INTO `choicequestion` VALUES (24, 2, '某线性表中最常用的操作是在最后一个元素之后插入一个元素和删除第一个元素，则采用（    ）存储方式最节省运算时间。', 'A．单链表', ' B．仅有头指针的单循环链表', 'C．双链表', ' D．仅有尾指针的单循环链表', '', 'D', '第二章');
 
 -- ----------------------------
 -- Table structure for completion
@@ -158,18 +158,17 @@ CREATE TABLE `homework`  (
                            `score` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
                            `dotype` int(11) NULL DEFAULT NULL,
                            PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 29 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of homework
 -- ----------------------------
-INSERT INTO `homework` VALUES (1, '张三', '计科1501', 1521026, 1, 'B;C;D;C', '44,asdas11', '数据的逻辑结构反映数据元素之间的逻辑关系（即数据元素之间的关联方式或“邻接关系”），数据的存储结构是数据结构在计算机中的表示，包括数据元素的表示及其关系的表示。数据的运算是对数据定义的一组操作，运算是定义在逻辑结构上的，和存储结构无关，而运算的实现则是依赖于存储结构。;逻辑结构相同但存储不同，可以是不同的数据结构。例如，线性表的逻辑结构属于线性结构，采用顺序存储结构为顺序表，而采用链式存储结构称为线性链表。;栈和队列的逻辑结构相同，其存储表示也可相同（顺序存储和链式存储），但由于其运算集合不同而成为不同的数据结构。', 'F;F;F', '1212', 1, 'eqweqwe', 'wqeqwewqeqwe', '36.0', 0);
-INSERT INTO `homework` VALUES (2, '李四', '计科1501', 1521027, 1, 'A;A;A;A', '12,2121;3232,343;212,SF', '数据的逻辑结构的撒阿达数据的运算是对数据定义的一组操作出现逆差安康大家看到;穿着小内裤来打卡了的卡拉。;出现在门口就带电机其运算集合不同而成为不同的数据结构。', 'T;T;T', '12', 1, '啊实打实打算', '啊实打实·', '60.0', 0);
-INSERT INTO `homework` VALUES (3, '王六', '计科1540', 2121, 2, 'B;B;B;B', '44,asdas11', '对于相同的大苏打大;2323;EQE', 'T;F;T', '12121', 1, '啊大大', '的亲吻请问·', '15.0', 0);
+INSERT INTO `homework` VALUES (3, '王六', '计科1540', 2121, 2, 'B;B;B;B', '44,asdas11', '对于相同的大苏打大;2323;EQE', 'T;F;T', '12121', 1, '啊大大', '的亲吻请问·', '5.0', 0);
 INSERT INTO `homework` VALUES (6, '张三', '计科1501', 1521026, 1, 'A;A;C;C;C', 'wqwq,212;aczxc,1321', '对于相同的zxc;asedased;', 'T;F;F', 'wqewqeqw', 0, NULL, NULL, NULL, 0);
-INSERT INTO `homework` VALUES (10, '张三', '1501', 1521026, 14, 'A;A;C;D;D;D;D;D;D', 'ASA,212,122,212;2121', 'SFSDFS;DSFSDF', 'T;T', 'ADASD', 0, NULL, NULL, NULL, 0);
-INSERT INTO `homework` VALUES (11, '张三', '1501', 1521026, 14, 'A;A;C;D;D;D;D;D;D', 'ASA,212,122,212;2121', 'SFSDFS;DSFSDF', 'T;T', 'ADASD', 0, NULL, NULL, NULL, 0);
-INSERT INTO `homework` VALUES (12, '张三', '1501', 1521026, 14, 'A;A;C;D;D;D;D;D;D', 'ASA,212,122,212;2121', 'SFSDFS;DSFSDF', 'T;T', 'ADASD', 0, NULL, NULL, NULL, 0);
+INSERT INTO `homework` VALUES (10, '张三', '计科1501', 1521026, 14, 'A;A;C;D;D;D;D;D;D', 'ASA,212,122,212;2121', 'SFSDFS;DSFSDF', 'T;T', 'ADASD', 0, NULL, NULL, NULL, 0);
+INSERT INTO `homework` VALUES (11, '张三', '计科1501', 1521026, 14, 'A;A;C;D;D;D;D;D;D', 'ASA,212,122,212;2121', 'SFSDFS;DSFSDF', 'T;T', 'ADASD', 0, NULL, NULL, NULL, 0);
+INSERT INTO `homework` VALUES (12, '张三', '计科1501', 1521026, 14, 'A;A;C;D;D;D;D;D;D', 'ASA,212,122,212;2121', 'SFSDFS;DSFSDF', 'T;T', 'ADASD', 0, NULL, NULL, NULL, 0);
+INSERT INTO `homework` VALUES (15, '张三', '软件工程1501', 1521026, 18, 'B;A;D;A;C;A;B;B;C;A;C;A;A;B;B;A;E;B;B', 'qewqwe,eqweq;eqwe,ewqeq,eqweq,eqwe;dasdasda;safdsfsd;dasda', 'dasdasdas', 'F;T;T;F;T;F;T', 'dasdasdasda', 0, NULL, NULL, NULL, 0);
 
 -- ----------------------------
 -- Table structure for judgementquestion
@@ -280,7 +279,7 @@ CREATE TABLE `paper`  (
                         `aq` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
                         `score` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
                         PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of paper
@@ -292,6 +291,8 @@ INSERT INTO `paper` VALUES (13, '人工选题001', '1,3,8', '2,5', '1,7', '2,3',
 INSERT INTO `paper` VALUES (14, '自动选题002', '28,19,1,13,21,2,12,20,9,16', '2,5', '1,7', '14,21', '1', '62.0');
 INSERT INTO `paper` VALUES (15, '自动选题003', '23,18,13,11,20', '2', '1,4', '8', '1', '46.0');
 INSERT INTO `paper` VALUES (16, 'xcfzxc', '24,22,20,13,14,12,3,23,8,18', '9,12,7,11,2', '9,10', '11,22,24,19,15', '2,4', '110.0');
+INSERT INTO `paper` VALUES (17, '1212', '12', '5', '4,9,10', '22,8,23', '4,2,3', '100.0');
+INSERT INTO `paper` VALUES (18, '20190417', '1,2,3,8,9,10,11,12,13,14,15,16,17,18,20,21,22,23,24', '12,1,2,5,6', '1', '1,2,3,8,9,10,14', '1', '100.0');
 
 -- ----------------------------
 -- Table structure for questiontype
