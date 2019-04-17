@@ -31,9 +31,9 @@ public class HomeworkServiceImpl implements HomeworkService {
     @Override
     public PageBean<HomeWork> getAll(Integer currentPage,String papername,String studentname) {
         //设置分页信息，分别是当前页数和每页显示的总记录数【记住：必须在mapper接口中的方法执行之前设置该分页信息】
-        PageHelper.startPage(currentPage, PageBean.pageSize);
         List<Paper> paperList=paperDAO.findPaperByName(papername);
         Map map=HomeworkUtils.getPaperIdsAndStudentIds(papername,paperDAO,studentname,studentDAO);
+        PageHelper.startPage(currentPage, PageBean.pageSize);
         List<HomeWork> allItems = dao.findAll((List)map.get("paperids"),(List)map.get("studentids"));
         int countNums = dao.getCount((List<Integer>)map.get("paperids"),(List<Integer>)map.get("studentids"));    //总记录数
         PageBean<HomeWork> pageData = new PageBean<>(currentPage, PageBean.pageSize, countNums);
