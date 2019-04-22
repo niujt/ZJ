@@ -11,7 +11,7 @@
  Target Server Version : 50712
  File Encoding         : 65001
 
- Date: 18/04/2019 00:03:45
+ Date: 22/04/2019 22:45:58
 */
 
 SET NAMES utf8mb4;
@@ -158,17 +158,18 @@ CREATE TABLE `homework`  (
                            `score` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
                            `dotype` int(11) NULL DEFAULT NULL,
                            PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of homework
 -- ----------------------------
-INSERT INTO `homework` VALUES (3, '王六', '计科1540', 2121, 2, 'B;B;B;B', '44,asdas11', '对于相同的大苏打大;2323;EQE', 'T;F;T', '12121', 1, '啊大大', '的亲吻请问·', '5.0', 0);
-INSERT INTO `homework` VALUES (6, '张三', '计科1501', 1521026, 1, 'A;A;C;C;C', 'wqwq,212;aczxc,1321', '对于相同的zxc;asedased;', 'T;F;F', 'wqewqeqw', 0, NULL, NULL, NULL, 0);
+INSERT INTO `homework` VALUES (3, '王六', '计科1540', 2121, 2, 'B;B;B;B', '44,asdas11', '对于相同的大苏打大;2323;EQE', 'T;F;T', '12121', 1, 'adasda', 'sasasas', '5.0', 0);
+INSERT INTO `homework` VALUES (6, '张三', '计科1501', 1521026, 1, 'A;A;C;C;C', 'wqwq,212;aczxc,1321', '对于相同的zxc;asedased;', 'T;F;F', 'wqewqeqw', 0, '', '', NULL, 0);
 INSERT INTO `homework` VALUES (10, '张三', '计科1501', 1521026, 14, 'A;A;C;D;D;D;D;D;D', 'ASA,212,122,212;2121', 'SFSDFS;DSFSDF', 'T;T', 'ADASD', 0, NULL, NULL, NULL, 0);
 INSERT INTO `homework` VALUES (11, '张三', '计科1501', 1521026, 14, 'A;A;C;D;D;D;D;D;D', 'ASA,212,122,212;2121', 'SFSDFS;DSFSDF', 'T;T', 'ADASD', 0, NULL, NULL, NULL, 0);
 INSERT INTO `homework` VALUES (12, '张三', '计科1501', 1521026, 14, 'A;A;C;D;D;D;D;D;D', 'ASA,212,122,212;2121', 'SFSDFS;DSFSDF', 'T;T', 'ADASD', 0, NULL, NULL, NULL, 0);
 INSERT INTO `homework` VALUES (15, '张三', '软件工程1501', 1521026, 18, 'B;A;D;A;C;A;B;B;C;A;C;A;A;B;B;A;E;B;B', 'qewqwe,eqweq;eqwe,ewqeq,eqweq,eqwe;dasdasda;safdsfsd;dasda', 'dasdasdas', 'F;T;T;F;T;F;T', 'dasdasdasda', 0, NULL, NULL, NULL, 0);
+INSERT INTO `homework` VALUES (16, '张三', '软件工程1501', 1521026, 1, 'A;B;B;C;B', 'dada,212;eqeq,eqweq,eqweq,eqweq', 'dasdasdasdas;asdadada;dasdada', 'F;F;T', 'dasdasdasdasd', 1, NULL, NULL, '2.0', 1);
 
 -- ----------------------------
 -- Table structure for judgementquestion
@@ -206,24 +207,6 @@ INSERT INTO `judgementquestion` VALUES (21, 5, '对任何数据结构链式存�
 INSERT INTO `judgementquestion` VALUES (22, 4, '顺序存储方式只能用于存储线性结构。', 'F', '第二章');
 INSERT INTO `judgementquestion` VALUES (23, 6, '集合与线性表的区别在于是否按关键字排序。', 'F', '第二章');
 INSERT INTO `judgementquestion` VALUES (24, 6, '所谓静态链表就是一直不发生变化的链表。', 'F', '第二章');
-
--- ----------------------------
--- Table structure for keywords
--- ----------------------------
-DROP TABLE IF EXISTS `keywords`;
-CREATE TABLE `keywords`  (
-                           `id` int(11) NOT NULL AUTO_INCREMENT,
-                           `keywords` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
-                           PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of keywords
--- ----------------------------
-INSERT INTO `keywords` VALUES (1, '数据的逻辑结构');
-INSERT INTO `keywords` VALUES (2, '对于相同的');
-INSERT INTO `keywords` VALUES (3, '运算集合不同而成为不同的数据结构');
-INSERT INTO `keywords` VALUES (4, '数据的运算是对数据定义的一组操作');
 
 -- ----------------------------
 -- Table structure for login
