@@ -68,7 +68,7 @@
 </div>
 
 <!-- 新增模态框 -->
-<form id="evaluate" method="post" action="/zj/teacher/evaHomework">
+<form id="evaluate" method="post" action="/zj/teacher/evaHomework" onsubmit="return alert('评价和建议已完成，上传成功')">
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content" style="width: 800px;">
@@ -86,12 +86,12 @@
                         </tr>
                         <tr>
                             <td>评<br>价<br>:</td>
-                            <td>   <textarea  name="evaluate" class="form-control" type="text" rows="5"></textarea></td>
+                            <td>   <textarea  name="evaluate" class="form-control" type="text" rows="5" required></textarea></td>
                         </tr>
                         <tr>
                             <td>建<br>议<br>:</td>
                             <td>
-                                <textarea  name="proposal" class="form-control" type="text" rows="5"></textarea>
+                                <textarea  name="proposal" class="form-control" type="text" rows="5" required></textarea>
                             </td>
                         </tr>
                     </table>
