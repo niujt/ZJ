@@ -7,10 +7,7 @@ import com.wxthxy.zj.entity.HomeWork;
 import com.wxthxy.zj.entity.Paper;
 import com.wxthxy.zj.entity.Student;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 作业工具类
@@ -206,5 +203,41 @@ public class HomeworkUtils {
         }
         map2.put("jqscore",score);
         return map2;
+    }
+
+    public static Map check(List<String> list,int length){
+        Set<String> keyWord=new HashSet<>();
+        Map<String,List<String>> map=new HashMap<>();
+
+        for(int k=0;k<list.size();k++){
+            for(int i=0;i<list.get(k).length();i++){
+                for(int j=i+1;j<list.get(k).length();j++){
+                    String regex=list.get(k).substring(i,j);
+                    keyWord.add(regex);
+                }
+            }
+        }
+
+        keyWord.forEach(key->{
+            List<String> newlist=new ArrayList<>();
+            for(int i=0;i<list.size();i++){
+                if(list.get(i).contains(key)){
+                    newlist.add(list.get(i));
+                }
+            }
+            map.put(key,newlist);
+        });
+        Iterator<Map.Entry<String, List<String>>> it = map.entrySet().iterator();
+        while(it.hasNext()){
+            Map.Entry<String, List<String>> entry=it.next();
+            String key=entry.getKey();
+            if(key.length()<length||map.get(key).size()<=1){
+                it.remove();        //OK
+            }
+        }
+        for(String key:map.keySet()){
+            System.out.println(key+"===="+map.get(key));
+        }
+        return map;
     }
 }

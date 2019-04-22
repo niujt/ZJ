@@ -31,9 +31,13 @@
         <hr>
     </div>
     <button type="button" style="float: right;" class="button btn-info" onclick="history.go(-1)">返回</button>
-    <div th:each="key:${keys}" style="visibility: hidden">
-        <span th:id="${key.id}" th:text="${key.keywords}"></span>
+    <div th:each="dps:${dps}" style="visibility: hidden">
+        <span th:id="${dps.key}" th:text="${dps.key}"></span>
     </div>
+    <div th:each="aps:${aps}" style="visibility: hidden">
+        <span th:id="${aps.key}" th:text="${aps.key}"></span>
+    </div>
+
 </div>
 <script type="text/javascript">
     $(function(){
