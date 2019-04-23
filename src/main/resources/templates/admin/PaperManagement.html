@@ -97,13 +97,13 @@
                                                         <li class="list-group-item">题目类型&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button style="float: right" type="submit" class="btn btn-primary" >添加</button></li>
                                                         <li class="list-group-item">试题名称&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="name" ></li>
                                                         <li class="list-group-item">选择题(2分):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                <button type="button" class="btn btn-primary" onclick="showchoice()">&#8595;</button>
-                                                                <button type="button" class="btn btn-primary" onclick="offchoice()">&#8593;</button>
+                                                                <button type="button" class="btn btn-primary" onclick="showchoice()"><img th:src="@{~/img/down.png}" style="width:15px;"></button>
+                                                                <button type="button" class="btn btn-primary" onclick="offchoice()"><img th:src="@{~/img/up.png}" style="width:15px;"></button>
                                                                 <div id="choiceinfo" style="display: none;overflow:scroll; width:100%; height:200px;">
-                                                                        <ul class="list-group" th:each="cq:${cqs}">
-                                                                                <li class="list-group-item"   th:text="${cq.key}" style="font-weight: bold;">
+                                                                        <ul class="list-group" th:each="cq,cqStat:${cqs}">
+                                                                                <li class="list-group-item" th:text="${cq.key}" style="font-weight: bold;" onclick="ddd($(this))">
                                                                                 </li>
-                                                                                <ul class="list-group" th:each="c:${cq.value}">
+                                                                                <ul class="list-group" th:each="c,cStat:${cq.value}" style="display:none">
                                                                                         <li class="list-group-item" >
                                                                                         <label class="form-check-label">
                                                                                         <input type="checkbox" class="form-check-input"  name="cq" th:value="${c.id}">
@@ -116,13 +116,13 @@
                                                                 </div>
                                                         </li>
                                                         <li class="list-group-item">填空题(5分):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                <button type="button" class="btn btn-primary" onclick="showcomp()">&#8595;</button>
-                                                                <button type="button" class="btn btn-primary" onclick="offcomp()">&#8593;</button>
+                                                                <button type="button" class="btn btn-primary" onclick="showcomp()"><img th:src="@{~/img/down.png}" style="width:15px;"></button>
+                                                                <button type="button" class="btn btn-primary" onclick="offcomp()"><img th:src="@{~/img/up.png}" style="width:15px;"></button>
                                                                 <div id="compinfo" style="display: none;overflow:scroll; width:100%; height:200px;">
                                                                         <ul class="list-group" th:each="cp:${cps}">
-                                                                                <li class="list-group-item"   th:text="${cp.key}" style="font-weight: bold;">
+                                                                                <li class="list-group-item"   th:text="${cp.key}" style="font-weight: bold;" onclick="ddd($(this))">
                                                                                 </li>
-                                                                                <ul class="list-group" th:each="c:${cp.value}">
+                                                                                <ul class="list-group" th:each="c:${cp.value}" style="display:none">
                                                                                         <li class="list-group-item" >
                                                                                                 <label class="form-check-label">
                                                                                                         <input type="checkbox" class="form-check-input"  name="cp" th:value="${c.id}">
@@ -135,13 +135,13 @@
                                                                 </div>
                                                         </li>
                                                         <li class="list-group-item">判断题(1分):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                <button type="button" class="btn btn-primary" onclick="showjudge()">&#8595;</button>
-                                                                <button type="button" class="btn btn-primary" onclick="offjudge()">&#8593;</button>
+                                                                <button type="button" class="btn btn-primary" onclick="showjudge()"><img th:src="@{~/img/down.png}" style="width:15px;"></button>
+                                                                <button type="button" class="btn btn-primary" onclick="offjudge()"><img th:src="@{~/img/up.png}" style="width:15px;"></button>
                                                                 <div id="judgeinfo" style="display: none;overflow:scroll; width:100%; height:200px;">
                                                                         <ul class="list-group" th:each="jq:${jqs}">
-                                                                                <li class="list-group-item"   th:text="${jq.key}" style="font-weight: bold;">
+                                                                                <li class="list-group-item"   th:text="${jq.key}" style="font-weight: bold;" onclick="ddd($(this))">
                                                                                 </li>
-                                                                                <ul class="list-group" th:each="j:${jq.value}">
+                                                                                <ul class="list-group" th:each="j:${jq.value}" style="display:none">
                                                                                         <li class="list-group-item" >
                                                                                                 <label class="form-check-label">
                                                                                                         <input type="checkbox" class="form-check-input"  name="jq" th:value="${j.id}">
@@ -154,13 +154,13 @@
                                                                 </div>
                                                         </li>
                                                         <li class="list-group-item">简答题(10分):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                <button type="button" class="btn btn-primary" onclick="showdesign()">&#8595;</button>
-                                                                <button type="button" class="btn btn-primary" onclick="offdesign()">&#8593;</button>
+                                                                <button type="button" class="btn btn-primary" onclick="showdesign()"><img th:src="@{~/img/down.png}" style="width:15px;"></button>
+                                                                <button type="button" class="btn btn-primary" onclick="offdesign()"><img th:src="@{~/img/up.png}" style="width:15px;"></button>
                                                                 <div id="designinfo" style="display: none;overflow:scroll; width:100%; height:200px;">
                                                                         <ul class="list-group" th:each="dp:${dps}">
-                                                                                <li class="list-group-item"   th:text="${dp.key}" style="font-weight: bold;">
+                                                                                <li class="list-group-item"   th:text="${dp.key}" style="font-weight: bold;" onclick="ddd($(this))">
                                                                                 </li>
-                                                                                <ul class="list-group" th:each="d:${dp.value}">
+                                                                                <ul class="list-group" th:each="d:${dp.value}" style="display:none">
                                                                                         <li class="list-group-item" >
                                                                                                 <label class="form-check-label">
                                                                                                         <input type="checkbox" class="form-check-input"  name="dp" th:value="${d.id}">
@@ -173,13 +173,13 @@
                                                                 </div>
                                                         </li>
                                                         <li class="list-group-item">应用题(20分):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                <button type="button" class="btn btn-primary" onclick="showapp()">&#8595;</button>
-                                                                <button type="button" class="btn btn-primary" onclick="offapp()">&#8593;</button>
+                                                                <button type="button" class="btn btn-primary" onclick="showapp()"><img th:src="@{~/img/down.png}" style="width:15px;"></button>
+                                                                <button type="button" class="btn btn-primary" onclick="offapp()"><img th:src="@{~/img/up.png}" style="width:15px;"></button>
                                                                 <div id="appinfo" style="display: none;overflow:scroll; width:100%; height:200px;">
                                                                         <ul class="list-group" th:each="aq:${aqs}">
-                                                                                <li class="list-group-item"   th:text="${aq.key}" style="font-weight: bold;">
+                                                                                <li class="list-group-item"   th:text="${aq.key}" style="font-weight: bold;" onclick="ddd($(this))">
                                                                                 </li>
-                                                                                <ul class="list-group" th:each="a:${aq.value}">
+                                                                                <ul class="list-group" th:each="a:${aq.value}" style="display:none">
                                                                                         <li class="list-group-item" >
                                                                                                 <label class="form-check-label">
                                                                                                         <input type="checkbox" class="form-check-input"  name="aq" th:value="${a.id}">

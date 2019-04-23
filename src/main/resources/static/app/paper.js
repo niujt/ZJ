@@ -119,4 +119,13 @@ function showapp(){
 function offapp(){
     $("#appinfo").css('display','none');
 }
+function ddd(txt){
+    if(txt.siblings().css('display')=='none'){
+        txt.siblings().css('display','block')
+    }
+    else{
+        txt.siblings().css('display','none')
+    }
+
+}
 
