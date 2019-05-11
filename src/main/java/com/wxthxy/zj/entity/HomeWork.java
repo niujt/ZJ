@@ -11,7 +11,7 @@ public class HomeWork {
     /**主键*/
     private Integer id;
     /**学生姓名*/
-    private String studentname;
+    private String stuname;
     /**班级*/
     private String classname;
     /**学号*/

@@ -89,7 +89,7 @@ public class HomeworkUtils {
             _major="物联网";
         }
         homeWork.setClassname(_major+student.getClassname());
-        homeWork.setStudentname(student.getName());
+        homeWork.setStuname(student.getName());
         return  homeWork;
     }
 

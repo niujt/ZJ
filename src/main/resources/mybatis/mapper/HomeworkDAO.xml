@@ -21,8 +21,11 @@
         select count(1) from homework where stuid=#{stuid}
     </select>
     <select id="findAll" resultType="com.wxthxy.zj.entity.HomeWork">
-        select p.name as papername,h.* from homework h left join paper p
+        select p.name as papername,h.*,s.name as stuname,s.classname as classname from homework h
+        left join paper p
         on p.id=h.paperid
+        left join student s
+        on s.stuid=h.stuid
         where 1=1
         <if test="paperids!=null">
             and h.paperid in

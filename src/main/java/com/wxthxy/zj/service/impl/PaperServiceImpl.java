@@ -200,16 +200,16 @@ public class PaperServiceImpl  implements PaperService {
         if(cqidfinal.equals("error")){
             message.append("选择题数量不足");
         }
-        if(cpidfinal.equals("error")){
+        else if(cpidfinal.equals("error")){
             message.append(" 填空题数量不足");
         }
-        if(jqidfinal.equals("error")){
+        else if(jqidfinal.equals("error")){
             message.append(" 判断题数量不足");
         }
-        if(dpidfinal.equals("error")){
+        else if(dpidfinal.equals("error")){
             message.append(" 简答题数量不足");
         }
-        if(aqidfinal.equals("error")){
+        else if(aqidfinal.equals("error")){
             message.append(" 应用题数量不足");
         }
         else{
