@@ -18,6 +18,7 @@ public interface DesignproblemDAO {
      */
     List<Question> getAllDesignproblems();
 
+    List<Question> getAllDesignproblemsByChapter(@Param("chapter") String chapter);
     /**
      * 添加简答题
      * @param question

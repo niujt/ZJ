@@ -33,14 +33,23 @@ function check(evaluate,proposal){
  * 提交作业
  */
 function upHomework(){
-    console.log('提交考卷');
+        console.log('提交考卷');
         var d = {};
         var t = $('form').serializeArray();
+        var message="";
         $.each(t, function () {
-            d[this.name] = this.value;
+            if(this.value==''||this.value==null){
+                message="请仔细检查，存在题目没做完";
+            }
+            else {
+                d[this.name] = this.value;
+            }
         });
+    if(message!=''){
+        alert(message);
+    }
         var str=JSON.stringify(d);
-       console.log(str);
+        console.log(str);
         $.ajax({
             url:'/zj/student/subhomework',
             contentType: 'application/json; charset=UTF-8',
@@ -53,6 +62,8 @@ function upHomework(){
             }
 
         });
+
+
     return false;
 }
 
@@ -60,26 +71,38 @@ function upHomework(){
  * 自测
  */
 function doBySelf(){
-    console.log('自测');
-    var d = {};
-    var t = $('form').serializeArray();
-    $.each(t, function () {
-        d[this.name] = this.value;
-    });
-    var str=JSON.stringify(d);
-    console.log(str);
-    $.ajax({
-        url:'/zj/student/subhomeworkBySelf',
-        contentType: 'application/json; charset=UTF-8',
-        type:'post',
-        data:str,
-        dataType:'json',
-        success:function(data){
-            console.log(data);
-            location.href='/zj/student/homework';
+        console.log('自测');
+        var d = {};
+        var t = $('form').serializeArray();
+        var message="";
+        $.each(t, function () {
+            if(this.value==''||this.value==null){
+                message="请仔细检查，存在题目没做完";
+            }
+            else {
+                d[this.name] = this.value;
+            }
+
+        });
+        if(message!=''){
+            alert(message);
         }
 
-    });
+        var str=JSON.stringify(d);
+        console.log(str);
+        $.ajax({
+            url:'/zj/student/subhomeworkBySelf',
+            contentType: 'application/json; charset=UTF-8',
+            type:'post',
+            data:str,
+            dataType:'json',
+            success:function(data){
+                console.log(data);
+                location.href='/zj/student/homework';
+            }
+
+        });
+
 }
 
 /**
@@ -109,4 +132,18 @@ $(function(){
 function checkinfo(){
     location.href="/zj/teacher/check";
 }
+function aaa(){
+    if($("#dpScore").val()==null||$("#dpScore").val()==''){
+        alert("简答题未评分");
+        return false;
+    }
+    else if($("#aqScore").val()==null||$("#aqScore").val()==''){
+        alert("应用题未评分");
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
 

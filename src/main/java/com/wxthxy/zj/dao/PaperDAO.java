@@ -11,4 +11,5 @@ public interface PaperDAO {
     int addPaper(Paper paper);
     int getCount(@Param("name")String name);
     int deletePaperById(@Param("id")Integer id);
+    List<Paper> findPaperByName(@Param("name") String name);
 }

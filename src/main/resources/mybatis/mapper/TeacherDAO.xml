@@ -4,7 +4,7 @@
     <select id="getCount" resultType="Integer">
         select count(1) from teacher
     </select>
-    <select id="findAllTeacher" resultType="com.wxthxy.zj.entity.Teacher" parameterType="Integer">
+    <select id="findAllTeacher" resultType="com.wxthxy.zj.entity.Teacher">
         select * from teacher
     </select>
     <insert id="addTeacher" parameterType="com.wxthxy.zj.entity.Teacher">

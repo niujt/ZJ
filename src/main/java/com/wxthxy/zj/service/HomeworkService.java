@@ -14,7 +14,7 @@ public interface HomeworkService {
      * @param currentPage
      * @return
      */
-    PageBean<HomeWork> getAll(Integer currentPage);
+    PageBean<HomeWork> getAll(Integer currentPage,String papername,String studentname);
 
     /**
      *  获取作业列表

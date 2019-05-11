@@ -9,6 +9,7 @@ import com.wxthxy.zj.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -186,23 +187,70 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public List findAllQuestions(String type) {
+    public Map findAllQuestions(String type) {
         List questions=null;
+        Map map=new LinkedHashMap();
         if(type.equals("选择题")){
-            questions=choicequestionDAO.findAllChoicequestion();
+            questions=choicequestionDAO.findAllChoicequestionByChapter("第一章");
+            map.put("第一章",questions);
+            questions=choicequestionDAO.findAllChoicequestionByChapter("第二章");
+            map.put("第二章",questions);
+            questions=choicequestionDAO.findAllChoicequestionByChapter("第三章");
+            map.put("第三章",questions);
+            questions=choicequestionDAO.findAllChoicequestionByChapter("第四章");
+            map.put("第四章",questions);
+            questions=choicequestionDAO.findAllChoicequestionByChapter("第五章");
+            map.put("第五章",questions);
         }
+
         else if(type.equals("填空题")){
-            questions=completionDAO.getAllCompletions();
+            questions=completionDAO.getAllCompletionsByChapter("第一章");
+            map.put("第一章",questions);
+            questions=completionDAO.getAllCompletionsByChapter("第二章");
+            map.put("第二章",questions);
+            questions=completionDAO.getAllCompletionsByChapter("第三章");
+            map.put("第三章",questions);
+            questions=completionDAO.getAllCompletionsByChapter("第四章");
+            map.put("第四章",questions);
+            questions=completionDAO.getAllCompletionsByChapter("第五章");
+            map.put("第五章",questions);
         }
         else if(type.equals("判断题")){
-            questions=judgementquestionDAO.getAllJudgementquestions();
+            questions=judgementquestionDAO.getAllJudgementquestionsByChapter("第一章");
+            map.put("第一章",questions);
+            questions=judgementquestionDAO.getAllJudgementquestionsByChapter("第二章");
+            map.put("第二章",questions);
+            questions=judgementquestionDAO.getAllJudgementquestionsByChapter("第三章");
+            map.put("第三章",questions);
+            questions=judgementquestionDAO.getAllJudgementquestionsByChapter("第四章");
+            map.put("第四章",questions);
+            questions=judgementquestionDAO.getAllJudgementquestionsByChapter("第五章");
+            map.put("第五章",questions);
         }
         else if(type.equals("简答题")){
-            questions=designproblemDAO.getAllDesignproblems();
+            questions=designproblemDAO.getAllDesignproblemsByChapter("第一章");
+            map.put("第一章",questions);
+            questions=designproblemDAO.getAllDesignproblemsByChapter("第二章");
+            map.put("第二章",questions);
+            questions=designproblemDAO.getAllDesignproblemsByChapter("第三章");
+            map.put("第三章",questions);
+            questions=designproblemDAO.getAllDesignproblemsByChapter("第四章");
+            map.put("第四章",questions);
+            questions=designproblemDAO.getAllDesignproblemsByChapter("第五章");
+            map.put("第五章",questions);
         }
         else if(type.equals("应用题")){
-            questions=applicationQuestionDAO.getAllApplicationQuestion();
+            questions=applicationQuestionDAO.getAllApplicationQuestionByChapter("第一章");
+            map.put("第一章",questions);
+            questions=applicationQuestionDAO.getAllApplicationQuestionByChapter("第二章");
+            map.put("第二章",questions);
+            questions=applicationQuestionDAO.getAllApplicationQuestionByChapter("第三章");
+            map.put("第三章",questions);
+            questions=applicationQuestionDAO.getAllApplicationQuestionByChapter("第四章");
+            map.put("第四章",questions);
+            questions=applicationQuestionDAO.getAllApplicationQuestionByChapter("第五章");
+            map.put("第五章",questions);
         }
-        return questions;
+        return map;
     }
 }

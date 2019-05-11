@@ -9,6 +9,14 @@
         from ApplicationQuestion aq left join questiontype qt
         on aq.questiontypeid=qt.id
     </select>
+    <select id="getAllApplicationQuestionByChapter" resultType="com.wxthxy.zj.entity.ApplicationQuestion">
+        select qt.type as type,qt.level as level,qt.score as score,aq.*
+        from ApplicationQuestion aq left join questiontype qt
+                                              on aq.questiontypeid=qt.id
+        <if test="chapter !='chapter' and chapter !=null">
+            where aq.chapter=#{chapter}
+        </if>
+    </select>
     <insert id="addApplicationQuestion" parameterType="com.wxthxy.zj.entity.ApplicationQuestion">
         insert into ApplicationQuestion(imgurl,questiontypeid,text,answer,chapter)
         values(#{imgurl},#{questiontypeid},#{text},#{answer},#{chapter})

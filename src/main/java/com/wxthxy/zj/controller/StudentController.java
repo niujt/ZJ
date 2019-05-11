@@ -152,44 +152,11 @@ public class StudentController {
         request.setAttribute("answers",answer);
         HomeWork homeWork=new HomeWork();
         homeWork.setId(id);
-        homeWork.setScore(scoreBySelf(map,answer));
+        homeWork.setScore(HomeworkUtils.scoreBySelf(map,answer));
         homeworkService.scoreBySelf(homeWork);
      return "/student/DoBySelf";
     }
 
-    /**
-     * 自测得分
-     */
-    private String scoreBySelf(Map map, Answer answer){
-        //填空题答案
-        double score=0.0;
-        List<String> cpanswers=(List<String>)map.get("cpanswers");
-        for(int i=0;i<cpanswers.size();i++){
-            String an=answer.getCpanwsers().get(i);
-            an=an.substring(2,an.length());
-            if(cpanswers.get(i).equals(an)){
-                score=score+5;
-            }
-        }
-        //选择题答案
-        List<String> cqanswers=(List<String>)map.get("cqanswers");
-        for(int i=0;i<cqanswers.size();i++){
-            String an=answer.getCqanwsers().get(i);
-            an=an.substring(2,an.length());
-            if(cqanswers.get(i).equals(an)){
-                score=score+2;
-            }
-        }
-        //判断题答案
-        List<String> jqanswers=(List<String>)map.get("jqanswers");
-        for(int i=0;i<jqanswers.size();i++){
-            String an=answer.getJqanwsers().get(i);
-            an=an.substring(2,an.length());
-            if(jqanswers.get(i).equals(an)){
-                score=score+1;
-            }
-        }
-        return score+"";
-    }
+
 
 }

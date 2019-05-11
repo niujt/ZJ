@@ -96,6 +96,12 @@ public class PaperController {
         json.put("message",service.getPaperByAuto(autoPaper));
         return json;
     }
+
+    /**
+     * 手动组卷
+     * @param manualPaper
+     * @return
+     */
     @RequestMapping(value = "/paper/manualPaper",method = RequestMethod.POST)
     @ResponseBody
     public JSONObject manualPaper(ManualPaper manualPaper){

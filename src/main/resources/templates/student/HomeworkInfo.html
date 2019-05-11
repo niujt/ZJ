@@ -37,14 +37,13 @@
             <div class="card" th:each="cq,cqStat:${paperInfo.choicequestions}">
                 <div class="card-header" ><span th:text="${cqStat.count}"></span>.
                     <span th:text="${cq.text}"></span>&nbsp;&nbsp;&nbsp;（<span th:text="${cq.score}"></span>）分
-                    &nbsp;&nbsp;&nbsp;<input type="text" th:name="'choice'+${cq.id}" placeholder="请输入答案" class="form-control" style="width: 200px;float: right;">
                 </div>
                 <div class="card-body">
-                    <span th:text="${cq.option1}"></span><br>
-                    <span th:text="${cq.option2}"></span><br>
-                    <span th:text="${cq.option3}"></span><br>
-                    <div th:style="${(cq.option4)==''?'display: none':''}"><span th:text="${cq.option4}"></span></div>
-                    <div th:style="${(cq.option5)==''?'display: none':''}"><span th:text="${cq.option5}"></span></div>
+                   <input type="radio" th:name="'choice'+${cq.id}" th:value="A"><span th:text="${cq.option1}"></span><br>
+                    <input type="radio" th:name="'choice'+${cq.id}" th:value="B"><span th:text="${cq.option2}"></span><br>
+                    <input type="radio" th:name="'choice'+${cq.id}" th:value="C"><span th:text="${cq.option3}"></span><br>
+                    <div th:style="${(cq.option4)==''?'display: none':''}"><input type="radio" th:name="'choice'+${cq.id}" th:value="D"><span th:text="${cq.option4}"></span></div>
+                    <div th:style="${(cq.option5)==''?'display: none':''}"><input type="radio" th:name="'choice'+${cq.id}" th:value="E"><span th:text="${cq.option5}"></span></div>
                 </div>
             </div>
         </div>
@@ -71,10 +70,10 @@
             <div class="card" th:each="jq,jqStat:${paperInfo.judgementQuestions}">
                 <div class="card-header" ><span th:text="${jqStat.count}"></span>.
                     <span th:text="${jq.text}"></span>&nbsp;&nbsp;&nbsp;（<span th:text="${jq.score}"></span>）分
-                    &nbsp;&nbsp;&nbsp;<input th:name="'judge'+${jq.id}" type="text" placeholder="请输入T or F" class="form-control" style="width: 200px;float: right;"></div>
+                </div>
                 <div class="card-body">
-                    <span>是</span><br>
-                    <span>否</span>
+                    <input type="radio" th:name="'judge'+${jq.id}" value="T"><span>是</span><br>
+                    <input type="radio" th:name="'judge'+${jq.id}" value="F"><span>否</span>
                 </div>
             </div>
         </div>

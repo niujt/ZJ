@@ -17,6 +17,18 @@
 <body>
 <div th:include="menu.html :: menu" width="100%" height="100%" frameborder="no" border="0"  ></div>
 <div class="container">
+    <hr>
+    <table>
+        <form action="/zj/teacher/homework" method="get">
+            <tr>
+                <td>试卷名称:</td>
+                <td><input name="papername" class="form-control"></td>
+                <td>学生姓名:</td>
+                <td><input name="studentname" class="form-control"></td>
+                <td><button type="submit" class="btn btn-primary">查询</button></td>
+            </tr>
+        </form>
+    </table>
     <table class="table table-hover">
         <thead>
             <th>编号</th>
@@ -32,7 +44,7 @@
         <tr th:each="homework,homeworkStat:${pageBean.items}">
             <td th:text="${homeworkStat.count}"></td>
             <td th:text="${homework.papername}"></td>
-            <td th:text="${homework.studentname}"></td>
+            <td th:text="${homework.stuname}"></td>
             <td th:text="${homework.classname}"></td>
             <td th:text="${homework.stuid}"></td>
             <td th:text="${homework.score}"></td>
@@ -47,16 +59,16 @@
         </tbody>
     </table>
     <ul class="pagination" style="float:right">
-        <li class="page-item"><a th:href="@{'/zj//teacher/homework?currentPage='+${(pageBean.currentPage-1)<1?1:(pageBean.currentPage-1)}}" class="page-link" href="#">上一页</a></li>
+        <li class="page-item"><a th:href="@{'/zj/teacher/homework?currentPage='+${(pageBean.currentPage-1)<1?1:(pageBean.currentPage-1)}}" class="page-link" href="#">上一页</a></li>
         &nbsp;&nbsp;&nbsp;
         <li class="page-item" th:text="'第'+${pageBean.currentPage}+'页(共'+${pageBean.totalNum}+'条）'"></li>
         &nbsp;&nbsp;&nbsp;
-        <li class="page-item"><a th:href="@{'/zj//teacher/homework?currentPage='+${((pageBean.currentPage+1)>pageBean.totalPage)?pageBean.totalPage:(pageBean.currentPage+1)}}" class="page-link" href="#">下一页</a></li>
+        <li class="page-item"><a th:href="@{'/zj/teacher/homework?currentPage='+${((pageBean.currentPage+1)>pageBean.totalPage)?pageBean.totalPage:(pageBean.currentPage+1)}}" class="page-link" href="#">下一页</a></li>
     </ul>
 </div>
 
 <!-- 新增模态框 -->
-<form id="evaluate" method="post" action="/zj/teacher/evaHomework">
+<form id="evaluate" method="post" action="/zj/teacher/evaHomework" onsubmit="return alert('评价和建议已完成，上传成功')">
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content" style="width: 800px;">
@@ -74,12 +86,12 @@
                         </tr>
                         <tr>
                             <td>评<br>价<br>:</td>
-                            <td>   <textarea  name="evaluate" class="form-control" type="text" rows="5"></textarea></td>
+                            <td>   <textarea  name="evaluate" class="form-control" type="text" rows="5" required></textarea></td>
                         </tr>
                         <tr>
                             <td>建<br>议<br>:</td>
                             <td>
-                                <textarea  name="proposal" class="form-control" type="text" rows="5"></textarea>
+                                <textarea  name="proposal" class="form-control" type="text" rows="5" required></textarea>
                             </td>
                         </tr>
                     </table>

@@ -16,7 +16,7 @@
 <body>
 <div th:include="menu.html :: menu" width="100%" height="100%" frameborder="no" border="0"  ></div>
 <div class="container">
-<form  method="post" action="/zj/teacher/subhomework">
+<form  method="post" action="/zj/teacher/subhomework" onsubmit="return aaa()">
 <div class="panel-heading">
     <h5 class="panel-title">
         一、选择题（2分一题） <input name="id" type="hidden" th:value="${id}" style="width: 100px;">分</span>
@@ -35,7 +35,7 @@
                  <span th:text="${cqanswer}"></span>
             </span>
             </div>
-            <span style="float: right">选择题总分：<input name="cqScore" style="width: 100px;">分</span>
+            <span style="float: right">选择题总分：<input name="cqScore" style="width: 100px;" th:value="${cqscore}" readonly>分</span>
         </div>
     </div>
 </div>
@@ -57,7 +57,7 @@
                 <span th:text="${cpanswer}"></span>
             </div>
             </div>
-            <span style="float: right">填空题总分：<input name="cpScore" style="width: 100px;">分</span>
+            <span style="float: right">填空题总分：<input name="cpScore" style="width: 100px;" th:value="${cpscore}" readonly>分</span>
         </div>
     </div>
 </div>
@@ -79,7 +79,7 @@
                  <span th:text="${jqanswer}"></span>
             </span>
             </div>
-            <span style="float: right">判断题总分：<input name="jqScore" style="width: 100px;">分</span>
+            <span style="float: right">判断题总分：<input name="jqScore" style="width: 100px;" th:value="${jqscore}" readonly>分</span>
         </div>
     </div>
 </div>
@@ -101,7 +101,7 @@
                     <span th:text="${dpanwser}"></span>
                 </div>
             </div>
-            <span style="float: right">简答题总分：<input name="dpScore" style="width: 100px;">分</span>
+            <span style="float: right">简答题总分：<input name="dpScore" id="dpScore" style="width: 100px;">分</span>
         </div>
     </div>
 </div>
@@ -123,7 +123,7 @@
                     <span th:text="${aqanwser}"></span>
                 </div>
             </div>
-            <span style="float: right">应用题总分：<input name="aqScore" style="width: 100px;">分</span><br>
+            <span style="float: right">应用题总分：<input name="aqScore" id="aqScore" style="width: 100px;">分</span><br>
         </div>
         <div>
                 <button style="float: right" type="submit" class="button badge-danger">评分</button>
