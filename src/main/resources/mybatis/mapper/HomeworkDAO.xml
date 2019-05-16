@@ -55,8 +55,8 @@
         update homework set evaluate=#{evaluate},proposal=#{proposal} where id=#{id}
     </update>
     <insert id="addHomework" parameterType="com.wxthxy.zj.entity.HomeWork">
-        insert into homework(studentname, classname, stuid, paperid, cqanswer, cpanswer, dpanswer, jqanswer, apanswer,state,dotype)
-        values (#{studentname},#{classname} ,#{stuid} ,#{paperid} ,#{cqanswer} ,#{cpanswer} ,#{dpanswer} ,#{jqanswer} ,#{apanswer},0,#{dotype});
+        insert into homework(stuname, classname, stuid, paperid, cqanswer, cpanswer, dpanswer, jqanswer, apanswer,state,dotype)
+        values (#{stuname},#{classname} ,#{stuid} ,#{paperid} ,#{cqanswer} ,#{cpanswer} ,#{dpanswer} ,#{jqanswer} ,#{apanswer},0,#{dotype});
     </insert>
     <select id="check" resultType="com.wxthxy.zj.entity.HomeWork" parameterType="String">
        select * from homework where dpanswer like concat('%',#{keywords},'%') or apanswer like concat('%',#{keywords},'%')

@@ -4,7 +4,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/zj
     driver-class-name: com.mysql.jdbc.Driver
-    username: root
+    username: ch123
     password: 123456
     type: com.alibaba.druid.pool.DruidDataSource
   thymeleaf:
