@@ -42,4 +42,9 @@
 ### 注册
 ![注册](imgs/11.png)   
 
+## FAQ
+项目启动报错，不存在XXXX表     
+需要修改mysql的配置文件，忽略表大小写   
+在[mysqld]节点下，加入一行： lower_case_table_names=1
+
    
