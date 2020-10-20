@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wxthxy.zj.dao.DesignproblemDAO" >
+    <select id="getCount" resultType="Integer">
+        select count(1) from Designproblem;
+    </select>
+    <select id="getAllDesignproblems" resultType="com.wxthxy.zj.entity.Question">
+        select qt.type as type,qt.level as level,qt.score as score,dp.* from Designproblem dp left join questiontype qt
+        on dp.questiontypeid=qt.id
+    </select>
+    <select id="getAllDesignproblemsByChapter" resultType="com.wxthxy.zj.entity.Question" >
+        select qt.type as type,qt.level as level,qt.score as score,dp.* from Designproblem dp left join questiontype qt
+                                                                                                        on dp.questiontypeid=qt.id
+        <if test="chapter !='chapter' and chapter !=null">
+            where dp.chapter=#{chapter}
+        </if>
+    </select>
+    <insert id="addDesignProblem" parameterType="com.wxthxy.zj.entity.Question">
+        insert into Designproblem(questiontypeid,text,answer,chapter)
+        values(#{questiontypeid},#{text},#{answer},#{chapter})
+    </insert>
+    <select id="findDesignProblem4Paper" resultType="com.wxthxy.zj.entity.Question">
+        select qt.type as type,qt.level as level,qt.score as score,dp.* from Designproblem dp left join questiontype qt
+        on dp.questiontypeid=qt.id
+        <where>
+            dp.id in
+            <foreach close=")" collection="dpids" item="listItem" open="(" separator=",">
+                #{listItem}
+            </foreach>
+        </where>
+    </select>
+    <delete id="deleteDesignProblemById" parameterType="Integer">
+        delete from Designproblem where id=#{id}
+    </delete>
+    <update id="updateDesignProblemById" parameterType="com.wxthxy.zj.entity.Question">
+        update designproblem set questiontypeid=#{questiontypeid},text=#{text},answer=#{answer},chapter=#{chapter} where id=#{id}
+    </update>
+    <select id="findDesignproblemByid" resultType="com.wxthxy.zj.entity.Question" parameterType="Integer">
+        select qt.type as type,qt.level as level,qt.score as score,dp.* from Designproblem dp left join questiontype qt
+        on dp.questiontypeid=qt.id
+        where dp.id=#{id}
+    </select>
+</mapper>

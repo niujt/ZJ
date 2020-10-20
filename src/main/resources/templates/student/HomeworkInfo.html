@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>学生做考卷</title>
+    <link rel="stylesheet" type="text/css" th:href="@{~/css/bootstrap.css}">
+    <script type="text/javascript" th:src="@{~/js/jquery-3.3.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/jquery.form.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/bootstrap.js}"></script>
+    <script type="text/javascript" th:src="@{~/app/homework.js}"></script>
+    <script type="text/javascript">
+        function back(){
+            history.go(-1);
+        }
+    </script>
+</head>
+<body>
+<div th:include="menu.html :: menu" width="100%" height="100%" frameborder="no" border="0"  ></div>
+<div class="container">
+    <div class="panel panel-default">
+        <header style="text-align: center">
+            <button type="button" class="btn btn btn-outline-dark" style="float: left;" onclick="back()">返回</button>
+            <!--<button type="button" class="btn btn-outline-secondary">&lt;&#45;&#45;</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+            试卷名称：<span th:text="${paperInfo.paper.name}"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(总分<span th:text="${paperInfo.paper.score}"></span>分)
+            <span id="ss" style="float: right;">120分钟</span><hr>
+            <button type="botton"  class="button btn-info" onclick="doBySelf();">自测</button>(提交给老师的话请滚动至右下角点击提交按钮)
+        </header>
+        <hr>
+        <form  onSubmit="return upHomework()">
+        <div class="panel-heading">
+            <h5 class="panel-title">
+                一、选择题
+            </h5>
+        </div>
+        <div class="panel-body">
+            <input type="hidden" name="id" th:value="${paperInfo.paper.id}">
+            <div class="card" th:each="cq,cqStat:${paperInfo.choicequestions}">
+                <div class="card-header" ><span th:text="${cqStat.count}"></span>.
+                    <span th:text="${cq.text}"></span>&nbsp;&nbsp;&nbsp;（<span th:text="${cq.score}"></span>）分
+                </div>
+                <div class="card-body">
+                   <input type="radio" th:name="'choice'+${cq.id}" th:value="A"><span th:text="${cq.option1}"></span><br>
+                    <input type="radio" th:name="'choice'+${cq.id}" th:value="B"><span th:text="${cq.option2}"></span><br>
+                    <input type="radio" th:name="'choice'+${cq.id}" th:value="C"><span th:text="${cq.option3}"></span><br>
+                    <div th:style="${(cq.option4)==''?'display: none':''}"><input type="radio" th:name="'choice'+${cq.id}" th:value="D"><span th:text="${cq.option4}"></span></div>
+                    <div th:style="${(cq.option5)==''?'display: none':''}"><input type="radio" th:name="'choice'+${cq.id}" th:value="E"><span th:text="${cq.option5}"></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-heading">
+            <h5 class="panel-title">
+                二、填空题
+            </h5>
+        </div>
+        <div class="panel-body">
+            <div class="card" th:each="cp,cpStat:${paperInfo.completions}">
+                <div class="card-body" >
+                    <span th:text="${cpStat.count}"></span>.
+                    <span th:text="${cp.text}"></span>&nbsp;&nbsp;&nbsp;（<span th:text="${cp.score}"></span>）分<br>
+                    <textarea th:name="'comp'+${cp.id}" class="form-control" rows="1" style="width: 400px;"></textarea><span style="float: right">&nbsp;&nbsp;(答案从左往后依次，英文逗号隔开,)</span>
+                </div>
+            </div>
+        </div>
+        <div class="panel-heading">
+            <h5 class="panel-title">
+                三、判断题
+            </h5>
+        </div>
+        <div class="panel-body">
+            <div class="card" th:each="jq,jqStat:${paperInfo.judgementQuestions}">
+                <div class="card-header" ><span th:text="${jqStat.count}"></span>.
+                    <span th:text="${jq.text}"></span>&nbsp;&nbsp;&nbsp;（<span th:text="${jq.score}"></span>）分
+                </div>
+                <div class="card-body">
+                    <input type="radio" th:name="'judge'+${jq.id}" value="T"><span>是</span><br>
+                    <input type="radio" th:name="'judge'+${jq.id}" value="F"><span>否</span>
+                </div>
+            </div>
+        </div>
+        <div class="panel-heading">
+            <h5 class="panel-title">
+                四、简答题
+            </h5>
+        </div>
+        <div class="panel-body">
+            <div class="card" th:each="dp,dpStat:${paperInfo.designproblems}">
+                <div class="card-header" >
+                    <span th:text="${dpStat.count}"></span>.
+                    <span th:text="${dp.text}"></span>&nbsp;&nbsp;&nbsp;（<span th:text="${dp.score}"></span>）分
+                </div>
+                <div class="card-body">
+                    <textarea class="form-control" th:name="'design'+${dp.id}" rows="5" style="width: 600px;"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="panel-heading">
+            <h5 class="panel-title">
+                五、应用题
+            </h5>
+        </div>
+        <div class="panel-body">
+            <div class="card" th:each="ap,apStat:${paperInfo.applicationquestions}">
+                <div class="card-header" >
+                    <span th:text="${apStat.count}"></span>.
+                    <span th:text="${ap.text}"></span>&nbsp;&nbsp;&nbsp;（<span th:text="${ap.score}"></span>）分
+                </div>
+                <div class="card-body">
+                    <textarea class="form-control" th:name="'application'+${ap.id}" rows="5" style="width: 600px;"></textarea>
+                </div>
+            </div>
+        </div>
+    <div>
+        <button type="submit" id="submit" class="button btn-info">提交</button>
+    </div>
+</form>
+    </div>
+</div>
+</body>
+</html>

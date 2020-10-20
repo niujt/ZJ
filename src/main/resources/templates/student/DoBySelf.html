@@ -1,0 +1,87 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{~/css/bootstrap.css}">
+    <script type="text/javascript" th:src="@{~/js/jquery-3.3.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/jquery.form.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/bootstrap.js}"></script>
+    <title>查看自测结果</title>
+    <script type="text/javascript">
+       //返回计算得分
+        function back(){
+            location.href='/zj/student/homework';
+       }
+    </script>
+</head>
+<body>
+<div th:include="menu.html :: menu" width="100%" height="100%" frameborder="no" border="0"  ></div>
+<div class="container">
+    <h3>查看自测结果</h3>
+    <div class="panel-heading">
+        <h5 class="panel-title">
+            一、选择题（2分一题）
+        </h5>
+    </div>
+    <div class="panel-body">
+        <div class="card">
+        <span>我的答案：</span>
+        <span th:each="cqanswer,cqanswerStat:${cqanswers}">
+                 <span th:text="${cqanswerStat.count}"></span>.<span th:text="${cqanswer}"></span>
+            </span>
+        </div>
+          <div class="card" th:each="answer:${answers}">
+               <span>正确答案:</span>
+            <span th:each="cqanswer:${answer.cqanwsers}">
+                 <span th:text="${cqanswer}"></span>
+            </span>
+    </div>
+    </div>
+    <div class="panel-heading">
+        <h5 class="panel-title">
+            二、判断题（1分一题）
+        </h5>
+    </div>
+    <div class="panel-body">
+        <div class="card">
+        <span>我的答案：</span>
+        <span th:each="jqanswer,jqanswerStat:${jqanswers}">
+                  <span th:text="${jqanswerStat.count}"></span>.<span th:text="${jqanswer}"></span>
+            </span>
+        </div>
+            <div class="card" th:each="answer:${answers}">
+                <span>正确答案：</span>
+            <span th:each="jqanswer:${answer.jqanwsers}">
+                 <span th:text="${jqanswer}"></span>
+            </span>
+            </div>
+    </div>
+    <div class="panel-heading">
+        <h5 class="panel-title">
+            三、填空题（5分一题）
+        </h5>
+    </div>
+    <div class="panel-body">
+        <div class="card">
+        <span>我的答案：</span>
+        <div th:each="cpanswer,cpanswerStat:${cpanswers}">
+            <span th:text="${cpanswerStat.count}"></span>.<span th:text="${cpanswer}"></span><br>
+        </div>
+        </div>
+        <div class="card" th:each="answer:${answers}">
+            <span>正确答案：</span>
+                <div th:each="cpanswer:${answer.cpanwsers}">
+                    <span th:text="${cpanswer}"></span>
+                </div>
+            </div>
+
+    </div>
+    <hr>
+    <div class="panel-heading">
+        <h5 class="panel-title">
+           应用题简答题等主观题略
+        </h5>
+    </div>
+    <div><button style="float: right" class="btn btn-primary" type="button" onclick="back()">返回（计算得分）</button></div>
+</div>
+</body>
+</html>

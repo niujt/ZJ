@@ -1,0 +1,75 @@
+@charset "utf-8";
+/* 基本元素重置 */
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0;}
+body,input,textarea,select,button,table{font-size:12px;line-height:1.25em;outline:none;}
+img,fieldset{border:0;}
+ul,ol{list-style:none;}
+em,address{font-style:normal;}
+a{color:#666;text-decoration:none;}
+a:hover{text-decoration:none!important;}
+table{border-collapse:collapse;}
+h1,h2,h3,h4,h5,h6,em,i{font-style:normal; font-weight:400; outline:none;}
+img{border:none;vertical-align:middle;}
+*{box-sizing: border-box;}
+body {font-family: "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;}
+@font-face {
+  font-family: 'iconfont';  /* project id 650174 */
+  src: url('//at.alicdn.com/t/font_650174_9aisvhb1dwvcxr.eot');
+  src: url('//at.alicdn.com/t/font_650174_9aisvhb1dwvcxr.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_650174_9aisvhb1dwvcxr.woff') format('woff'),
+  url('//at.alicdn.com/t/font_650174_9aisvhb1dwvcxr.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_650174_9aisvhb1dwvcxr.svg#iconfont') format('svg');
+}
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.clearfix:after{ content:" "; display:block; height:0; clear:both;}
+.clearfix{ zoom: 1;}
+.Cgreen {color: #58C94A;}
+.Cred {color: #FA7252;}
+.Cyellow {color: #F6B900;}
+.Cblue {color: #48C8FF;}
+.hide {display: none;}
+input::-webkit-input-placeholder{color:#B4B4B4;font-weight: 100;}
+input::-moz-placeholder{color:#B4B4B4;font-weight: 100;}
+input:-moz-placeholder{color:#B4B4B4;font-weight: 100;}
+input:-ms-input-placeholder{color:#B4B4B4;font-weight: 100;}
+/* wrapper */
+.wrapper {width: 1200px;margin: 0 auto;}
+/* header */
+.header {height: 138px;}
+.header h1 {font-size: 36px;line-height: 138px;margin-left: 7px;float: left;}
+.header .QRspan {float: right;margin-top: 99px;position: relative;}
+.header .QRspan span {color: #646464;font-size: 16px;}
+.header .QRspan:hover .QRimg {display: inline-block;width: 114px;height: 114px;}
+.header .QRspan .QRimg {position: absolute;top: -97px;right: 0;display: none;}
+/* content */
+.content {
+	background:url(../img/bg.png) no-repeat, -webkit-linear-gradient(-45deg, #48C8FF, #54B7FE);
+	background:url(../img/bg.png) no-repeat, -moz-linear-gradient(-135deg, #48C8FF, #54B7FE);
+	background:url(../img/bg.png) no-repeat, linear-gradient(-135deg, #48C8FF, #54B7FE);
+}
+.content .wrapper {height:100%;position: relative;}
+.content .wrapper .bg1 {position: absolute;top: 50%;left: -165px;margin-top: -214px;}
+.content .wrapper .loginBox {width: 408px;height: 441px;padding: 40px 50px; background: #ffffff;border-radius: 4px;position: absolute;right: 0;top: 50%;margin-top: -220px;}
+.content .wrapper .loginBox .logo {float:right;width: 50%;;height: 68px;background: url(../img/logoPlus.png) no-repeat;background-size: contain;}
+.content .wrapper .loginBox .formDiv {margin-top: 40px;font-size: 16px;}
+.content .wrapper .loginBox .formDiv input[type=text],
+.content .wrapper .loginBox .formDiv input[type=password] {margin-bottom: 20px;width: 100%; height: 42px;border: 1px solid #E9E9E9;border-radius: 4px;box-shadow: 1px 5px 6px 0px rgba(236,236,236,.5);padding: 5px 5px 5px 40px;font-size: 16px;}
+.content .wrapper .loginBox .formDiv input[type=text]:focus,
+.content .wrapper .loginBox .formDiv input[type=password]:focus {border-color: #58C94A;}
+.content .wrapper .loginBox .formDiv label {position: relative;}
+.content .wrapper .loginBox .formDiv label i.iconfont {color: #D4DEE7;font-size: 18px;position: absolute;top: 12px;left: 15px;}
+.content .wrapper .loginBox .formDiv input[type=text]:focus+i.iconfont,
+.content .wrapper .loginBox .formDiv input[type=password]:focus+i.iconfont {color: #58C94A;}
+.content .wrapper .loginBox .formDiv .pwdOper {font-weight: 300;margin-bottom: 30px;}
+.content .wrapper .loginBox .formDiv .pwdOper .remember {color: #646464;}
+.content .wrapper .loginBox .formDiv .pwdOper .remember input[type=checkbox]:checked+.checkbox:before {font-family: iconfont;content: '\e732';color: #F6B900;font-size: 18px;}
+.content .wrapper .loginBox .formDiv .pwdOper .remember .checkbox {display: inline-block;width: 18px;height: 18px;border: 1px solid #F6B900;border-radius: 2px;vertical-align: bottom;margin-right: 5px;}
+.content .wrapper .loginBox .formDiv .pwdOper .forget {float: right;}
+/* footer */
+.footer {height: 102px;line-height: 102px;text-align:center;font-size: 14px;color: #646464;}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wxthxy.zj.dao.PaperDAO" >
+    <select id="findAllPapers" resultType="com.wxthxy.zj.entity.Paper" parameterType="String">
+        select * from paper
+        <if test="name !=''">
+            where name like CONCAT('%',#{name},'%')
+        </if>
+    </select>
+    <select id="findPaperById" resultType="com.wxthxy.zj.entity.Paper" parameterType="Integer">
+        select * from paper where id=#{id}
+    </select>
+    <select id="findPaperByName" resultType="com.wxthxy.zj.entity.Paper" parameterType="String">
+        select * from paper
+        where name like concat('%',#{name},'%')
+    </select>
+    <insert id="addPaper" parameterType="com.wxthxy.zj.entity.Paper">
+      insert into paper(name,cq,cp,jq,dp,aq,score) values(#{name},#{cq},#{cp},#{jq},#{dp},#{aq},#{score})
+    </insert>
+    <select id="getCount" resultType="Integer" parameterType="String">
+        select count(1) from paper
+        <if test="name !=''">
+            where name like CONCAT('%',#{name},'%')
+        </if>
+    </select>
+    <delete id="deletePaperById" parameterType="Integer">
+      DELETE  FROM paper where id=#{id}
+    </delete>
+</mapper>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{~/css/bootstrap.css}">
+    <script type="text/javascript" th:src="@{~/js/jquery-3.3.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/jquery.form.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/bootstrap.js}"></script>
+    <script type="text/javascript" th:src="@{~/app/teacher.js}"></script>
+    <title>老师管理页面</title>
+</head>
+<body>
+<div th:include="menu.html :: menu" width="100%" height="355px" frameborder="no" border="0"  ></div>
+<div class="container">
+    <h3>老师管理</h3>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>编号</th>
+            <th>姓名</th>
+            <th>工号</th>
+            <th>题库权限</th>
+            <th>专业</th>
+            <th><button class="btn btn-info" data-toggle="modal" data-target="#addModal">新增</button></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="teacher,teacherStat:${pageBean.items}">
+            <td th:text="${teacherStat.count}"></td>
+            <td th:text="${teacher.name}"></td>
+            <td th:text="${teacher.teaid}"></td>
+            <td th:text="${(teacher.roleid==0)?'否':'是'}"></td>
+            <td th:text="${(teacher.majorid==1)?'数据结构':'其他专业'}"></td>
+            <td>
+                <button class="btn btn-info" th:onclick="'javascript:delTea(\''+${teacher.id}+'\');'">删除</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <ul class="pagination" style="float:right">
+        <li class="page-item"><a th:href="@{'/zj/teacher?currentPage='+${(pageBean.currentPage-1)<1?1:(pageBean.currentPage-1)}}" class="page-link" href="#">上一页</a></li>
+        &nbsp;&nbsp;&nbsp;
+        <li class="page-item" th:text="'第'+${pageBean.currentPage}+'页(共'+${pageBean.totalNum}+'条）'"></li>
+        &nbsp;&nbsp;&nbsp;
+        <li class="page-item"><a th:href="@{'/zj/teacher?currentPage='+${((pageBean.currentPage+1)>pageBean.totalPage)?pageBean.totalPage:(pageBean.currentPage+1)}}" class="page-link" href="#">下一页</a></li>
+    </ul>
+</div>
+<!-- 新增模态框 -->
+<form id="addTea" method="post" action="/zj/teacher" onSubmit="return addTea();">
+    <div class="modal fade " id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width: 800px;">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="addModalLabel">
+                        新增老师&nbsp;&nbsp;&nbsp;&nbsp;<span id="message" style="color: red;"></span>
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <table class="table table-bordered ">
+                        </tr>
+                        <tr>
+                            <td>姓名</td>
+                            <td>   <input  name="name" class="form-control" type="text" placeholder="请输入姓名" /></td>
+                        </tr>
+                        <tr>
+                            <td>工号</td>
+                            <td>   <input  name="teaid" class="form-control" type="text" placeholder="工号" /></td>
+                        </tr>
+                        <tr>
+                            <td>题库权限</td>
+                            <td>
+                                <select class="form-control" name="roleid">
+                                    <option value="1">是</option>
+                                    <option value="0">否</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>专业</td>
+                            <td>
+                                <select class="form-control" name="majorid">
+                                    <option value="1">软件工程</option>
+                                    <option value="2">通信</option>
+                                    <option value="3">计科</option>
+                                    <option value="4">物联网</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        添加(工号存在时则更新)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>

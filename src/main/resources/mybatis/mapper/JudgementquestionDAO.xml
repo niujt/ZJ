@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wxthxy.zj.dao.JudgementquestionDAO" >
+    <select id="getCount" resultType="Integer">
+        select count(1) from Judgementquestion;
+    </select>
+    <select id="getAllJudgementquestions" resultType="com.wxthxy.zj.entity.Question">
+        select qt.type as type,qt.level as level,qt.score as score,jq.* from Judgementquestion jq left join questiontype qt
+        on jq.questiontypeid=qt.id
+    </select>
+    <select id="getAllJudgementquestionsByChapter" resultType="com.wxthxy.zj.entity.Question">
+        select qt.type as type,qt.level as level,qt.score as score,jq.* from Judgementquestion jq left join questiontype qt
+                                                                                                            on jq.questiontypeid=qt.id
+        <if test="chapter !='chapter' and chapter !=null">
+            where jq.chapter=#{chapter}
+        </if>
+    </select>
+    <insert id="addJudgementQuestion" parameterType="com.wxthxy.zj.entity.Question">
+        insert into Judgementquestion(questiontypeid,text,answer,chapter)
+        values(#{questiontypeid},#{text},#{answer},#{chapter})
+    </insert>
+    <select id="findJudgementQuestion4Paper" resultType="com.wxthxy.zj.entity.Question">
+        select qt.type as type,qt.level as level,qt.score as score,jq.* from Judgementquestion jq left join questiontype qt
+        on jq.questiontypeid=qt.id
+        <where>
+            jq.id in
+            <foreach close=")" collection="jqids" item="listItem" open="(" separator=",">
+                #{listItem}
+            </foreach>
+        </where>
+    </select>
+    <delete id="deleteJudgementQuestionById" parameterType="Integer">
+        delete from Judgementquestion where id=#{id}
+    </delete>
+    <update id="updateJudgementQuestionById" parameterType="com.wxthxy.zj.entity.Question">
+        update judgementquestion set questiontypeid=#{questiontypeid},text=#{text},answer=#{answer},chapter=#{chapter} where id=#{id}
+    </update>
+    <select id="findJudgementquestionsById" resultType="com.wxthxy.zj.entity.Question" parameterType="Integer">
+        select qt.type as type,qt.level as level,qt.score as score,jq.* from Judgementquestion jq left join questiontype qt
+        on jq.questiontypeid=qt.id
+        where jq.id=#{id}
+    </select>
+</mapper>

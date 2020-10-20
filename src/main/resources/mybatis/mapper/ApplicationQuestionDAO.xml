@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wxthxy.zj.dao.ApplicationQuestionDAO" >
+    <select id="getCount" resultType="Integer">
+        select count(1) from ApplicationQuestion;
+    </select>
+    <select id="getAllApplicationQuestion" resultType="com.wxthxy.zj.entity.ApplicationQuestion">
+        select qt.type as type,qt.level as level,qt.score as score,aq.*
+        from ApplicationQuestion aq left join questiontype qt
+        on aq.questiontypeid=qt.id
+    </select>
+    <select id="getAllApplicationQuestionByChapter" resultType="com.wxthxy.zj.entity.ApplicationQuestion">
+        select qt.type as type,qt.level as level,qt.score as score,aq.*
+        from ApplicationQuestion aq left join questiontype qt
+                                              on aq.questiontypeid=qt.id
+        <if test="chapter !='chapter' and chapter !=null">
+            where aq.chapter=#{chapter}
+        </if>
+    </select>
+    <insert id="addApplicationQuestion" parameterType="com.wxthxy.zj.entity.ApplicationQuestion">
+        insert into ApplicationQuestion(imgurl,questiontypeid,text,answer,chapter)
+        values(#{imgurl},#{questiontypeid},#{text},#{answer},#{chapter})
+    </insert>
+    <select id="findApplicationQuestion4Paper" resultType="com.wxthxy.zj.entity.ApplicationQuestion">
+        select qt.type as type,qt.level as level,qt.score as score,aq.* from ApplicationQuestion aq left join questiontype qt
+        on aq.questiontypeid=qt.id
+        <where>
+            aq.id in
+            <foreach close=")" collection="aqids" item="listItem" open="(" separator=",">
+                #{listItem}
+            </foreach>
+        </where>
+    </select>
+    <delete id="deleteById" parameterType="Integer">
+        delete from applicationquestion where id=#{id}
+    </delete>
+    <select id="getApplicationQuestionById" resultType="com.wxthxy.zj.entity.ApplicationQuestion" parameterType="Integer">
+        select qt.type as type,qt.level as level,qt.score as score,aq.*
+        from ApplicationQuestion aq left join questiontype qt on aq.questiontypeid=qt.id
+       where aq.id=#{id};
+    </select>
+    <update id="updateApplicationQue" parameterType="com.wxthxy.zj.entity.ApplicationQuestion">
+        update applicationquestion set questiontypeid=#{questiontypeid},text=#{text},answer=#{answer},imgurl=#{imgurl},chapter=#{chapter} where id=#{id}
+    </update>
+</mapper>

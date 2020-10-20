@@ -1,0 +1,38 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{~/css/bootstrap.css}">
+    <script type="text/javascript" th:src="@{~/js/jquery-3.3.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/jquery.form.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/bootstrap.js}"></script>
+    <script type="text/javascript" th:src="@{~/app/question.js}"></script>
+    <meta charset="UTF-8">
+    <title>题库管理页面</title>
+</head>
+<body>
+<div th:include="menu.html :: menu" width="100%" height="355px" frameborder="no" border="0"  ></div>
+<div class="container">
+    <h3>题库管理</h3>
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>编号</th>
+        <th>类型</th>
+        <th>题目数量</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="question,questionStat:${questions}">
+        <td th:text="${questionStat.count}"></td>
+        <td th:text="${question.key}"></td>
+        <td th:text="${question.value}"></td>
+        <td>
+            <button class="btn btn-info" th:onclick="'javascript:queInfo(\''+${question.key}+'\');'">详情</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{~/css/bootstrap.css}">
+    <script type="text/javascript" th:src="@{~/js/jquery-3.3.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{~/app/question.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/jquery.form.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/bootstrap.js}"></script>
+    <meta charset="UTF-8">
+    <title>题目详情</title>
+    <style>
+        th {
+            white-space: nowrap;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div th:include="menu.html :: menu" width="100%" height="100%" frameborder="no" border="0"></div>
+<div class="container">
+    <table class="table table-hover" style="width: 1450px;margin-left: -200px;">
+        <thead>
+        <tr>
+            <th>编号</th>
+            <th>类型</th>
+            <th>难度</th>
+            <th>题目</th>
+            <th width="100px">章节</th>
+            <th>答案</th>
+            <th>分值</th>
+            <th width="100px" colspan="2">
+                <button class="btn btn-info" data-toggle="modal" data-target="#addModal">新增</button>
+                <button class="btn btn-info" onclick="location.href='/zj/question'">返回</button>
+            </th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="question,questionStat:${pageBean.items}">
+            <td th:text="${questionStat.count}"></td>
+            <td id="td1" width="100px" th:text="${question.type}"></td>
+            <td th:text="${question.level}"></td>
+            <td th:text="${question.text}"></td>
+            <td width="100px" th:text="${question.chapter}"></td>
+            <td th:text="${question.answer}"></td>
+            <td th:text="${question.score}"></td>
+            <td  colspan="2" width="300px">
+                <button class="btn btn-info" data-toggle="modal" data-target="#upModal" th:onclick="|javascript:loadOtherQue('${question.type}','${question.id}')|">修改</button>
+                <button class="btn btn-info" th:onclick="|javascript:delOther('${question.type}','${question.id}')|">删除</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <ul class="pagination" style="float:right">
+        <li class="page-item"><a th:href="@{'/zj/questionInfo/'+${type}+'?currentPage='+${(pageBean.currentPage-1)<1?1:(pageBean.currentPage-1)}}" class="page-link" href="#">上一页</a></li>
+        &nbsp;&nbsp;&nbsp;
+        <li class="page-item" th:text="'第'+${pageBean.currentPage}+'页(共'+${pageBean.totalNum}+'条）'"></li>
+        &nbsp;&nbsp;&nbsp;
+        <li class="page-item"><a th:href="@{'/zj/questionInfo/'+${type}+'?currentPage='+${((pageBean.currentPage+1)>pageBean.totalPage)?pageBean.totalPage:(pageBean.currentPage+1)}}" class="page-link" href="#">下一页</a></li>
+    </ul>
+</div>
+<!--新增模态框-->
+<form id="addQuestion" method="post" action="/zj/addOthers" onSubmit="return addOthers();">
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width: 800px;">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="addModalLabel">
+                        新增&nbsp;&nbsp;&nbsp;&nbsp;<span id="message" style="color: red;"></span>
+                        <input type="hidden" name="type" id="type" th:value="${type}">
+                    </h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <table class="table table-bordered ">
+                        <tr>
+                            <td>难度类型</td>
+                            <td>
+                                <select class="form-control" name="questiontypeid">
+                                    <option value="0">--请选择题目难度--</option>
+                                    <option th:style="${type=='判断题'?'':'display: none'}" value="4">简单</option>
+                                    <option th:style="${type=='判断题'?'':'display: none'}" value="5">一般</option>
+                                    <option th:style="${type=='判断题'?'':'display: none'}" value="6">困难</option>
+                                    <option th:style="${type=='简答题'?'':'display: none'}" value="7">简单</option>
+                                    <option th:style="${type=='简答题'?'':'display: none'}" value="8">一般</option>
+                                    <option th:style="${type=='简答题'?'':'display: none'}" value="9">困难</option>
+                                    <option th:style="${type=='填空题'?'':'display: none'}" value="10">简单</option>
+                                    <option th:style="${type=='填空题'?'':'display: none'}" value="11">一般</option>
+                                    <option th:style="${type=='填空题'?'':'display: none'}" value="12">困难</option>
+                                </select>
+                        </tr>
+                        <tr>
+                            <td>章节</td>
+                            <td>
+                                <select class="form-control" name="chapter">
+                                    <option value="">--请选择章节--</option>
+                                    <option value="第一章">第一章</option>
+                                    <option value="第二章">第二章</option>
+                                    <option value="第三章">第三章</option>
+                                    <option value="第四章">第四章</option>
+                                    <option value="第五章">第五章</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>题目</td>
+                            <td>
+                                <textarea class="form-control" rows="5" name="text" placeholder="请输入题目"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>答案</td>
+                            <td>
+                                <textarea class="form-control" rows="5" name="answer" placeholder="请输入答案"></textarea>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        添加
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!--更新模态框-->
+<form id="upQuestion" method="post" action="/zj/updateOthers" onSubmit="return upOthers();">
+    <div class="modal fade" id="upModal" tabindex="-1" role="dialog" aria-labelledby="upModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width: 800px;">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="upModalLabel">
+                        更新&nbsp;&nbsp;&nbsp;&nbsp;<span id="message2" style="color: red;"></span>
+                        <input type="hidden" name="type"  th:value="${type}">
+                        <input type="hidden" name="id" id="id">
+                    </h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <table class="table table-bordered ">
+                        <tr>
+                            <td>难度类型</td>
+                            <td>
+                                    <select class="form-control" name="questiontypeid"  id="questiontypeid">
+                                        <option value="0">--请选择题目难度--</option>
+                                        <option th:style="${type=='判断题'?'':'display: none'}" value="4">简单</option>
+                                        <option th:style="${type=='判断题'?'':'display: none'}" value="5">一般</option>
+                                        <option th:style="${type=='判断题'?'':'display: none'}" value="6">困难</option>
+                                        <option th:style="${type=='简答题'?'':'display: none'}" value="7">简单</option>
+                                        <option th:style="${type=='简答题'?'':'display: none'}" value="8">一般</option>
+                                        <option th:style="${type=='简答题'?'':'display: none'}" value="9">困难</option>
+                                        <option th:style="${type=='填空题'?'':'display: none'}" value="10">简单</option>
+                                        <option th:style="${type=='填空题'?'':'display: none'}" value="11">一般</option>
+                                        <option th:style="${type=='填空题'?'':'display: none'}" value="12">困难</option>
+                                    </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>章节</td>
+                            <td>
+                                <select class="form-control" id="chapter"  name="chapter">
+                                    <option value="">--请选择章节--</option>
+                                    <option value="第一章">第一章</option>
+                                    <option value="第二章">第二章</option>
+                                    <option value="第三章">第三章</option>
+                                    <option value="第四章">第四章</option>
+                                    <option value="第五章">第五章</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>题目</td>
+                            <td>
+                                <textarea class="form-control" rows="5" name="text" id="text" placeholder="请输入题目"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>答案</td>
+                            <td>
+                                <textarea class="form-control" rows="5" name="answer" id="answer" placeholder="请输入答案"></textarea>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                       更新并保存
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+</body>
+</html>

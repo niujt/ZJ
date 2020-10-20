@@ -1,0 +1,304 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>试卷管理页面</title>
+        <link rel="stylesheet" type="text/css" th:href="@{~/css/bootstrap.css}">
+        <script type="text/javascript" th:src="@{~/js/jquery-3.3.1.min.js}"></script>
+        <script type="text/javascript" th:src="@{~/js/jquery.form.js}"></script>
+        <script type="text/javascript" th:src="@{~/js/bootstrap.js}"></script>
+        <script type="text/javascript" th:src="@{~/app/paper.js}"></script>
+        <style>
+                th,td {
+                        white-space: nowrap;
+                        text-align: center;
+                }
+        </style>
+</head>
+<body>
+<div th:include="menu.html :: menu" width="100%" height="355px" frameborder="no" border="0"  ></div>
+<div class="container">
+        <h3>试卷管理</h3>
+        <table>
+                <tr>
+                <form action="/zj/paper" method="get">
+                        <td >试卷名称:</td>
+                        <td ><input style="width:100px" type="text"   name="name" class="form-control"></td>
+                        <td colspan="6"></td>
+                        <td colspan="1"><button type="submit" class="btn btn-primary" >查询</button></td>
+                </form>
+                </tr>
+        </table>
+        <table class="table table-hover">
+                <thead>
+                <tr>
+                        <th>编号</th>
+                        <th>试卷名称</th>
+                        <th>选择题数量</th>
+                        <th>填空题数量</th>
+                        <th>判断题数量</th>
+                        <th>应用题数量</th>
+                        <th>简答题数量</th>
+                        <th>分数</th>
+                        <th>
+                                <button class="btn btn-info" data-toggle="modal" data-target="#addModal">新增</button>
+                                <button class="btn btn-info" onclick="history.go(-1)" th:style="${session.identity=='student'?'':'display: none'}">返回</button>
+                        </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="paper,paperStat:${pageBean.items}">
+                        <td th:text="${paperStat.count}"></td>
+                        <td th:text="${paper.name}"></td>
+                        <td th:text="${paper.cqCount}"></td>
+                        <td th:text="${paper.cpCount}"></td>
+                        <td th:text="${paper.jqCount}"></td>
+                        <td th:text="${paper.aqCount}"></td>
+                        <td th:text="${paper.dpCount}"></td>
+                        <td th:text="${paper.score}"></td>
+                        <td>
+                                <button class="btn btn-info"  th:onclick="'javascript:paperInfo(\''+${paper.id}+'\');'">详情</button>
+                                <button class="btn btn-info" th:style="${(session.role==1||session.identity=='admin')?'':'display: none'}" th:onclick="'javascript:delPaper(\''+${paper.id}+'\');'">删除</button>
+                                <button class="btn btn-info" th:style="${session.identity=='teacher'?'':'display: none'}"  th:onclick="'javascript:showAnswer(\''+${paper.id}+'\');'">查看答案</button>
+                                <button class="btn btn-info" th:style="${session.identity=='student'?'':'display: none'}" th:onclick="'javascript:doIt(\''+${paper.id}+'\');'">答题</button>
+                        </td>
+                </tr>
+                </tbody>
+        </table>
+        <ul class="pagination" style="float:right">
+                <li class="page-item"><a th:href="@{'/zj/paper?currentPage='+${(pageBean.currentPage-1)<1?1:(pageBean.currentPage-1)}}" class="page-link" href="#">上一页</a></li>
+                &nbsp;&nbsp;&nbsp;
+                <li class="page-item" th:text="'第'+${pageBean.currentPage}+'页(共'+${pageBean.totalNum}+'条）'"></li>
+                &nbsp;&nbsp;&nbsp;
+                <li class="page-item"><a th:href="@{'/zj/paper?currentPage='+${((pageBean.currentPage+1)>pageBean.totalPage)?pageBean.totalPage:(pageBean.currentPage+1)}}" class="page-link" href="#">下一页</a></li>
+        </ul>
+</div>
+
+<!-- 新增模态框 -->
+        <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                        <div class="modal-content" style="width: 800px;">
+                                <div class="modal-header">
+                                        <h4 class="modal-title" id="addModalLabel">
+                                                新增试卷&nbsp;&nbsp;&nbsp;&nbsp;<span id="message" style="color: red;"></span>
+                                        </h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                &times;
+                                        </button>
+                                </div>
+                                <div class="modal-body">
+                                        <div class="radio">
+                                                <label><input type="radio" onchange="changeType(this)" name="selectType" value="manual">人工选题</label>
+                                                <label><input type="radio" onchange="changeType(this)" name="selectType" value="auto">自动组卷</label>
+                                        </div>
+                                        <!--人工选题-->
+                                        <div style="display: none;" id="manual">
+                                                <form id="manualPaper" action="/zj/paper/manualPaper" method="post" onsubmit="return manualPaper()">
+                                                <ul class="list-group">
+                                                        <li class="list-group-item">题目类型&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button style="float: right" type="submit" class="btn btn-primary" >添加</button></li>
+                                                        <li class="list-group-item">试题名称&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="name" ></li>
+                                                        <li class="list-group-item">选择题(2分):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                <button type="button" class="btn btn-primary" onclick="showchoice()"><img th:src="@{~/img/down.png}" style="width:15px;"></button>
+                                                                <button type="button" class="btn btn-primary" onclick="offchoice()"><img th:src="@{~/img/up.png}" style="width:15px;"></button>
+                                                                <div id="choiceinfo" style="display: none;overflow:scroll; width:100%; height:200px;">
+                                                                        <ul class="list-group" th:each="cq,cqStat:${cqs}">
+                                                                                <li class="list-group-item" th:text="${cq.key}" style="font-weight: bold;" onclick="ddd($(this))">
+                                                                                </li>
+                                                                                <ul class="list-group" th:each="c,cStat:${cq.value}" style="display:none">
+                                                                                        <li class="list-group-item" >
+                                                                                        <label class="form-check-label">
+                                                                                        <input type="checkbox" class="form-check-input"  name="cq" th:value="${c.id}">
+                                                                                        <span th:text="${cStat.count}"></span>.
+                                                                                        <span th:text="${c.text}"></span>
+                                                                                        </label>
+                                                                                        </li>
+                                                                                </ul>
+                                                                        </ul>
+                                                                </div>
+                                                        </li>
+                                                        <li class="list-group-item">填空题(5分):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                <button type="button" class="btn btn-primary" onclick="showcomp()"><img th:src="@{~/img/down.png}" style="width:15px;"></button>
+                                                                <button type="button" class="btn btn-primary" onclick="offcomp()"><img th:src="@{~/img/up.png}" style="width:15px;"></button>
+                                                                <div id="compinfo" style="display: none;overflow:scroll; width:100%; height:200px;">
+                                                                        <ul class="list-group" th:each="cp:${cps}">
+                                                                                <li class="list-group-item"   th:text="${cp.key}" style="font-weight: bold;" onclick="ddd($(this))">
+                                                                                </li>
+                                                                                <ul class="list-group" th:each="c:${cp.value}" style="display:none">
+                                                                                        <li class="list-group-item" >
+                                                                                                <label class="form-check-label">
+                                                                                                        <input type="checkbox" class="form-check-input"  name="cp" th:value="${c.id}">
+                                                                                                        <span th:text="${cStat.count}"></span>.
+                                                                                                        <span th:text="${c.text}"></span>
+                                                                                                </label>
+                                                                                        </li>
+                                                                                </ul>
+                                                                        </ul>
+                                                                </div>
+                                                        </li>
+                                                        <li class="list-group-item">判断题(1分):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                <button type="button" class="btn btn-primary" onclick="showjudge()"><img th:src="@{~/img/down.png}" style="width:15px;"></button>
+                                                                <button type="button" class="btn btn-primary" onclick="offjudge()"><img th:src="@{~/img/up.png}" style="width:15px;"></button>
+                                                                <div id="judgeinfo" style="display: none;overflow:scroll; width:100%; height:200px;">
+                                                                        <ul class="list-group" th:each="jq:${jqs}">
+                                                                                <li class="list-group-item"   th:text="${jq.key}" style="font-weight: bold;" onclick="ddd($(this))">
+                                                                                </li>
+                                                                                <ul class="list-group" th:each="j:${jq.value}" style="display:none">
+                                                                                        <li class="list-group-item" >
+                                                                                                <label class="form-check-label">
+                                                                                                        <input type="checkbox" class="form-check-input"  name="jq" th:value="${j.id}">
+                                                                                                        <span th:text="${jStat.count}"></span>.
+                                                                                                        <span th:text="${j.text}"></span>
+                                                                                                </label>
+                                                                                        </li>
+                                                                                </ul>
+                                                                        </ul>
+                                                                </div>
+                                                        </li>
+                                                        <li class="list-group-item">简答题(10分):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                <button type="button" class="btn btn-primary" onclick="showdesign()"><img th:src="@{~/img/down.png}" style="width:15px;"></button>
+                                                                <button type="button" class="btn btn-primary" onclick="offdesign()"><img th:src="@{~/img/up.png}" style="width:15px;"></button>
+                                                                <div id="designinfo" style="display: none;overflow:scroll; width:100%; height:200px;">
+                                                                        <ul class="list-group" th:each="dp:${dps}">
+                                                                                <li class="list-group-item"   th:text="${dp.key}" style="font-weight: bold;" onclick="ddd($(this))">
+                                                                                </li>
+                                                                                <ul class="list-group" th:each="d:${dp.value}" style="display:none">
+                                                                                        <li class="list-group-item" >
+                                                                                                <label class="form-check-label">
+                                                                                                        <input type="checkbox" class="form-check-input"  name="dp" th:value="${d.id}">
+                                                                                                        <span th:text="${dStat.count}"></span>.
+                                                                                                        <span th:text="${d.text}"></span>
+                                                                                                </label>
+                                                                                        </li>
+                                                                                </ul>
+                                                                        </ul>
+                                                                </div>
+                                                        </li>
+                                                        <li class="list-group-item">应用题(20分):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                <button type="button" class="btn btn-primary" onclick="showapp()"><img th:src="@{~/img/down.png}" style="width:15px;"></button>
+                                                                <button type="button" class="btn btn-primary" onclick="offapp()"><img th:src="@{~/img/up.png}" style="width:15px;"></button>
+                                                                <div id="appinfo" style="display: none;overflow:scroll; width:100%; height:200px;">
+                                                                        <ul class="list-group" th:each="aq:${aqs}">
+                                                                                <li class="list-group-item"   th:text="${aq.key}" style="font-weight: bold;" onclick="ddd($(this))">
+                                                                                </li>
+                                                                                <ul class="list-group" th:each="a:${aq.value}" style="display:none">
+                                                                                        <li class="list-group-item" >
+                                                                                                <label class="form-check-label">
+                                                                                                        <input type="checkbox" class="form-check-input"  name="aq" th:value="${a.id}">
+                                                                                                        <span th:text="${aStat.count}"></span>.
+                                                                                                        <span th:text="${a.text}"></span>
+                                                                                                </label>
+                                                                                        </li>
+                                                                                </ul>
+                                                                        </ul>
+                                                                </div>
+                                                        </li>
+                                                </ul>
+                                                </form>
+                                        </div>
+                                        <!--自动组卷-->
+                                        <div id="auto" style="display: none;">
+                                                <form id="autoPaper" action="/zj/paper/autoPaper" method="post" onsubmit="return autoPaper()">
+                                                <table class="table table-responsive-sm">
+                                                        <thead>
+                                                                <th>题目类型</th>
+                                                                <th>章节</th>
+                                                                <th colspan="2">题数 </th>
+                                                                <th><button type="submit" class="btn btn-primary" style="float: right">添加</button></th>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                                <td>试题名称 :</td>
+                                                                <td colspan="3">
+                                                                       <input style="width: 400px;" name="name" class="form-control" type="text" >
+                                                                </td>
+                                                        </tr>
+                                                        <tr>
+                                                                <td>选择题(2分):</td>
+                                                                <td>
+                                                                        <select class="form-control" name="ChoiceQueChapter">
+                                                                                <option value="chapter">--请选择章节--</option>
+                                                                                <option value="第一章">第一章</option>
+                                                                                <option value="第二章">第二章</option>
+                                                                                <option value="第三章">第三章</option>
+                                                                                <option value="第四章">第四章</option>
+                                                                                <option value="第五章">第五章</option>
+                                                                        </select>
+                                                                </td>
+                                                                <td>
+                                                                        <input style="width: 100px;" name="ChoiceQueNumber" class="form-control" type="number" min="1" max="10" value="0">
+                                                                </td>
+                                                                <td>题</td>
+                                                        </tr>
+                                                        <tr>
+                                                                <td>填空题(5分):</td>
+                                                                <td>
+                                                                        <select class="form-control" name="CompQueChapter">
+                                                                                <option value="chapter">--请选择章节--</option>
+                                                                                <option value="第一章">第一章</option>
+                                                                                <option value="第二章">第二章</option>
+                                                                                <option value="第三章">第三章</option>
+                                                                                <option value="第四章">第四章</option>
+                                                                                <option value="第五章">第五章</option>
+                                                                        </select>
+                                                                </td>
+                                                                <td><input style="width: 100px;" class="form-control" name="CompQueNumber" type="number" min="1" max="10" value="0"></td>
+                                                                <td>题</td>
+                                                        </tr>
+                                                        <tr>
+                                                                <td>判断题(1分):</td>
+                                                                <td>
+                                                                        <select class="form-control" name="JudgeQueChapter">
+                                                                                <option value="chapter">--请选择章节--</option>
+                                                                                <option value="第一章">第一章</option>
+                                                                                <option value="第二章">第二章</option>
+                                                                                <option value="第三章">第三章</option>
+                                                                                <option value="第四章">第四章</option>
+                                                                                <option value="第五章">第五章</option>
+                                                                        </select>
+                                                                </td>
+                                                                <td><input style="width: 100px;" class="form-control" name="JudgeQueNumber" type="number" min="1" max="10" value="0"></td>
+                                                                <td>题</td>
+                                                        </tr>
+                                                        <tr>
+                                                                <td>简答题(10分):</td>
+                                                                <td>
+                                                                        <select class="form-control" name="DesignQueChapter">
+                                                                                <option value="chapter">--请选择章节--</option>
+                                                                                <option value="第一章">第一章</option>
+                                                                                <option value="第二章">第二章</option>
+                                                                                <option value="第三章">第三章</option>
+                                                                                <option value="第四章">第四章</option>
+                                                                                <option value="第五章">第五章</option>
+                                                                        </select>
+                                                                </td>
+                                                                <td><input style="width: 100px;" class="form-control" name="DesignQueNumber" type="number" min="1" max="10" value="0"></td>
+                                                                <td>题</td>
+                                                        </tr>
+                                                        <tr>
+                                                                <td>应用题(20分):</td>
+                                                                <td>
+                                                                        <select class="form-control" name="AppQueChapter">
+                                                                                <option value="chapter">--请选择章节--</option>
+                                                                                <option value="第一章">第一章</option>
+                                                                                <option value="第二章">第二章</option>
+                                                                                <option value="第三章">第三章</option>
+                                                                                <option value="第四章">第四章</option>
+                                                                                <option value="第五章">第五章</option>
+                                                                        </select>
+                                                                </td>
+                                                                <td><input style="width: 100px;" class="form-control" name="AppQueNumber" type="number" min="1" max="10" value="0"></td>
+                                                                <td>题</td>
+                                                        </tr>
+                                                        </tbody>
+                                                </table>
+                                                </form>
+                                        </div>
+                                </div>
+                                <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                                        </button>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</body>
+</html>

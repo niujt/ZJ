@@ -1,0 +1,56 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>智能组卷测试系统--登录页面</title>
+    <link rel="stylesheet" type="text/css" th:href="@{~/css/base.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{~/css/bootstrap.css}">
+    <script type="text/javascript" th:src="@{~/js/jquery-3.3.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/jquery.form.js}"></script>
+    <script type="text/javascript" th:src="@{~/app/login.js}"></script>
+</head>
+<body>
+<div class="header Cgreen">
+    <div class="wrapper clearfix">
+        <h1>智能组卷测试系统</h1>
+    </div>
+</div>
+<div class="content">
+    <div class="wrapper">
+        <img class="bg1" src="/img/bg1.png"/>
+
+        <div class="loginBox">
+            <div class="logo">
+            </div>
+            <span style="font-family: '华文行楷';font-size: 25px;">考试管理系统<br>登录页面</span>
+            <div class="formDiv" style="margin-top: -10px;margin-left: 40px;">
+                <form id="login" action="/zj/login" method="post" onSubmit="return doLogin()">
+                    <span id="message" style="text-align: center;color: red"></span><br><br>
+                    <label class="user">
+                        <input id="username" name="username" type="text" placeholder="请输入用户名" value="admin"/>
+                        <i class="iconfont">&#xe614;</i>
+                    </label>
+                    <label class="pwd">
+                        <input id="password" name="password" type="password" placeholder="请输入密码" value="123456"/>
+                        <i class="iconfont">&#xe615;</i>
+                    </label><br>
+                    <label class="user">
+                        <select id="identity" name="identity" class="form-control" style="width:215px">
+                            <option value="teacher">老师</option>
+                            <option value="student">学生</option>
+                            <option value="admin" selected>管理员</option>
+                        </select>
+                    </label><br>
+                    <button type="submit" class="btn btn-info">登 录</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-info" onclick="regist()" type="button" >注册</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="wrapper">
+        <span>Copyright © 2019</span>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wxthxy.zj.dao.ChoicequestionDAO" >
+    <select id="getCount" resultType="Integer">
+        select count(1) from Choicequestion;
+    </select>
+    <select id="findAllChoicequestion" resultType="com.wxthxy.zj.entity.Choicequestion">
+        select qt.type as type,qt.level as level,qt.score as score,cq.*
+        from Choicequestion cq
+        left join questiontype qt
+        on cq.questiontypeid=qt.id
+    </select>
+    <select id="findAllChoicequestionByChapter" resultType="com.wxthxy.zj.entity.Choicequestion">
+        select qt.type as type,qt.level as level,qt.score as score,cq.*
+        from Choicequestion cq
+                 left join questiontype qt
+                           on cq.questiontypeid=qt.id
+        <if test="chapter !='chapter' and chapter !=null">
+            where cq.chapter=#{chapter}
+        </if>
+    </select>
+    <insert id="addChoicequestion" parameterType="com.wxthxy.zj.entity.Choicequestion">
+        insert into Choicequestion(questiontypeid,text,option1,option2,option3,option4,option5,answer,chapter)
+        values(#{questiontypeid},#{text},#{option1},#{option2},#{option3},#{option4},#{option5},#{answer},#{chapter});
+    </insert>
+    <delete id="delChoicequestion" parameterType="Integer">
+        delete from Choicequestion where id=#{id}
+    </delete>
+    <select id="getChoiceQuestionByid" parameterType="Integer" resultType="com.wxthxy.zj.entity.Choicequestion">
+        select qt.type as type,qt.level as level,qt.score as score,cq.* from Choicequestion cq left join questiontype qt
+        on cq.questiontypeid=qt.id where cq.id=#{id};
+    </select>
+    <update id="updateChoiceQuestion">
+        update Choicequestion set questiontypeid=#{questiontypeid},text=#{text},option1=#{option1},option2=#{option2},option3=#{option3},option4=#{option4},option5=#{option5},
+        answer=#{answer},chapter=#{chapter}
+        where id=#{id}
+    </update>
+    <select id="findChoicequestion4Paper" resultType="com.wxthxy.zj.entity.Choicequestion">
+        select qt.type as type,qt.level as level,qt.score as score,cq.* from Choicequestion cq left join questiontype qt
+        on cq.questiontypeid=qt.id
+        <where>
+            cq.id in
+            <foreach close=")" collection="cqids" item="listItem" open="(" separator=",">
+                #{listItem}
+            </foreach>
+        </where>
+    </select>
+
+
+
+
+
+</mapper>
