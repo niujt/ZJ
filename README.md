@@ -2,6 +2,11 @@
 # 智能组卷系统  
 ### 页面采用spring的thymeleaf  
 ### 技术栈springboot+springmvc+mybatis+pageHepler（分页插件）  
+
+### 项目启动
+```shell 
+bash start.sh
+```
 ## 下面项目部分截图 
 --- 
 ### 首页  
