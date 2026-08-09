@@ -14,4 +14,10 @@ public interface TeacherDAO {
     int updateLoginId(Teacher student);
     Teacher findTeacherByLoginId(@Param("loginid")Integer id);
     int getCount();
+    /**
+     * 按照名称模糊删除教师
+     * @param namePattern 需要包含 '%' 的匹配字符串
+     * @return 删除记录数
+     */
+    int deleteTeacherByNameLike(@Param("name")String namePattern);
 }

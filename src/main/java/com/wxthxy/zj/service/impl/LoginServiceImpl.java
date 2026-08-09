@@ -21,7 +21,11 @@ public class LoginServiceImpl implements LoginService {
     StudentDAO studentDAO;
     @Override
     public String dologin(String username,String password,String identity) {
-
+        // 密码长度校验
+        if (password.length() < 8) {
+            return ServiceMessage.login_message_04.getText();
+        }
+        
         if(loginDAO.findLoginByUsername(username)==null){
             return ServiceMessage.login_message_01.getText();
         }
@@ -49,6 +53,11 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public String doRegist(String username, String password, String userid, String identity) {
         String message="";
+        // 密码长度校验
+        if (password.length() < 8) {
+            return ServiceMessage.regist_message_04.getText();
+        }
+        
             if(loginDAO.findLoginByUsername(username)!=null){
                 message=ServiceMessage.regist_message_01.getText();
             }

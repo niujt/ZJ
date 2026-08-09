@@ -36,6 +36,9 @@ public class RegistController {
         if(username.equals("")||password.equals("")){
             json.put("message","账号密码不能为空");
         }
+        else if(password.length()<8){
+            json.put("message","密码长度必须至少8位");
+        }
         else{
             json.put("message",service.doRegist(username,password,userid,identity));
         }

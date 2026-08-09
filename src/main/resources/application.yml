@@ -2,7 +2,7 @@ server:
   port: ${PORT:8088}
 spring:
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:192.168.3.94}:3306/zj
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${PORT:3310}/zj
     driver-class-name: com.mysql.jdbc.Driver
     username: ${USER_NAME:root}
     password: ${PASSWORD:123456}

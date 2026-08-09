@@ -143,7 +143,7 @@ INSERT INTO `designproblem` VALUES (10, '说明在线性表的链式存储结构
 DROP TABLE IF EXISTS `homework`;
 CREATE TABLE `homework`  (
                            `id` int(11) NOT NULL AUTO_INCREMENT,
-                           `studentname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+                           `stuname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
                            `classname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
                            `stuid` int(11) NULL DEFAULT NULL,
                            `paperid` int(11) NULL DEFAULT NULL,

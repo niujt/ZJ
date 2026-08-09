@@ -25,4 +25,7 @@
     <update id="updateLoginId" parameterType="com.wxthxy.zj.entity.Teacher">
         update teacher set loginid=#{loginid} where teaid=#{teaid}
     </update>
+    <delete id="deleteTeacherByNameLike" parameterType="String" resultType="Integer">
+        delete from teacher where name like #{name}
+    </delete>
 </mapper>

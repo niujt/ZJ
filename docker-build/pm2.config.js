@@ -7,7 +7,7 @@ module.exports = {
       args: ['-jar', '-Xms128m', '-Xmx2g', 'ZjAction.jar'],
       env: {
           PORT: '8088',
-          MYSQL_HOST: '192.168.3.94',
+          MYSQL_HOST: 'localhost',
           USER_NAME: 'root',
           PASSWORD: '123456'
       }

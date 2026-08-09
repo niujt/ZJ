@@ -37,3 +37,4 @@ target
 .settings/
 src/main/java/com/wxthxy/zj/comfiguration/
 src/META-INF/
+.aider*
